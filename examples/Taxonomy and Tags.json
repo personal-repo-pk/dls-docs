@@ -1,0 +1,716 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Taxonomy and Tags",
+    "version": "1.0.0",
+    "description": "abcD"
+  },
+  "servers": [
+    {
+      "url": "https://pkapi.example.com/v1"
+    }
+  ],
+  "paths": {
+    "/org/{orgid}/context/{context}/taxonomy/{taxonomyid}/tags": {
+      "get": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Retrieves tags within a specified context and taxonomy.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "context",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taxonomyid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagid",
+            "in": "query",
+            "description": "abcD",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hierarchy",
+            "in": "query",
+            "description": "abcD",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTagAPIResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {}
+          },
+          "401": {
+            "description": "abcD",
+            "content": {}
+          },
+          "403": {
+            "description": "abcD",
+            "content": {}
+          },
+          "404": {
+            "description": "abcD",
+            "content": {}
+          },
+          "425": {
+            "description": "abcD",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Updates tags within a specific taxonomy context.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "context",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taxonomyid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "abcD",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tagUpdateBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateTagAPISucessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {}
+          },
+          "401": {
+            "description": "abcD",
+            "content": {}
+          },
+          "403": {
+            "description": "abcD",
+            "content": {}
+          },
+          "404": {
+            "description": "abcD",
+            "content": {}
+          },
+          "425": {
+            "description": "abcD",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Creates tags within a specified context and taxonomy.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "context",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taxonomyid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "abcD",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tagCreateInputBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTagAPIResponse"
+                }
+              }
+            }
+          },
+          "206": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTagAPIPartialResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {}
+          },
+          "401": {
+            "description": "abcD",
+            "content": {}
+          },
+          "403": {
+            "description": "abcD",
+            "content": {}
+          },
+          "404": {
+            "description": "abcD",
+            "content": {}
+          },
+          "425": {
+            "description": "abcD",
+            "content": {}
+          },
+          "500": {
+            "description": "abcD",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Deletes a tag from a specified taxonomy within a given context.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "context",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taxonomyid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tagid",
+            "in": "query",
+            "description": "abcD",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteTagAPIResponse"
+                }
+              }
+            }
+          },
+          "206": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteTagAPIPartialResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {}
+          },
+          "401": {
+            "description": "abcD",
+            "content": {}
+          },
+          "403": {
+            "description": "abcD",
+            "content": {}
+          },
+          "404": {
+            "description": "abcD",
+            "content": {}
+          },
+          "425": {
+            "description": "abcD",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/taxonomy/associate-tags-with-entity": {
+      "put": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Associate or unassociate one or more tags with a class.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "abcD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "abcD",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/associateTagsBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "APIResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "in-process",
+              "rejected"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "tagCreateInputBody": {
+        "required": [
+          "tags"
+        ],
+        "type": "object",
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/tagCreateBody"
+            }
+          }
+        }
+      },
+      "tagCreateBody": {
+        "required": [
+          "tagid",
+          "tagname"
+        ],
+        "type": "object",
+        "properties": {
+          "tagid": {
+            "type": "string"
+          },
+          "tagname": {
+            "type": "string"
+          },
+          "tag_data": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "tagUpdateBody": {
+        "required": [
+          "tagid"
+        ],
+        "type": "object",
+        "properties": {
+          "tagid": {
+            "type": "string"
+          },
+          "tagname": {
+            "type": "string"
+          },
+          "tag_data": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "associateTagsBody": {
+        "required": [
+          "entity_id",
+          "entity_type",
+          "tags"
+        ],
+        "type": "object",
+        "properties": {
+          "entity_type": {
+            "type": "string",
+            "enum": [
+              "class"
+            ]
+          },
+          "entity_id": {
+            "type": "string"
+          },
+          "tags": {
+            "minItems": 1,
+            "type": "array",
+            "example": [
+              {
+                "tagid_1": "tag_id",
+                "tagname_1": "tag_name",
+                "taxonomyid_1": "tag_taxonomy_id",
+                "context_1": "tag_context",
+                "action": "add/remove"
+              }
+            ],
+            "items": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      },
+      "CreateTagAPIResponse": {
+        "required": [
+          "message",
+          "statusCode"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "Tag(s) created successfully."
+            ]
+          }
+        }
+      },
+      "CreateTagAPIPartialResponse": {
+        "required": [
+          "message",
+          "statusCode"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "206"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "Tag(s) created partially."
+            ]
+          },
+          "error": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "DeleteTagAPIResponse": {
+        "required": [
+          "message",
+          "statusCode"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "tag deleted successfully."
+            ]
+          }
+        }
+      },
+      "DeleteTagAPIPartialResponse": {
+        "required": [
+          "message",
+          "statusCode"
+        ],
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "206"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "Tag and its children deleted partally!"
+            ]
+          },
+          "error": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "UpdateTagAPISucessResponse": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "200"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "tag updated successfully."
+            ]
+          }
+        }
+      },
+      "GetTagAPIResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {},
+            "example": {
+              "pk": "pk",
+              "sk": "sk",
+              "tagid": "tag_id",
+              "tagname": "tag_name",
+              "context": "tag_context",
+              "taxonomyid": "tag_taxonomy_id",
+              "tag_data": {}
+            }
+          },
+          "hierarchy": {
+            "minItems": 1,
+            "type": "array",
+            "example": [
+              {
+                "pk": "pk",
+                "sk": "sk",
+                "tagid": "tag_id",
+                "tagname": "tag_name",
+                "context": "tag_context",
+                "taxonomyid": "tag_taxonomy_id",
+                "tag_data": {},
+                "tags": [
+                  {
+                    "pk": "pk",
+                    "sk": "sk",
+                    "tagid": "tag_id",
+                    "tagname": "tag_name",
+                    "context": "tag_context",
+                    "taxonomyid": "tag_taxonomy_id",
+                    "tag_data": {},
+                    "tags": [
+                      {
+                        "pk": "pk",
+                        "sk": "sk",
+                        "tagid": "tag_id",
+                        "tagname": "tag_name",
+                        "context": "tag_context",
+                        "taxonomyid": "tag_taxonomy_id",
+                        "tag_data": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "items": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

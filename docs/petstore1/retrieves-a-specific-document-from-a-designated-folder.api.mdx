@@ -1,0 +1,71 @@
+---
+id: retrieves-a-specific-document-from-a-designated-folder
+title: "Retrieves a specific document from a designated folder."
+description: "abcD"
+sidebar_label: "Retrieves a specific document from a designated folder."
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVkGP00oM/ivRnB5S2nTZfdIjN5YFxAWhCk6oWrkzTjuQzGTHnrIlyn9/cpq2AZJFHGA5RRp7/PmzPZ/TKIYNqfyjehewwIBOI6lVqgySDrZm653KFaz1jUpVDQEqZAxyo1EOKhSj1j46tkalyop3DbxVEyEC3kUb0KicQ8RUEe9LCUK2qktUqcL7uvQGVV5ASeKgt1iByhvF+7rz5GDdRrVtesoA7zkShkfMwHgdK3zUIhS+NMMa3EUM+1/NoPChGuL31kn4lYSi2jtCEvvTxUI+o5jaO0bHYoe6Lq0GsWefSJyaH0H8+hNqlrELvsbA9gBRfx5JJFU0ftzPxZjJlHQr5tsJO8Nm9NyHzVRE4J8TaNtU6RKIJoLUwZuoWXf1P9ldrNYYxC43Nw7NrUzYVO6DeRyLcZqVsbuWsZp9Bz+oMxJZ7ybu6oDAOG6rvLGFnTB2jXjAQ/phuZvRm57bG8Zq2Q+faltxufr940cMHOnFaHlShS5WoqaSyEo4IxFsxit5eLfTMa7BJEu8i0isVsMCXIM5nh9pX/0ttK8epn12fenY8j5xnpPCR2cS65KbvYPK31x/S3eJ5GPQ+NbzK/HsSHcgvPVG5WqDXb4iuLnK+nVEWXNaTG0m40VZc1oUbXZ8IZQ158fSKhnwsDtuuBhKlastc51nmSlpBrSBYGa89WF2cfXv5eV/l4uLZ/NIsy9IPHs6x3I9hwq+egdfaK59lZXrmQl2h9m4FouEWlf4rlY94w+S7ZR0S3KHg4v5Yr7oJMMTV9D1s18GS+RgcYeUQEI1altYnRx5JkXwVQKJQVESea/JQRDm32M25/E5wvf9ZLznrC7Buu71Sp2avgUfj38EQiEf/h3Enlc+XNinRohhoFurVG09scRrmjUQfghl28rxYbNJf4wlWJciGP2inMz+n2W/8Z4kDxH5jPtvV+kOyihuXZ92EKzg/R7s/hDcfoh7zOlcR9n5fxj83K9HAB/MRCviskUwGLoeHByea401D67+IHTSvJNcvH75XrXt/13Nv2Y=
+sidebar_class_name: "get api-method"
+info_path: docs/petstore1/users
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieves a specific document from a designated folder."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/accounts/{accountid}/users/{extuserid}/documents/{documentid}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+abcD
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountid","in":"path","description":"abcD","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"extuserid","in":"path","description":"abcD","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"documentid","in":"path","description":"abcD","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"folderid","in":"query","description":"abcD","required":true,"style":"form","explode":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"abcD","content":{"application/json":{"schema":{"type":"object","properties":{"pk":{"type":"string"},"sk":{"type":"string"},"userid":{"type":"string"},"dls_user_id":{"type":"string"},"tag":{"type":"string"},"orgid":{"type":"string"},"data":{"type":"object","properties":{}},"classid":{"type":"string"},"productcode":{"type":"number"},"assigned_path_id":{"type":"string"},"documentid":{"type":"number"},"folderid":{"type":"string"},"item-code":{"type":"string"},"sessionid":{"type":"string"},"created":{"type":"string"},"modified":{"type":"string"},"user_modified":{"type":"string"}},"title":"DocumentItemResponse"}}}},"400":{"description":"abcD","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["400"]},"message":{"type":"string"},"name":{"type":"string","enum":["Bad Request"]}},"title":"BadRequest"}}}},"404":{"description":"abcD","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["404"]},"message":{"type":"string","enum":["Entity not found in DynamoDB"]}},"title":"ResourceNotFound"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

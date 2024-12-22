@@ -1,0 +1,71 @@
+---
+id: creates-a-new-document-or-folder
+title: "Creates a new document or folder."
+description: "abcD"
+sidebar_label: "Creates a new document or folder."
+hide_title: true
+hide_table_of_contents: true
+api: eJztV0tv40YM/isGTy0gW3KyLVrdmuweeii6SHdPhhHQEmNrO9Joh1QcV9B/Lzh6OisnQIsuUGB9skgOX/OJ/FSD4J4h3sB7Rw/kqEiIYRtASpy4rJTMFhAD7pK3EECJDnMScnqihgJzUmWS2KqQLIUAMrUuUQ5wwYWjz1XmKIVYXEUBsJyMOuEsLw1BAPRUGpsSxA9oWA2SA+UIcQ1yKr2luKzYQ9MEQwb0JBWT++oZbFtvxHJj05NazEZMbCFUiOqxLE2WoOrDT6xG9cT/mNoGUsP3WtS9r4oKySQjhgCs23tR6WxaJZJoqtugz83uPlEirbok58/EdXfoyxICSAwyX9BNQ8zppznO+rbG4M46FHvRZqgsriHPil+FcoZ4PRSEzuFJ77VVPGsSCuo926TKqYPggzVphwXJcmLBvHy9Qer+/mKhg8/ZLozR59SC+3n5kNyoLap8R85rxczKfcWjYr6apvH+xeP61hEKve2S5Hfab2KYs3HZoxp6MHv9+bviBVzagtueXUXrf4/5l6+FqyQh5tcNpzC6hJzXe+YH2cQ0K4T22vhJr36rjGR9O++6ftz3iSqinbPuf5XxP3aiKGkCuIp+/AaEb0AI4E0U/edAEJSKb2cntW6TKtfFoIlsmwByYsb9/FBvycNlHzeYLu7a9Q7baQduMO3lTVt3TnKwqRIPyz5l5R8xhB014rAeSFIT6sbksB5ISxP2G4TDXJsLATC5x55mVc5ADAeRMg7D1PASeY8uXcrBuuX6zQ/X1z9dR+ufVxUvj8SyvFqR2a0wx79sgUdeJTYPzW6Z6nQP51mRMhm9iLuRzbx7Qs+HRvIwdmjgDKPojCqM4jOGMHHwnBhMu9+/DZuzrTxajMt4Emeyg0epX72Tx3HjRt2GjYaN2jSKl6x4sB4T3VV/1Lu6xCT1hlrBehWtIs+YLEuOHtAdN21XKy9wUdBx0ee5sG7R1rF67r0e35Q+UIdQoScJS4NZoaE8LOoOapuehWuy8ZSRV10F8ZQkD4CDAFrIbQM4KHbjDdT1Dpk+OtM0Kv5ckTtBvNkG8Iguw502ZlNDmrH+TweefLGK7+46GvH94qWC+tlX6OR7RFPpEwTwJ53OvjKU+H/l4GPvPEoOhCk534VWf9uGW35QL+P5L+acpt6e+CVJqJQXbbeTufL+9z8+QAC77jMjb18Jh0f9oMFjm6v15bckWWU1GCz2lZ9/0PrU399mCtPe
+sidebar_class_name: "post api-method"
+info_path: docs/petstore1/users
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Creates a new document or folder."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/accounts/{accountid}/users/{extuserid}/documents/multi"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+abcD
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountid","in":"path","description":"abcD","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"extuserid","in":"path","description":"abcD","required":true,"style":"simple","explode":false,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"abcD","content":{"application/json":{"schema":{"required":["dls_user_id","entities","orgid","productcode"],"type":"object","properties":{"orgid":{"type":"string"},"classid":{"type":"string"},"productcode":{"type":"string"},"dls_user_id":{"type":"string"},"collaborator_id":{"type":"string"},"entities":{"minItems":1,"type":"array","items":{"required":["data","documentid","folderid","timestamp"],"type":"object","properties":{"item_code":{"type":"string"},"folderid":{"type":"string"},"documentid":{"type":"string"},"tag":{"type":"string"},"timestamp":{"type":"number"},"ttl":{"type":"number"},"data":{"type":"object","properties":{}}},"title":"CreateDocumentsEntites"}}},"title":"CreateDriveDocBody"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"abcD","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"object","properties":{"entities":{"type":"array","items":{"type":"object","properties":{}}},"count":{"type":"integer"}},"title":"MultiDocumentResponse_success"},"error":{"type":"object","properties":{"entities":{"type":"array","items":{"type":"object","properties":{}}},"count":{"type":"integer"}},"title":"MultiDocumentResponse_success"},"count":{"type":"integer"}},"title":"MultiDocumentResponse"}}}},"206":{"description":"abcD","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"object","properties":{"entities":{"type":"array","items":{"type":"object","properties":{}}},"count":{"type":"integer"}},"title":"MultiDocumentResponse_success"},"error":{"type":"object","properties":{"entities":{"type":"array","items":{"type":"object","properties":{}}},"count":{"type":"integer"}},"title":"MultiDocumentResponse_success"},"count":{"type":"integer"}},"title":"MultiDocumentResponse"}}}},"400":{"description":"abcD","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["400"]},"message":{"type":"string"},"name":{"type":"string","enum":["Bad Request"]}},"title":"BadRequest"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,71 @@
+---
+id: creates-tags-within-a-specified-context-and-taxonomy
+title: "Creates tags within a specified context and taxonomy."
+description: "abcD"
+sidebar_label: "Creates tags within a specified context and taxonomy."
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1T20AM/SsenWDGjQOFHnyjtAdOZWh6ymQ6iq04C7Z32V0Dqcf/vaPddRwgMO53c4mzKz9JT8qTWrBYGEjnMOPvRQw5mUwLZYWsIQVcZh8gBoUaK7Kk2bSFGiuCFKQuRA4xCLZUaNfwwuuabhuhKYfU6oZiMNmaKoS0BbtRjGSsFnUBXRdvwTNZW3qwfwre4oOsZbX5cwmcNXYttfiGDio4WRPmpH/dzcIbk7HvZb5hi72AjsTa8j0qVYrMBZNcGzZqd/AHz3PfEYu49ymX15RxHZSWirQVZFxErm+2kaHWuOEsLVVmD6Lj2WLhyBkDLvI9eQ8QL9x9zdHuErYfv+vYWtjSd0JxrgktOSb3X13UqrHD/eM6uQOjZG188MfT6e8tSEXGYEEQg7FoG3Mu8xEc7tjuI6sHfXYXA9VNFSThwBxGmaMgj0yTZWTMqinLzQQWu0R5lmZYnF1eXAUumKouhuPpu/+djSFjDnbxU+Qo1FZgYCYG0lrqH+vDXQ4vPdoTKk9GNZa3PBpt+Xa05clYy+PTkZanIzNyJbFrmbNOS+OIZLlOIZG6SFo3ibokzIykDQ9d0st80g6Cz6eF4f4hfdePtEaXLM/WKpMmibpBJSb0gJUqaZLJKrk7AhZdbs2rQXg/eotBD+db7Ro6ZitZj456peo67hdRr6RDCc0wC9FGWOfRzIfLsXqGjibTyXT/EOliR1CF7h8U/PrWMhHHGN0LuxZ1hJFRlImVoDwKdDlnPU+Tp/jtUJG+RKG5HeeqRFGze8dkG+oz5yUBYkj7XWEY6+nw2Pvk00eDuR9Fa655Ooe2XaKhL7rsOj6+bUhvIJ0vYrhDLXDJ3M1byIXh5xzSFZaGXknk4Cooy2H0Wk79kKs5xDssG/4FMdzQZrsH8ej/y457Bv+B650yuQYOiw2z7w3Ovb83M4YZAJ7pPMfu3zjLMlL2VdvFjg5cfvo8gxiWYf+pnLSDxntepPDeBytd/n4h4bMWSqyLxmk7eEz+fAcdLcIl
+sidebar_class_name: "post api-method"
+info_path: docs/petstore1/taxonomy-and-tags
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Creates tags within a specified context and taxonomy."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/org/{orgid}/context/{context}/taxonomy/{taxonomyid}/tags"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+abcD
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"abcD","required":true,"schema":{"type":"string"}},{"name":"context","in":"path","description":"abcD","required":true,"schema":{"type":"string"}},{"name":"taxonomyid","in":"path","description":"abcD","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"abcD","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"abcD","content":{"application/json":{"schema":{"required":["tags"],"type":"object","properties":{"tags":{"type":"array","items":{"required":["tagid","tagname"],"type":"object","properties":{"tagid":{"type":"string"},"tagname":{"type":"string"},"tag_data":{"type":"object","properties":{}}},"title":"tagCreateBody"}}},"title":"tagCreateInputBody"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"abcD","content":{"application/json":{"schema":{"required":["message","statusCode"],"type":"object","properties":{"statusCode":{"type":"string"},"message":{"type":"string","enum":["Tag(s) created successfully."]}},"title":"CreateTagAPIResponse"}}}},"206":{"description":"abcD","content":{"application/json":{"schema":{"required":["message","statusCode"],"type":"object","properties":{"statusCode":{"type":"string","enum":["206"]},"message":{"type":"string","enum":["Tag(s) created partially."]},"error":{"type":"object","properties":{}}},"title":"CreateTagAPIPartialResponse"}}}},"400":{"description":"abcD","content":{}},"401":{"description":"abcD","content":{}},"403":{"description":"abcD","content":{}},"404":{"description":"abcD","content":{}},"425":{"description":"abcD","content":{}},"500":{"description":"abcD","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

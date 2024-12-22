@@ -32,15 +32,7 @@ const config: Config = {
             "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
-          onInlineAuthors: "ignore",
-          onUntruncatedBlogPosts: "ignore",
-        },
+        blog: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -56,7 +48,7 @@ const config: Config = {
         },
       },
       navbar: {
-        title: "My Site",
+        title: "DLS",
         logo: {
           alt: "My Site Logo",
           src: "img/logo.svg",
@@ -66,19 +58,13 @@ const config: Config = {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "Tutorial",
+            label: "Guide",
           },
-          { to: "/blog", label: "Blog", position: "left" },
           {
-            label: "Petstore API",
+            label: "API",
             position: "left",
             to: "/docs/category/petstore-api",
-          },
-          {
-            href: "https://github.com/facebook/docusaurus",
-            label: "GitHub",
-            position: "right",
-          },
+          }
         ],
       },
       footer: {
@@ -197,10 +183,8 @@ const config: Config = {
         docsPluginId: "classic",
         config: {
           petstore: {
-            specPath: "examples/petstore.yaml",
-            outputDir: "docs/petstore",
-            downloadUrl:
-              "https://raw.githubusercontent.com/PaloAltoNetworks/docusaurus-template-openapi-docs/main/examples/petstore.yaml",
+            specPath: "examples",
+            outputDir: "docs/petstore1",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag",

@@ -1,0 +1,1748 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Users",
+    "description": "abcD",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://dls-asgard-thor-1453383019.us-west-2.elb.amazonaws.com/lb-auth/",
+      "description": "abcD"
+    }
+  ],
+  "paths": {
+    "/accounts/{accountid}/user/setup": {
+      "servers": [
+        {
+          "url": "http://dls-asgard-thor-1453383019.us-west-2.elb.amazonaws.com/lb-authextn/",
+          "description": "abcD",
+        }
+      ],
+      "post": {
+        "tags": [
+          "User management"
+        ],
+        "summary": "Creates or updates a user account based on organizational entitlement.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "accountid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "abcD",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReqBodyForUserSetup"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResBodyForUserSetp"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountid}/update-user-information": {
+      "put": {
+        "tags": [
+          "User management"
+        ],
+        "summary": "Update user information across all spaces.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "accountid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "abcD",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserInfoBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateUserSpacesRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{orgid}/users/all": {
+      "get": {
+        "tags": [
+          "User management"
+        ],
+        "summary": "Retrieves all users within a specified organization.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lookup",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lookup-operator",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "default": "AND",
+              "enum": [
+                "AND",
+                "OR"
+              ]
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "first_name",
+                "last_name",
+                "created",
+                "ext_email"
+              ]
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {}
+          },
+          "401": {
+            "description": "abcD",
+            "content": {}
+          },
+          "403": {
+            "description": "abcD",
+            "content": {}
+          },
+          "404": {
+            "description": "abcD",
+            "content": {}
+          },
+          "425": {
+            "description": "abcD",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/users/{userid}": {
+      "get": {
+        "tags": [
+          "User management"
+        ],
+        "summary": "Retrieves detailed information for a specific user.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "default": "demo6"
+            }
+          },
+          {
+            "name": "userid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {}
+          },
+          "401": {
+            "description": "abcD",
+            "content": {}
+          },
+          "403": {
+            "description": "abcD",
+            "content": {}
+          },
+          "404": {
+            "description": "abcD",
+            "content": {}
+          },
+          "425": {
+            "description": "abcD",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User management"
+        ],
+        "summary": "Deletes a teacher or admin user from the system.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIJobResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {}
+          },
+          "401": {
+            "description": "abcD",
+            "content": {}
+          },
+          "403": {
+            "description": "abcD",
+            "content": {}
+          },
+          "404": {
+            "description": "abcD",
+            "content": {}
+          },
+          "425": {
+            "description": "abcD",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/users/{userid}/update-role": {
+      "put": {
+        "tags": [
+          "User management"
+        ],
+        "summary": "Update a user's role within an organization.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "abcD",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRoleRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {}
+          },
+          "401": {
+            "description": "abcD",
+            "content": {}
+          },
+          "403": {
+            "description": "abcD",
+            "content": {}
+          },
+          "404": {
+            "description": "abcD",
+            "content": {}
+          },
+          "425": {
+            "description": "abcD",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/{orgid}/ext-users/token": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Get an access token for an external user using OAuth 2.0",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "default": "demo6"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "abcD",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalUserRequestBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {}
+          },
+          "404": {
+            "description": "abcD",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/accounts/{accountid}/users/{extuserid}/documents": {
+      "servers": [
+        {
+          "url": "http://dls-asgard-thor-1453383019.us-west-2.elb.amazonaws.com/lb-drive/",
+          "description": "abcD",
+        }
+      ],
+      "get": {
+        "tags": [
+          "Preferences"
+        ],
+        "summary": "Retrieves all documents within a specified folder, including subfolders.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "accountid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "extuserid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "folderid",
+            "in": "query",
+            "description": "abcD",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productcode",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "assigned_path_id",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "item-code",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "abcD",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountid}/users/{extuserid}/documents/{documentid}": {
+      "servers": [
+        {
+          "url": "http://dls-asgard-thor-1453383019.us-west-2.elb.amazonaws.com/lb-drive/",
+          "description": "abcD",
+        }
+      ],
+      "get": {
+        "tags": [
+          "Preferences"
+        ],
+        "summary": "Retrieves a specific document from a designated folder.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "accountid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "extuserid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "documentid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "folderid",
+            "in": "query",
+            "description": "abcD",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentItemResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFound"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountid}/users/{extuserid}/documents/multi": {
+      "servers": [
+        {
+          "url": "http://dls-asgard-thor-1453383019.us-west-2.elb.amazonaws.com/lb-drive/",
+          "description": "abcD",
+        }
+      ],
+      "put": {
+        "tags": [
+          "Preferences"
+        ],
+        "summary": "Updates documents within specified folders.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "accountid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "extuserid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "abcD",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDriveDocBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiDocumentResponse"
+                }
+              }
+            }
+          },
+          "206": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiDocumentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Preferences"
+        ],
+        "summary": "Creates a new document or folder.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "accountid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "extuserid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "abcD",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDriveDocBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiDocumentResponse"
+                }
+              }
+            }
+          },
+          "206": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiDocumentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Preferences"
+        ],
+        "summary": "Deletes documents from specified folders.",
+        "description": "abcD",
+        "parameters": [
+          {
+            "name": "accountid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "extuserid",
+            "in": "path",
+            "description": "abcD",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiDocumentResponse"
+                }
+              }
+            }
+          },
+          "206": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiDocumentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "abcD",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "APIResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "in-process",
+              "rejected"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "APIJobResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "in-process",
+              "rejected"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "jobId": {
+            "type": "string"
+          }
+        }
+      },
+      "ResourceNotFound": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "404"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "Entity not found in DynamoDB"
+            ]
+          }
+        }
+      },
+      "BadRequest": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "400"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "enum": [
+              "Bad Request"
+            ]
+          }
+        }
+      },
+      "ReqBodyForUserSetup": {
+        "required": [
+          "ext_user_id",
+          "org_entitlement",
+          "workflow_type"
+        ],
+        "type": "object",
+        "properties": {
+          "ext_user_id": {
+            "type": "string"
+          },
+          "workflow_type": {
+            "type": "string",
+            "enum": [
+              "org_entitlement"
+            ]
+          },
+          "org_entitlement": {
+            "$ref": "#/components/schemas/OrgEntitlementObject"
+          }
+        }
+      },
+      "OrgEntitlementObject": {
+        "required": [
+          "dls_user_id",
+          "ext_role",
+          "orgid",
+          "productcode"
+        ],
+        "type": "object",
+        "properties": {
+          "productcode": {
+            "type": "string"
+          },
+          "orgid": {
+            "type": "string"
+          },
+          "dls_user_id": {
+            "type": "string"
+          },
+          "ext_role": {
+            "type": "string",
+            "enum": [
+              "student",
+              "teacher"
+            ]
+          }
+        }
+      },
+      "ResBodyForUserSetp": {
+        "required": [
+          "message",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "enum": [
+              "Request for Setting up user for Org-Entitlement is Accepted",
+              "Request for Setting up user for Org-Entitlement is Rejected"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "in-process",
+              "rejected"
+            ]
+          }
+        }
+      },
+      "CreateDriveDocBody": {
+        "required": [
+          "dls_user_id",
+          "entities",
+          "orgid",
+          "productcode"
+        ],
+        "type": "object",
+        "properties": {
+          "orgid": {
+            "type": "string"
+          },
+          "classid": {
+            "type": "string"
+          },
+          "productcode": {
+            "type": "string"
+          },
+          "dls_user_id": {
+            "type": "string"
+          },
+          "collaborator_id": {
+            "type": "string"
+          },
+          "entities": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateDocumentsEntites"
+            }
+          }
+        }
+      },
+      "CreateDocumentsEntites": {
+        "required": [
+          "data",
+          "documentid",
+          "folderid",
+          "timestamp"
+        ],
+        "type": "object",
+        "properties": {
+          "item_code": {
+            "type": "string"
+          },
+          "folderid": {
+            "type": "string"
+          },
+          "documentid": {
+            "type": "string"
+          },
+          "tag": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "ttl": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "MultiDocumentResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "$ref": "#/components/schemas/MultiDocumentResponse_success"
+          },
+          "error": {
+            "$ref": "#/components/schemas/MultiDocumentResponse_success"
+          },
+          "count": {
+            "type": "integer"
+          }
+        }
+      },
+      "UpdateDriveDocBody": {
+        "required": [
+          "entities"
+        ],
+        "type": "object",
+        "properties": {
+          "collaborator_id": {
+            "type": "string"
+          },
+          "entities": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateDocumentEntities"
+            }
+          }
+        }
+      },
+      "UpdateDocumentEntities": {
+        "required": [
+          "documentid",
+          "folderid",
+          "timestamp"
+        ],
+        "type": "object",
+        "properties": {
+          "folderid": {
+            "type": "string"
+          },
+          "documentid": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number"
+          },
+          "ttl": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "DocumentResponse": {
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "object"
+          },
+          "count": {
+            "type": "integer"
+          },
+          "cursor": {
+            "type": "string"
+          }
+        }
+      },
+      "DocumentItemResponse": {
+        "type": "object",
+        "properties": {
+          "pk": {
+            "type": "string"
+          },
+          "sk": {
+            "type": "string"
+          },
+          "userid": {
+            "type": "string"
+          },
+          "dls_user_id": {
+            "type": "string"
+          },
+          "tag": {
+            "type": "string"
+          },
+          "orgid": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          },
+          "classid": {
+            "type": "string"
+          },
+          "productcode": {
+            "type": "number"
+          },
+          "assigned_path_id": {
+            "type": "string"
+          },
+          "documentid": {
+            "type": "number"
+          },
+          "folderid": {
+            "type": "string"
+          },
+          "item-code": {
+            "type": "string"
+          },
+          "sessionid": {
+            "type": "string"
+          },
+          "created": {
+            "type": "string"
+          },
+          "modified": {
+            "type": "string"
+          },
+          "user_modified": {
+            "type": "string"
+          }
+        }
+      },
+      "ExternalUserRequestBody": {
+        "required": [
+          "ext_user_id"
+        ],
+        "type": "object",
+        "properties": {
+          "ext_user_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      },
+      "TokenResponse": {
+        "required": [
+          "access_token",
+          "user"
+        ],
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/TokenUser"
+          },
+          "address": {
+            "$ref": "#/components/schemas/UserAddress"
+          }
+        }
+      },
+      "User": {
+        "required": [
+          "org",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "org": {
+            "$ref": "#/components/schemas/Organization"
+          },
+          "class": {
+            "$ref": "#/components/schemas/ClassData"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/ResourceData"
+          },
+          "name": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "ext_user_id": {
+            "type": "string"
+          },
+          "ext_parent_id": {
+            "type": "string"
+          },
+          "ext_username": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "address": {
+            "$ref": "#/components/schemas/UserAddress"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/User_meta"
+          }
+        }
+      },
+      "TokenUser": {
+        "required": [
+          "org",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "org": {
+            "$ref": "#/components/schemas/Organization"
+          },
+          "name": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "ext_username": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "roles": {
+            "$ref": "#/components/schemas/Role"
+          }
+        }
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "role1": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "role2": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Organization": {
+        "required": [
+          "id",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "ClassData": {
+        "required": [
+          "status",
+          "title",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "provisioned",
+              "exists",
+              "not-found"
+            ]
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "ResourceData": {
+        "required": [
+          "status",
+          "title",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "provisioned",
+              "exists",
+              "not-found"
+            ]
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "UserList": {
+        "required": [
+          "entities"
+        ],
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        }
+      },
+      "UpdateUserInfoBody": {
+        "required": [
+          "ext_user_id"
+        ],
+        "type": "object",
+        "properties": {
+          "ref_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ext_user_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ext_email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ext_username": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ext_first_name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ext_last_name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/components/schemas/UserAddress"
+          }
+        }
+      },
+      "UpdateUserSpacesRes": {
+        "required": [
+          "count",
+          "entities"
+        ],
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserSpaceEntity"
+            }
+          },
+          "count": {
+            "type": "integer"
+          }
+        }
+      },
+      "UserSpaceEntity": {
+        "required": [
+          "dls_account_id",
+          "dls_org_id",
+          "ext_user_id",
+          "space_key",
+          "space_org_context",
+          "space_role",
+          "space_title",
+          "space_type"
+        ],
+        "type": "object",
+        "properties": {
+          "ext_user_id": {
+            "type": "string"
+          },
+          "space_title": {
+            "type": "string"
+          },
+          "space_key": {
+            "type": "string"
+          },
+          "dls_account_id": {
+            "type": "string"
+          },
+          "dls_org_id": {
+            "type": "string"
+          },
+          "space_org_context": {
+            "type": "string"
+          },
+          "space_role": {
+            "type": "string"
+          },
+          "space_type": {
+            "type": "string"
+          },
+          "visibility": {
+            "type": "boolean"
+          },
+          "dls_teacher_id": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateRoleRequest": {
+        "required": [
+          "target_role"
+        ],
+        "type": "object",
+        "properties": {
+          "ext_data": {
+            "$ref": "#/components/schemas/UpdateRoleExtData"
+          },
+          "target_role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "teacher"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateRoleExtData": {
+        "type": "object",
+        "properties": {
+          "email_template_id": {
+            "type": "string"
+          }
+        }
+      },
+      "UserAddress": {
+        "type": "object",
+        "properties": {
+          "country": {
+            "type": "string"
+          }
+        }
+      },
+      "MultiDocumentResponse_success": {
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "count": {
+            "type": "integer"
+          }
+        }
+      },
+      "User_meta": {
+        "type": "object",
+        "properties": {
+          "additionalProp1": {
+            "type": "string"
+          },
+          "additionalProp2": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

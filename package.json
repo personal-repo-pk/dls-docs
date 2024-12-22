@@ -1,6 +1,6 @@
 {
-  "name": "docusaurus-template-openapi-docs",
-  "version": "4.3.1",
+  "name": "dls-docs-openapi",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",

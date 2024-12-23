@@ -1,0 +1,77 @@
+---
+id: creates-a-new-group-within-the-specified-organization
+title: "Creates a new group within the specified organization."
+description: "Creates a new group under the specified organizational path.  The request body must contain the complete group data."
+sidebar_label: "Creates a new group within the specified organization."
+hide_title: true
+hide_table_of_contents: true
+api: eJzdVk1vGzkM/SuELm0D1Um73YtvaTYbFGiRIB8nJ0DoET2jZkaaUhqnXsP/fUFp/JF42nR3b+vTWKIeKerxkUsVsQxqPFFn7Ls2qDutDIWCbRutd2qsTpgwUgAER49QihV0zhBDrAhCS4WdWTLguURn/0I5hjW0GKsRwHVFwPStoxBh6s0Cmi5EKLyLaF1CKHzT1hSphzYYcQS37tYdHFwQNzYE610YHxzcuvtrwqIi1nBsGus0XHUtcfq+zydO5+Rib3x2eX5zMTq5PD2+PoVJ6IqCQtBAzJ7v7pVWLTI2FInl/kvlsCE1Vp5La5RWVi4vt1DPM3Lj7LeOwBpyUe7OMPM5G7s5GCmt5OaWyahx5I60CkVFDarxUsVFK85CZOtKtVrpjf/jLlaee5B1HBWhId6LRGwliCIZQ/QP5FIwuAvyzyK5y8YU4kdvFmLx1OcfFNHWAdaIyV8hJLGu3GWJuJWHJhcFBdu27gM9/BoEarkTxTa+iSJnDEZSWoWIHPvvaGNNQs8+YD/9SkWUZ2TfEkdLIV0nme3faxdsu2tdpJJYttdeBzcTD4aebe0vl895iinlbSWbT7OeFkLrXcihvj862k/vJcWOXcilkUrP5HS+CmDdzHOTUqjBuqLujOS8oWZKHCrbgsmP8x9SH23K5It53lhus4LMuBDGRmrCc+QCI5WeF0qviypnTquus+Zlf8lq6Fk3wEObP2bDD15Uq5TsX6HkiyH/e8I959UnN/P7q5c9mXq+aVV0HDwPZ8l3mQsvuTp25suGT1eZJKtE5g9DdP2IZq3vIzipqHh4KvciDklxn3EyA77bB/zk5lhbaSeQtN+V8EQRs8gNgf22D3YTiKHG4iHXkyNpAcgLaLedBaLvCw1wSLgy+Id98PMdsYdHG6vko7RzcvAqdZFX4HyEme+cGcB8//s+5gX7uTVkAFO36hW9wgD0vRUyPsdZadVQrLyRZuVDXJfXWB16Lg+XKY7VYZmbu1ZS/pdbeT/9jtJ9d4RzzZknenm0w9ajjYctu0SYdjFOagxBZgZn4Gztek4c8i3fjY5GR3vN7M/OFXl4sDETp0GHpTCgyHgayLGv60aavE7oTHWSSKm79BKikoDwmZCdHP0iGCQn4GoRIjXw+vOXqzcj+BQhdG3rOYad9uXMgNcKnallJcROmn4yi3kWeRpSSS7F0UMlKue/CQwKbwQQQ/CFzRsNRmKLddBbzyWjoan3DwmlJRbdl41pVz/s3jWV12xmCythhaLyvn5b05xqYB8E2JWjJHc+xAaT8vdzxtBcJyzux7LhwW70/NWWWzb+jyfFXjQjfY+HbY3WSUo7ruX+uRgmMjcqrcbr8bHcjNOVlOV4opbLKQa64Xq1kuVvHUnTmtxpNUe2OJXKmSyVsUG+jRrPsA70k3y/vuw71Bv49ZF08CrrBu6kPc+x7uSf0uqBFpuJeHW30us5VOLMeyc5mrfXgrA9uzdxyICbTxwXBbXxp7Z3O6J2cX51rbSa9rNo442cYXyUoRYfc5w+ZSfPHLK2VDW6ssNSbDOm/P4GP/WJGA==
+sidebar_class_name: "post api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Creates a new group within the specified organization."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/org/{orgid}/groups"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Creates a new group under the specified organizational path.  The request body must contain the complete group data. 
+
+**Permissions:**
+`Teacher, Admin, SuperAdmin`
+
+**Events:**
+`GROUP.CREATE [success, error]`
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Unique identifier for the organization.","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token for authorization.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"Details required for creating a new group.","content":{"application/json":{"schema":{"required":["enddate","startdate","title"],"type":"object","properties":{"title":{"type":"string"},"startdate":{"type":"integer"},"enddate":{"type":"integer"},"path":{"type":"string"}},"title":"GroupObjectBody"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Returns the created group's information, including membership details.","content":{"application/json":{"schema":{"required":["entities"],"type":"object","properties":{"entities":{"type":"array","items":{"required":["category","path","title","uuid"],"type":"object","properties":{"uuid":{"type":"string"},"category":{"type":"string"},"title":{"type":"string"},"path":{"type":"string"},"group":{"required":["enddate","startdate"],"type":"object","properties":{"startdate":{"type":"integer"},"enddate":{"type":"integer"}},"title":"GroupInfo"}},"title":"GroupResponseBody"}},"cursor":{"type":"string"},"count":{"type":"integer"}},"title":"GroupAndMembershipSchema"}}}},"400":{"description":"Bad request. Check request body for errors.","content":{}},"401":{"description":"Invalid or missing Authorization token.","content":{}},"403":{"description":"User lacks the necessary permissions to create a group.","content":{}},"404":{"description":"Organization with the given 'orgid' not found.","content":{}},"425":{"description":"Provided access token has expired.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

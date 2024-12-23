@@ -1,0 +1,33 @@
+---
+id: membershipschema
+title: "MembershipSchema"
+description: ""
+sidebar_label: "MembershipSchema"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"entities":[{"userid":"string","dls_user_id":"string","first_name":"string","last_name":"string","email":"string","group":{"title":"string","startdate":"string","enddate":"string","path":"string"},"enrollment":{"role":"string","memberrole":"string"}}],"cursor":"string","count":0}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"MembershipSchema"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["entities"],"type":"object","properties":{"entities":{"type":"array","items":{"required":["email","enrollment","first_name","group","last_name","userid"],"type":"object","properties":{"userid":{"type":"string"},"dls_user_id":{"type":"string"},"first_name":{"type":"string"},"last_name":{"type":"string"},"email":{"type":"string"},"group":{"required":["enddate","path","startdate","title"],"type":"object","properties":{"title":{"type":"string"},"startdate":{"type":"string"},"enddate":{"type":"string"},"path":{"type":"string"}},"title":"GroupObject"},"enrollment":{"required":["memberrole","role"],"type":"object","properties":{"role":{"type":"string"},"memberrole":{"type":"string"}},"title":"EnrollmentObject"}},"title":"MemberObject"}},"cursor":{"type":"string"},"count":{"type":"integer"}},"title":"MembershipSchema"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

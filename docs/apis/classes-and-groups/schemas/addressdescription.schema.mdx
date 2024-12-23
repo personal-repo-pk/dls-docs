@@ -1,0 +1,33 @@
+---
+id: addressdescription
+title: "AddressDescription"
+description: ""
+sidebar_label: "AddressDescription"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"country":"string","street3":"string","street4":"string","city":"string","post_code":"string","house_no":"string","street1":"string","street2":"string","region":"string"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"AddressDescription"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["city","country","house_no","post_code","region","street1","street2","street3","street4"],"type":"object","properties":{"country":{"type":"string"},"street3":{"type":"string"},"street4":{"type":"string"},"city":{"type":"string"},"post_code":{"type":"string"},"house_no":{"type":"string"},"street1":{"type":"string"},"street2":{"type":"string"},"region":{"type":"string"}},"title":"AddressDescription"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

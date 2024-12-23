@@ -1,0 +1,33 @@
+---
+id: groupmultiuserbody
+title: "GroupMultiUserBody"
+description: ""
+sidebar_label: "GroupMultiUserBody"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"users":[{"id":"string","dls_user_id":"string","email":"string","first_name":"string","last_name":"string","name":"string","role":"string"}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"GroupMultiUserBody"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["users"],"type":"object","properties":{"users":{"minItems":1,"type":"array","items":{"required":["dls_user_id","first_name","id","last_name","name","role"],"type":"object","properties":{"id":{"type":"string","description":"external user id"},"dls_user_id":{"type":"string"},"email":{"type":"string"},"first_name":{"type":"string"},"last_name":{"type":"string"},"name":{"type":"string"},"role":{"type":"string"}},"title":"GroupMultiUserObject"}}},"title":"GroupMultiUserBody"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

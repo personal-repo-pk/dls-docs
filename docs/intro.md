@@ -1,49 +1,77 @@
 ---
+slug: /
 sidebar_position: 1
 tags:
   - test
 ---
 
-# Tutorial Intro
+# Welcome to ComproDLS™
 
-Let's discover **Docusaurus in less than 5 minutes**.
+## **Exostructure-Based Digital Publishing Solutions**  
+We empower publishers and content creators to deliver high-quality learning experiences with speed and efficiency. Our solutions encompass:  
+- **Learning Platforms**  
+- **Interactive Courses**  
+- **eBooks**  
+- **Assessments**  
+- **Authoring & Assembly Tools**  
+- **Learning Analytics**  
+- **Adaptive Learning**  
 
-## Getting Started
+---
 
-Get started by **creating a new site**.
+## **Our Products and Solutions**  
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+### **Digital Ecosystem**  
+Looking for a customizable, next-generation learning environment?  
+The **comproDLS™ Digital Ecosystem** offers a comprehensive suite of tools and services for rapidly building and enhancing your learning solutions.  
 
-### What you'll need
+[Learn more](#)  
 
-- [Node.js](https://nodejs.org/en/download/) version 14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+### **Engage Learning Platform**  
+Need an out-of-the-box solution?  
+**comproDLS™ ENGAGE** is a SaaS platform for publishers to deliver rich, high-fidelity learning experiences by leveraging existing textbooks, content, and assets.  
 
-## Generate a new site
+[Learn more](#)  
 
-Generate a new Docusaurus site using the **classic template**.
+### **AI for Publishers**  
+Enhance your workflows and features with intelligent automation. Seamlessly integrate AI into your existing products for increased efficiency and innovation.  
 
-The classic template will automatically be added to your project after you run the command:
+[Learn more](#)  
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+---
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## **Trusted by Leading Brands**  
+We proudly collaborate with some of the most respected names in the publishing and education industry:  
+**Pearson**, **Cengage**, **Cambridge University Press**, **National Geographic**, **Vista Higher Learning**, **Rockwell Automation**, and more.  
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+---
 
-## Start your site
+## **Why Choose comproDLS™?**  
 
-Run the development server:
+- **Content-First Approach**  
+  Designed for effective learning experiences rather than administrative tasks.  
 
-```bash
-cd my-website
-npm run start
-```
+- **Portability & Interoperability**  
+  Ensures seamless integration with internal and external platforms.  
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+- **Speed-to-Market**  
+  Avoid lengthy development cycles with ready-to-use components.  
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+- **Self-Service Capabilities**  
+  Empower editorial teams to make updates independently, without engineering dependencies.  
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+---
+
+## **Recognition & Awards**  
+Our innovative solutions have earned accolades, including:  
+- Best Learning Management System  
+- Best SaaS Product for E-Learning  
+- Learning Excellence Awards 2025  
+- EdTechX Formal Education (K12)  
+
+---
+
+## **Leap Ahead with comproDLS™**  
+Join the leading publishers in revolutionizing digital publishing. Discover how comproDLS™ can help you achieve your Pure Learning Vision.  
+
+[Learn more about comproDLS™](#)

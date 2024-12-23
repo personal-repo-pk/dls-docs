@@ -1,0 +1,33 @@
+---
+id: groupresponsebodywitharchivekeys
+title: "GroupResponseBodyWithArchiveKeys"
+description: ""
+sidebar_label: "GroupResponseBodyWithArchiveKeys"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"uuid":"string","category":"string","title":"string","archived":true,"has_data":true,"first_active_on":0,"last_archived_on":"string","last_archived_snapshot":{"members":[{"ext_user_id":"string","dls_user_id":"string","role":"string"}]},"path":"string","group":{"startdate":0,"enddate":0}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"GroupResponseBodyWithArchiveKeys"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["archived","category","first_active_on","has_data","path","title","uuid"],"type":"object","properties":{"uuid":{"type":"string"},"category":{"type":"string"},"title":{"type":"string"},"archived":{"type":"boolean"},"has_data":{"type":"boolean"},"first_active_on":{"type":"number"},"last_archived_on":{"type":"string"},"last_archived_snapshot":{"required":["members"],"type":"object","properties":{"members":{"type":"array","items":{"required":["dls_user_id","ext_user_id","role"],"type":"object","properties":{"ext_user_id":{"type":"string"},"dls_user_id":{"type":"string"},"role":{"type":"string"}},"title":"MembersSnapshotObject"}}},"title":"MembersSnapshot"},"path":{"type":"string"},"group":{"required":["enddate","startdate"],"type":"object","properties":{"startdate":{"type":"integer"},"enddate":{"type":"integer"}},"title":"GroupInfo"}},"title":"GroupResponseBodyWithArchiveKeys"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

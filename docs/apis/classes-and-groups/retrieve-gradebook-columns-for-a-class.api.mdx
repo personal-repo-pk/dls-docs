@@ -1,0 +1,74 @@
+---
+id: retrieve-gradebook-columns-for-a-class
+title: "Retrieve gradebook columns for a class."
+description: "This API fetches gradebook columns for a specified class.  If a `column_id` is provided, only that specific column's details are returned. Otherwise, all gradebook columns for the class are returned, including a cursor for pagination (if applicable)."
+sidebar_label: "Retrieve gradebook columns for a class."
+hide_title: true
+hide_table_of_contents: true
+api: eJztV0tv2zgQ/isDXjYJVDstevItTdrCQLsNnPTUBg4tjiU2FKlyyHS9hv/7YijJb+fVHvcURxxyvvnmPRdBFiQG38RHLxVOnLsTN5lQSLnXddDOioG4LjXB2eUQphjyEgmKThZyZ2JlCabOgwSqMddTjQpyI4l6AMMpSLhtpMZa3YImqL271wpVBs6aGYRShu5m3j74F4HCILUhkB7BY4jeourBl1Ci/6UJM5DGHAASSmwAbFzOQNvcRKVtARLy6Mn5JF7LQlvJtsKRnoKsa6NzOTF43AP4br/bk5NL9JUm0s7S4OTku729ClGhDRlco8xL9BmcqUrbDK5ijV7y71uRiVp6WWFAzxTPhZUVioFwvtBKZEIzubUMpdhm/IsvpNX/NqCGFyITHn9G7VGJQfARM0F5iZUUg7kIs5ofpeC1LcRikS31JA4e0XSeeHqxiqUDxo/oWYYXDC82nfRS47qY6tT+jOhnO3qHF+CmSdkyxLaDBoLjIPEa7xGOXLopzbF4Io4USA+DuFxF2FrctTo5HilOCH9GtIGjEYkxe6RoAj0RxlkMpfNtyHRoSpQK/Q4clkUbdN5ACu4O7bO8cMPCVDtLSHz+5vSU/2xquYp5jkTTaDpLpWG7tuk/ouMejFKSEkgwmgKLdQndFBZtC4Odv3R3OtaKC8qy7PREJnJnA9rAeNpMZjz9H8Sg5rtGuckPzAPnqnc1+qAbk5if7ncrKb2X7FsdsKLHX6jv9lCXCdr/uSA9fjM+cKc5PHCzy/KDZ49DDToY3I82SB+UDOunNlYT9HyKVh08S6rHuVP7Hl5knc6mAL1zapYMXS8new1aZv2+08N2NB+2D9iCWHH3q71TMTGTRwquEjeLTPxCXZRBFvufnESrDL5iC58SJWumt8oOcNNBGOeuqp1FGw6xyCnq+Of4MfOuhp8vP71PRm3jemZUs9irQ15l45QMj6fXYj0Clq3hPDl3hPRl8kNsiJwptSVFI2yjJgm+PX29W4GG9l4arbiEpO7NjX9P6fuDVYOCDJHO99Kz8gaDZVdUSHQoupqyfviNd1Kde+QZREtD4madrdbu61TXO37e7vIz4pZDARX3Ghd9jnCU0jZbFemM2Wuy7hisCzB10f7JQvtUyt4+TNlK9D1X7tkKK2gLFzMrK3fxbpOnUWv13y58YMnEVVISSqd4usGEl+eZgeg7X/TnaXZb9BNNSP15W30X/SVj1J+vl7FFv+1kqSlP3Vq9bWofEkir4KN3sWahe/TU+Od177R3utO9P0SbNyMKm8mDRCUtDxgFtKgyQOudMRXaQFl63aOR7GhmPvmJmBYJn1B6y1c/8xvIN+BqRgErOPr0+eq4B8MAFOva+UCQe5QhpZFVe7SW0iqTxplmOk5ioRmQNyEVaBOO9qkUrs2/zdyeimoGksjlujmoZEDPsZ6tNK9GCX6lRj91vuKDSTR367YySzid6lwzLMpL58wrg/dowDvih23R47SrHYVKpgBuB6tRNxkeWnqaVWfbTfNVfvy/P714f2pzPOA/oV8bqS37KHqT5quUlt94mxKZGHRLVRuN/Gm1/6ySk79vLS1dft5konQU+M35fCIJv3qzWPDnZqrnDU5pYsuUGEylIXzA6b+1eOy1+w5nW3vPvTSR5QQvAk+H9pvryEPgumVoheyG//GaoT2TwaNRu5Acw+4+vBdEN9LY2TqEDlwTIc+jag3D2qb8AuVdLL5Y/YML9AsAbSTBgntruy2ykxqRszzHOqxd3unz7N1lt/z4/losFv8BVc1lvw==
+sidebar_class_name: "get api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieve gradebook columns for a class."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/org/{orgid}/classes/{classid}/gradebooks/{gradebook_id}/columns"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API fetches gradebook columns for a specified class.  If a `column_id` is provided, only that specific column's details are returned. Otherwise, all gradebook columns for the class are returned, including a cursor for pagination (if applicable).  
+
+**Permissions:**
+`Student, Teacher, Admin, Superadmin`
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"Class ID","required":true,"schema":{"type":"string"}},{"name":"gradebook_id","in":"path","description":"Gradebook ID for the class","required":true,"schema":{"type":"string"}},{"name":"column_id","in":"query","description":"ID of the specific gradebook column to retrieve (optional)","schema":{"type":"string"}},{"name":"cursor","in":"query","description":"Pagination cursor for retrieving subsequent pages of results","schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful retrieval of gradebook column(s). Returns a list of columns or a single column if column_id is specified.","content":{"application/json":{"schema":{"type":"object","properties":{"entities":{"type":"array","items":{"type":"object","properties":{"pk":{"type":"string"},"sk":{"type":"string"},"gsi_2_pk":{"type":"string"},"gsi_2_sk":{"type":"string"},"classid":{"type":"string"},"class":{"type":"object","properties":{"title":{"type":"string"},"startdate":{"type":"number"},"enddate":{"type":"number"},"class_code":{"type":"string"}},"title":"ClassBody"},"gradebook_id":{"type":"string"},"column_id":{"type":"string"},"title":{"type":"string"},"type":{"type":"string","enum":["product","custom"]},"weightage":{"type":"string"},"bundle-codes":{"type":"array","items":{"type":"string"}},"productcode":{"type":"string"},"custom_component_code":{"type":"string"},"scoring_type":{"type":"string","enum":["SIMPLE"]},"items":{"type":"array","items":{"type":"object","properties":{"item-code":{"type":"string"}}}},"data":{"type":"object","properties":{}}},"title":"GradebookColumnResObj"}}},"title":"AddGradebookColumnsResBody"}}}},"401":{"description":"Invalid or missing authentication token.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["401"]},"message":{"type":"string"},"name":{"type":"string","enum":["BadCredentials"]}},"title":"InvalidToken"}}}},"404":{"description":"Requested resource (class, gradebook, or column) not found.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["404"]},"message":{"type":"string","enum":["Entity not found in DynamoDB"]}},"title":"ResourceNotFound"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

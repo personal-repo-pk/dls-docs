@@ -1,0 +1,33 @@
+---
+id: updateuserinfobody
+title: "UpdateUserInfoBody"
+description: ""
+sidebar_label: "UpdateUserInfoBody"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"ref_id":"string","ext_user_id":"string","ext_email":"string","ext_username":"string","ext_first_name":"string","ext_last_name":"string","address":{"country":"string"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"UpdateUserInfoBody"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["ext_user_id"],"type":"object","properties":{"ref_id":{"minLength":1,"type":"string"},"ext_user_id":{"minLength":1,"type":"string"},"ext_email":{"minLength":1,"type":"string"},"ext_username":{"minLength":1,"type":"string"},"ext_first_name":{"minLength":1,"type":"string"},"ext_last_name":{"minLength":1,"type":"string"},"address":{"type":"object","properties":{"country":{"type":"string"}},"title":"UserAddress"}},"title":"UpdateUserInfoBody"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

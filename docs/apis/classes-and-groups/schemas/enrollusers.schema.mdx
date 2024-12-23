@@ -1,0 +1,33 @@
+---
+id: enrollusers
+title: "EnrollUsers"
+description: ""
+sidebar_label: "EnrollUsers"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"users":["string"]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"EnrollUsers"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["users"],"type":"object","properties":{"users":{"minItems":1,"type":"array","items":{"minLength":1,"type":"string"}}},"title":"EnrollUsers"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

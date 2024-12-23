@@ -1,0 +1,33 @@
+---
+id: tokenresponse
+title: "TokenResponse"
+description: ""
+sidebar_label: "TokenResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"access_token":"string","user":{"uuid":"string","org":{"id":"string","type":"string","title":"string"},"name":"string","first_name":"string","last_name":"string","email":"string","ext_username":"string","username":"string","roles":{"role1":["string"],"role2":["string"]}},"address":{"country":"string"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"TokenResponse"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["access_token","user"],"type":"object","properties":{"access_token":{"type":"string"},"user":{"required":["org","uuid"],"type":"object","properties":{"uuid":{"type":"string"},"org":{"required":["id","type"],"type":"object","properties":{"id":{"type":"string"},"type":{"type":"string"},"title":{"type":"string"}},"title":"Organization"},"name":{"type":"string"},"first_name":{"type":"string"},"last_name":{"type":"string"},"email":{"type":"string"},"ext_username":{"type":"string"},"username":{"type":"string"},"roles":{"type":"object","properties":{"role1":{"type":"array","items":{"type":"string"}},"role2":{"type":"array","items":{"type":"string"}}},"title":"Role"}},"title":"TokenUser"},"address":{"type":"object","properties":{"country":{"type":"string"}},"title":"UserAddress"}},"title":"TokenResponse"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

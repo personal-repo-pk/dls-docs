@@ -1,0 +1,75 @@
+---
+id: get-an-access-token-for-an-external-user-using-o-auth-2-0
+title: "Get an access token for an external user using OAuth 2.0"
+description: "comproDLS&trade; uses the OAuth 2.0 standard for authenticating users, clients and API requests.  This endpoint generates an access token for external users of your application using their username and password. This token must be included in subsequent API requests to authorize access to resources based on user permissions."
+sidebar_label: "Get an access token for an external user using OAuth 2.0"
+hide_title: true
+hide_table_of_contents: true
+api: eJztV0tvGzcQ/isDHhrHWK1sJy3a7Ul12iJAihi204tsONRypGXMJTfk0JIi6L8Xw11ZTztpgV6K6iSR8+I3r08LQXISRDEUg0gVWtKlJO2suM2EwlB63aSfhShd3Xj35t3Vd+Slwp8hBgxAFcJ7VoWz/AQCSaukVzB2HuSGQTthcR8yKI1GSwGkVTC4eAseP0cMFHKA60oHQKsapy3BBC16SciiIMsSQwBy92iTcZwReitNaxbcGOYuepBNY7oXQAzslirUPklZWWNy28gQps6rvPXYGq1jIBghaFuaqFCBthDiKHB4lrZCBXLpcc7rL7gODTwGF32JAUYyoIIUA3po0Nc6BO1syG/sjT0+vlifFMfHN/bjNcqyQp/BQNXaZnAVG/Sr7xQVh3B07myINfrw8uON/XjujJEj5yW5w3qDFCIcXcSR0aFKeiITjfSyRkLPWV8IRkUUwvmJViITmlPdSKrEbv4/WP05IuyVgfMTafWXFnPNkeqxRp8DfAgILxTW7ocXKWeEIVVCE33jAoZcZIIx1R6VKMhHzESgueF4gq4bgyITOGuMUyiKsTSBBcoKaymKhaB5kyTJaztJ4Y5lNCQKkXyK5fK2tY+BfnFqzjo7T+LslB5T0NIEODpYJy/3ytnZVK7IF7Uk0GGz8vqfgrP8uNJZQkvsePeaz9ZPWaMwFDijOw7jTituwu6VbvQJS+L0edegJ42BFTeFi4WotX2HdkKVKE6zHYCWy0yQpoTur133MACXGwgtWWg7JekgNM6G1uPZyck+kFcxNcE4mj2YLpGit/tNrG2aHSvbMHJq/o8xay3fJcsiE4zI17HbUtqrp2VnZseT81xqMX5LcpLUIcNsZMduar4k+FWzTxhtDw5dtEnfu9moh/cbPcwq7VA4YGusfaC7J6+NfO4Wa6nN4ZuujJ9UffbSO9Mi8zxuLHa6ISa9l3MeeYR1OIwPq5z9HZUNTC+dwS2Qr7nQuOM4ZqmUx/ANUZcuWvLz5/PHVgedxT2Xl12LcXjLTLw+1MDbyx/GUhtUOcB5heV9u1oPr9Ctjm3Nv35i0FpHMHbRst0/0evxHKiSlMZA492D5q27tdfh7RvAmWZ2sONnmYkaqXKKt5ULCTZeWoXo8wDqL9I+W/ZxRr3EEPqr2RDQP6x2X/RGFKIiaop+X5nQk2Eiverx3uydvv7+1asfX52c/pTH0JtioN5ZjmaUy1p+cVZOQ166um9GveRxb18qfAB2wFuIp9fGnP11JtN22x3gGzWt7dilnG9kOOz5+C3akr9Ko2metlSCbXsGp4TV0soJ1swjppoqzafw7o+rHN4ShNg0zlM3mnste9kxsk+6MoiNWnM7UEhSm5bZpZbMWq+P5I9n/iia+6wVQfIaHx7V+cW8TNPWGCil24eZeQaaQBrjpqGzQ657T8fuGo9j9GjLllNwflt8TvOT/ITh5BqpZRrzHeH5HekgsZR2pwZbGvnIcXdzsFjX5f8U+T9CkbtBSzijfmOkTjsxDYtFN2aGgl8nMlGsiPPjpGH9NGtuM1HxaCqGYrHg537wZrnk488ReaIPbzPxIL2WI27x4UIoHfi7eiS7T1ba0WXHHV7Cv8PLD0Kw2oKWd+CDNJF/iUzc4/zxL8TydpmJCqVi7jRcdHfnbeS9a7aw1t1jeMtspTEoS2zoWdnbjSVw8f7qWmRi1PH8Ov1lEF5O+T+GnLZxuoRkSwb4bCGMtJMoJyzb2uTPX8WgT9w=
+sidebar_class_name: "post api-method"
+info_path: ./docs/apis/users/users
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get an access token for an external user using OAuth 2.0"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/auth/{orgid}/ext-users/token"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+comproDLS&trade; uses the OAuth 2.0 standard for authenticating users, clients and API requests.  This endpoint generates an access token for external users of your application using their username and password. This token must be included in subsequent API requests to authorize access to resources based on user permissions.
+
+**Permissions:**
+`Teacher, Admin, SuperAdmin, Student (Consumers)`
+`Collaborator, Admin, SuperAdmin, Author (Publishers)`
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Unique comproDLS&trade; organization identifier.  Use 'demo6' for testing purposes.","required":true,"style":"simple","explode":false,"schema":{"type":"string","default":"demo6"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"User credentials (username and password) for authentication.  The format is application/json.","content":{"application/json":{"schema":{"required":["ext_user_id"],"type":"object","properties":{"ext_user_id":{"minLength":1,"type":"string"}},"title":"ExternalUserRequestBody"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful authentication. Returns an access token in the response body.","content":{"application/json":{"schema":{"required":["access_token","user"],"type":"object","properties":{"access_token":{"type":"string"},"user":{"required":["org","uuid"],"type":"object","properties":{"uuid":{"type":"string"},"org":{"required":["id","type"],"type":"object","properties":{"id":{"type":"string"},"type":{"type":"string"},"title":{"type":"string"}},"title":"Organization"},"name":{"type":"string"},"first_name":{"type":"string"},"last_name":{"type":"string"},"email":{"type":"string"},"ext_username":{"type":"string"},"username":{"type":"string"},"roles":{"type":"object","properties":{"role1":{"type":"array","items":{"type":"string"}},"role2":{"type":"array","items":{"type":"string"}}},"title":"Role"}},"title":"TokenUser"},"address":{"type":"object","properties":{"country":{"type":"string"}},"title":"UserAddress"}},"title":"TokenResponse"}}}},"400":{"description":"Authentication failed.  Check your username and password.","content":{}},"404":{"description":"User not found.  Verify that the provided external user ID exists.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

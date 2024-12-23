@@ -1,0 +1,33 @@
+---
+id: classentitywithenrollment
+title: "ClassEntityWithEnrollment"
+description: ""
+sidebar_label: "ClassEntityWithEnrollment"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"uuid":"string","title":"string","class_code":"string","ext_classid":"string","limits":{"los":0,"students":0},"created":0,"assignedPathCount":0,"hidden":{"actorid":"string","dls_actor_id":"string","status":true,"timestamp":0},"enrollment":{"role":"string","classrole":"string","created":0,"modified":0},"category":"class","class":{"startdate":0,"enddate":0,"instructorname":"string","instructorid":"string"},"assignments":[{"title":"string","duedate":0,"description":"string","uuid":"string","name":"string","provision_method":"string"}],"products":[{"productcode":"string","currentversion":0,"status":"string","schema":0,"producttype":"string","group":"string","title":"string","paths":{},"description":"string","author":"string","thumbnaillarge":"string","thumbnailsmall":"string","model":{},"context":"string","class":{}}],"pairing_data":{},"class.pairing-status":{"association":{"product_id_1":"in-process","product_id_2":"in-process"},"unassociation":{"product_id_3":"in-process","product_id_4":"in-process"}},"path":"string","bundles":{"bundle-code1":{"dls_account_id":"string","bundle-code":"string","title":"string","path":"string","path-common":"string","products":[{"ext-product":{"id":"string","type":"string"},"dls-product":{"code":"string","type":"string"},"meta":{"title":"string","very-short-description":"string","short-description":"string","icon":"string"},"activation":{"gated":{},"free":{},"prior-to-activitation-rules":{}},"classes":{"enabled":true},"analytics":{"student":true,"teacher":true}}]}},"ext_data":{},"analyticsharingmodel":"NOINHERIT_SYNCBACK","analytics_score_aggregation_type":"string"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ClassEntityWithEnrollment"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["assignments","category","class","path","products","title","uuid"],"type":"object","properties":{"uuid":{"type":"string"},"title":{"type":"string"},"class_code":{"type":"string"},"ext_classid":{"type":"string"},"limits":{"type":"object","properties":{"los":{"maximum":10000,"type":"integer"},"students":{"maximum":500,"type":"integer"}},"title":"ClassLimits"},"created":{"type":"number"},"assignedPathCount":{"type":"integer"},"hidden":{"type":"object","properties":{"actorid":{"type":"string"},"dls_actor_id":{"type":"string"},"status":{"type":"boolean"},"timestamp":{"type":"number"}}},"enrollment":{"type":"object","properties":{"role":{"type":"string"},"classrole":{"type":"string"},"created":{"type":"number"},"modified":{"type":"number"}}},"category":{"type":"string","enum":["class"]},"class":{"required":["enddate","instructorid","instructorname","startdate"],"type":"object","properties":{"startdate":{"type":"integer"},"enddate":{"type":"integer"},"instructorname":{"type":"string"},"instructorid":{"type":"string"}},"title":"ClassMetadata"},"assignments":{"type":"array","items":{"required":["description","duedate","name","provision_method","title","uuid"],"type":"object","properties":{"title":{"type":"string"},"duedate":{"type":"integer"},"description":{"type":"string"},"uuid":{"type":"string"},"name":{"type":"string"},"provision_method":{"type":"string"}},"title":"Assignment"}},"products":{"type":"array","items":{"required":["author","context","currentversion","group","paths","productcode","producttype","schema","status","thumbnaillarge","thumbnailsmall","title"],"type":"object","properties":{"productcode":{"type":"string"},"currentversion":{"type":"integer"},"status":{"type":"string"},"schema":{"type":"integer"},"producttype":{"type":"string"},"group":{"type":"string"},"title":{"type":"string"},"paths":{"type":"object","properties":{}},"description":{"type":"string"},"author":{"type":"string"},"thumbnaillarge":{"type":"string"},"thumbnailsmall":{"type":"string"},"model":{"type":"object","properties":{}},"context":{"type":"string"},"class":{"type":"object","properties":{}}},"title":"Product"}},"pairing_data":{"type":"object","properties":{}},"class.pairing-status":{"required":["association","unassociation"],"type":"object","properties":{"association":{"type":"object","properties":{"product_id_1":{"type":"string","enum":["in-process","complete","error"]},"product_id_2":{"type":"string","enum":["in-process","complete","error"]}}},"unassociation":{"type":"object","properties":{"product_id_3":{"type":"string","enum":["in-process","error"]},"product_id_4":{"type":"string","enum":["in-process","error"]}}}},"title":"PairingStatus"},"path":{"type":"string"},"bundles":{"type":"object","properties":{"bundle-code1":{"required":["bundle-code","dls_account_id","products","title"],"type":"object","properties":{"dls_account_id":{"type":"string"},"bundle-code":{"type":"string"},"title":{"type":"string"},"path":{"type":"string"},"path-common":{"type":"string"},"products":{"type":"array","items":{"required":["activation","analytics","classes","dls-product","ext-product","meta"],"type":"object","properties":{"ext-product":{"type":"object","properties":{"id":{"type":"string"},"type":{"type":"string"}},"title":"BundleProductExt"},"dls-product":{"type":"object","properties":{"code":{"type":"string"},"type":{"type":"string"}},"title":"BundleProductDls"},"meta":{"type":"object","properties":{"title":{"type":"string"},"very-short-description":{"type":"string"},"short-description":{"type":"string"},"icon":{"type":"string"}},"title":"BundleProductMeta"},"activation":{"type":"object","properties":{"gated":{"type":"object","properties":{}},"free":{"type":"object","properties":{}},"prior-to-activitation-rules":{"type":"object","properties":{}}},"title":"BundleProductActivation"},"classes":{"type":"object","properties":{"enabled":{"type":"boolean"}},"title":"BundleProductClasses"},"analytics":{"type":"object","properties":{"student":{"type":"boolean"},"teacher":{"type":"boolean"}},"title":"BundleProductAnalytics"}},"title":"BundleProduct"}}},"title":"BundleEntity"}},"title":"Bundles"},"ext_data":{"type":"object","properties":{}},"analyticsharingmodel":{"type":"string","enum":["NOINHERIT_SYNCBACK"]},"analytics_score_aggregation_type":{"type":"string"}},"title":"ClassEntityWithEnrollment"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

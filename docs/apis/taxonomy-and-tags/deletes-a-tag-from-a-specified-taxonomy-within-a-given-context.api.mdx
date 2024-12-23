@@ -1,0 +1,84 @@
+---
+id: deletes-a-tag-from-a-specified-taxonomy-within-a-given-context
+title: "Deletes a tag from a specified taxonomy within a given context."
+description: "Deletes one or more tags from a taxonomy within a specified context.  The request may include multiple tag IDs for batch deletion."
+sidebar_label: "Deletes a tag from a specified taxonomy within a given context."
+hide_title: true
+hide_table_of_contents: true
+api: eJztV01v2zgQ/SuzPCWBKjtpugfdvE26CLBtg9QFdpEGNS2OJTYUyZKUE9fQf1+MRPkj9u4mKbDooSfLIjl8fPM4b7RkgReeZddsTL83CRPocydtkEazjJ2hwoAejEYwDirjEGgFzJypgEPg90abagF3MpRSAwdvMZcziQJyowPehxRgXCI4/FqjD1DxBUidq1ogVLUK0qo2JFyceZgZB1Me8hIEbSyNTj/pT/ro6BJdJb2XRvvs6OiTnoxEJfUkgcmH2qLr/sHBa6N9XaHzh92y8znqEFeMR3++f/f+7V/pePT757fn49HZaDz6fHb+x/n4fAJw7es8R+8TQOeMu4kB6BleG4FdlCOYnA6Hkwx+4wKu4pFebB1Qeqi4mhlXoSDOiAYutQep51xJAZY7XmFA59MY8HiSwUfN61AaJ7+hgBdwEScT6XRwXUA/zokXCOYWdR/g5SSDN8ZNpRCoIx6ajjrInAcUUHt0oHh+6yGUCBrprNwtwK6Z7aOdTjJ4ZwK8MbUWMdo6rX3Kkz7BCYHsMgjCoAdtAuC99CEGPHk1yWDUsgtjgg3n91Y67GNbZ+ZSoNh3Qii5B+ympyxha/JYdr1kmlfIMmZcIQVLmCTNWh5K9lDItE+t5dcaQQqiZSbRtXojOowruI770i6US9qRZcHVmDCfl1hxli1ZWFja0AcndcGaJllhiGz8J4o4D6SGu1LmZQtgdY9a3vxzMfRhvouMPsjzQWwk42uNbvE4AAf+EMwsQijoXzBdHcAU3j4sFTnXMN3UjgcOuakq/sIjqYRUr0iE7HGwR5vi6+GXyAW6vfg37tdarT1fLZlbcn4amzc02VujPXoaPxkO6WcbxYeuYs1qtSqXPYGb15WopN1b4elAcbi1KgIffPEUbLkBZg3zmlVUJgokDgMPtadSSDYRAZvpF8xJ89YZiy7IDu7G3N3DJaugO2MJQ11XtC+lucu9AL86p1qk7KZpEhZkULjypzEvRpcXV5Ew1jQ05WT46y5ll9wFyVUfMoMPpoqOdocO+y0TmNYBTCjRxQGqaQeYFmkCokZS5qrKSV38SPyuOSQGbh5H95gXwLUAGTzkpVTCoV7xb7kLXKnFL2201h43Yu2H2PxTlmIGHiTrdJ++yWOjq27R2y043l3Qm+bWVe4sZ0+Al7sBPpJLUmLXXrxn4enuwiv0pnZ5p5MZ+ebuupNXu+uiK3bFI9rcg5VtAkNpBMtYl5HWBkPJMjYwrhgsW/drBtFYBsv40Az6Sj5Yro2B3hae9IZu3tto7RQVuxCszwYDe8utTPGeV1ZhmptqMD9mVJKknpk28zGv4961SDrjLizF7M52nA7T4Z7SKT2MLi/6yu1hVuucBrmSYdEWzoprXlDLQ1BTuAjga2uNI3E65HTjEnAYnMR5+1xbEd8Skq4YxuUJOcMdKtU6hPcml7wbLLFq21agKk6ypVuNmk8VwhRDQLfVF7ShqZkq1tIyM3Ax8z6lymaNDxVv73u0lb6D5q1zxbZ5t5taN9CFnKNeNc8P+VuutfGzOf/ZnP9YzXl0hLYKWcWlpivR1pZlrFjX1KqzhGV9x77umrP1Y38KervV0ob4kVoaHyjYcjnlHj861TT0ums2qaAJ6ekeC5bNuPL4L5fo/25F93J0i4uNxnnOVU1z2po7507SUZ54rIOr2GQcwtM+ffbiiy+5XmzC63F3uaRW+tn4HvtR9Ax0vay+C9/jvpaegW5D3g11V/GDg5LdTaCracPG0p3eklSy6hC6ksma5m9X7zfq
+sidebar_class_name: "delete api-method"
+info_path: ./docs/apis/taxonomy-and-tags/taxonomy-and-tags
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Deletes a tag from a specified taxonomy within a given context."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/org/{orgid}/context/{context}/taxonomy/{taxonomyid}/tags"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Deletes one or more tags from a taxonomy within a specified context.  The request may include multiple tag IDs for batch deletion.
+
+**Permissions:**
+`Admin`, `SuperAdmin` (Consumers)
+
+**Events:**
+`TAXONOMY.TAG_METADATA_DELETE`  [success, error]
+
+**Error Codes:**
+* `400`: Bad Request - The request is malformed or contains invalid parameters.
+* `401`: Unauthorized - Invalid or missing authorization token.
+* `403`: Forbidden - The authenticated user lacks the necessary permissions.
+* `404`: Not Found - The specified taxonomy, context, or tag ID does not exist.
+* `425`: Access Token Expired - The provided authorization token has expired.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"The unique identifier for the organization.","required":true,"schema":{"type":"string"}},{"name":"context","in":"path","description":"The context in which the taxonomy exists.","required":true,"schema":{"type":"string"}},{"name":"taxonomyid","in":"path","description":"The unique identifier for the taxonomy.","required":true,"schema":{"type":"string"}},{"name":"tagid","in":"query","description":"The unique identifier(s) of the tag(s) to delete. Multiple tag IDs can be provided as a comma-separated list.","schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"The authentication token required for authorization.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful deletion of the specified tag(s).","content":{"application/json":{"schema":{"required":["message","statusCode"],"type":"object","properties":{"statusCode":{"type":"string"},"message":{"type":"string","enum":["tag deleted successfully."]}},"title":"DeleteTagAPIResponse"}}}},"206":{"description":"Partial success: Some tags were deleted, but others were not (e.g., due to not existing).","content":{"application/json":{"schema":{"required":["message","statusCode"],"type":"object","properties":{"statusCode":{"type":"string","enum":["206"]},"message":{"type":"string","enum":["Tag and its children deleted partally!"]},"error":{"type":"object","properties":{}}},"title":"DeleteTagAPIPartialResponse"}}}},"400":{"description":"Bad request","content":{}},"401":{"description":"Invalid Authorization Token","content":{}},"403":{"description":"User not authorized","content":{}},"404":{"description":"Resource not found","content":{}},"425":{"description":"Access token expired","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

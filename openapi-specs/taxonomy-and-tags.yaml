@@ -1,0 +1,516 @@
+openapi: 3.0.0
+info:
+  title: Taxonomy and Tags
+  version: 1.0.0
+  description: This API provides functionality for managing tags. It supports creating, retrieving, updating, and deleting tags, as well as associating them with entities to enable better organization and categorization of resources.
+servers:
+  - url: https://pkapi.example.com/v1
+paths:
+  /org/{orgid}/context/{context}/taxonomy/{taxonomyid}/tags:
+    get:
+      tags:
+        - Tags
+      summary: Retrieves tags within a specified context and taxonomy.
+      description: |-
+        Retrieves tags from a given taxonomy within a specified context.  This operation allows for filtering by tag ID and retrieving hierarchical tag structures.
+
+        **Permissions:**
+        `Admin`, `SuperAdmin` (Consumers)
+      parameters:
+        - name: orgid
+          in: path
+          description: Organization ID
+          required: true
+          schema:
+            type: string
+        - name: context
+          in: path
+          description: Context of the taxonomy
+          required: true
+          schema:
+            type: string
+        - name: taxonomyid
+          in: path
+          description: ID of the taxonomy
+          required: true
+          schema:
+            type: string
+        - name: tagid
+          in: query
+          description: ID of the tag to retrieve (optional)
+          schema:
+            type: string
+        - name: hierarchy
+          in: query
+          description: 'Flag to indicate whether to retrieve the tag hierarchy (default: false)'
+          schema:
+            type: boolean
+            default: false
+        - name: Authorization
+          in: header
+          description: Authentication token
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful retrieval of tag(s)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTagAPIResponse'
+        '400':
+          description: Bad request. Check request parameters.
+          content: {}
+        '401':
+          description: Invalid or missing Authorization token.
+          content: {}
+        '403':
+          description: User lacks necessary permissions.
+          content: {}
+        '404':
+          description: Resource (tag or taxonomy) not found.
+          content: {}
+        '425':
+          description: Access token has expired.
+          content: {}
+    put:
+      tags:
+        - Tags
+      summary: Updates tags within a specific taxonomy context.
+      description: |-
+        Updates metadata for a tag within a given taxonomy and organizational context.  This operation requires appropriate authorization.
+
+        **Permissions:**
+        `Admin`, `SuperAdmin` (Consumer roles)
+
+        **Events:**
+        `TAXONOMY.TAG_METADATA_UPDATE` (success, error events emitted)
+      parameters:
+        - name: orgid
+          in: path
+          description: Unique identifier for the organization.
+          required: true
+          schema:
+            type: string
+        - name: context
+          in: path
+          description: Contextual information for the taxonomy.
+          required: true
+          schema:
+            type: string
+        - name: taxonomyid
+          in: path
+          description: Unique identifier for the taxonomy.
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Authentication token for authorization.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Request body containing the updated tag data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tagUpdateBody'
+        required: true
+      responses:
+        '200':
+          description: Successful tag update. Returns the updated tag details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateTagAPISucessResponse'
+        '400':
+          description: Bad request due to invalid input parameters.
+          content: {}
+        '401':
+          description: Unauthorized access. Invalid or missing authentication token.
+          content: {}
+        '403':
+          description: Forbidden access. The user lacks the necessary permissions.
+          content: {}
+        '404':
+          description: Not found. The specified resource (tag, taxonomy, or organization) does not exist.
+          content: {}
+        '425':
+          description: Access token expired. The provided authentication token is no longer valid.
+          content: {}
+    post:
+      tags:
+        - Tags
+      summary: Creates tags within a specified context and taxonomy.
+      description: |-
+        Creates tags within a given taxonomy context.
+
+        **Permissions:**
+        `Admin, SuperAdmin (Consumers)`
+
+        **Events:**
+        `TAXONOMY.TAG_METADATA_CREATE  [success, error]`
+      parameters:
+        - name: orgid
+          in: path
+          description: The ID of the organization.
+          required: true
+          schema:
+            type: string
+        - name: context
+          in: path
+          description: The context of the taxonomy.
+          required: true
+          schema:
+            type: string
+        - name: taxonomyid
+          in: path
+          description: The ID of the taxonomy to which the tag belongs.
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: The authentication token.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: The request body containing tag creation details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tagCreateInputBody'
+        required: true
+      responses:
+        '200':
+          description: Successful tag creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTagAPIResponse'
+        '206':
+          description: Partial tag creation success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTagAPIPartialResponse'
+        '400':
+          description: Bad request.  Check request parameters.
+          content: {}
+        '401':
+          description: Invalid or missing authorization token.
+          content: {}
+        '403':
+          description: User lacks permission to create tags.
+          content: {}
+        '404':
+          description: Resource (organization, context, or taxonomy) not found.
+          content: {}
+        '425':
+          description: Access token expired.  Requires re-authentication.
+          content: {}
+        '500':
+          description: Internal server error during tag creation.
+          content: {}
+    delete:
+      tags:
+        - Tags
+      summary: Deletes a tag from a specified taxonomy within a given context.
+      description: |-
+        Deletes one or more tags from a taxonomy within a specified context.  The request may include multiple tag IDs for batch deletion.
+
+        **Permissions:**
+        `Admin`, `SuperAdmin` (Consumers)
+
+        **Events:**
+        `TAXONOMY.TAG_METADATA_DELETE`  [success, error]
+
+        **Error Codes:**
+        * `400`: Bad Request - The request is malformed or contains invalid parameters.
+        * `401`: Unauthorized - Invalid or missing authorization token.
+        * `403`: Forbidden - The authenticated user lacks the necessary permissions.
+        * `404`: Not Found - The specified taxonomy, context, or tag ID does not exist.
+        * `425`: Access Token Expired - The provided authorization token has expired.
+      parameters:
+        - name: orgid
+          in: path
+          description: The unique identifier for the organization.
+          required: true
+          schema:
+            type: string
+        - name: context
+          in: path
+          description: The context in which the taxonomy exists.
+          required: true
+          schema:
+            type: string
+        - name: taxonomyid
+          in: path
+          description: The unique identifier for the taxonomy.
+          required: true
+          schema:
+            type: string
+        - name: tagid
+          in: query
+          description: The unique identifier(s) of the tag(s) to delete. Multiple tag IDs can be provided as a comma-separated list.
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: The authentication token required for authorization.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful deletion of the specified tag(s).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTagAPIResponse'
+        '206':
+          description: 'Partial success: Some tags were deleted, but others were not (e.g., due to not existing).'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTagAPIPartialResponse'
+        '400':
+          description: Bad request
+          content: {}
+        '401':
+          description: Invalid Authorization Token
+          content: {}
+        '403':
+          description: User not authorized
+          content: {}
+        '404':
+          description: Resource not found
+          content: {}
+        '425':
+          description: Access token expired
+          content: {}
+  /org/{orgid}/taxonomy/associate-tags-with-entity:
+    put:
+      tags:
+        - Tags
+      summary: Associate or unassociate one or more tags with a class.
+      description: |-
+        This API associates or unassociates one or more tags with a class.  Each tag in the request body must have a unique `tag_number` (1, 2, 3...). This number is appended to all fields within each tag entity (e.g., `tagid_1`, `context_1`). Each tag entity also includes an `action` field specifying 'add' or 'remove'.  Only 'add' and 'remove' actions are currently supported. A maximum of 3 tags can be associated with a class at a time.  Supports classes only. 
+
+        **Permissions:** Teacher, Admin
+
+        **Events:** `CLASS.TAXONOMY_TAG_ASSOCIATION_ADD` (success, error), `CLASS.TAXONOMY_TAG_ASSOCIATION_REMOVE` (success, error)
+      parameters:
+        - name: orgid
+          in: path
+          description: The organization ID.
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Authentication token.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Request body containing tag association details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/associateTagsBody'
+        required: true
+      responses:
+        '202':
+          description: API request accepted. The operation will be processed asynchronously.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+components:
+  schemas:
+    APIResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - in-process
+            - rejected
+        message:
+          type: string
+    tagCreateInputBody:
+      required:
+        - tags
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/tagCreateBody'
+    tagCreateBody:
+      required:
+        - tagid
+        - tagname
+      type: object
+      properties:
+        tagid:
+          type: string
+        tagname:
+          type: string
+        tag_data:
+          type: object
+          properties: {}
+    tagUpdateBody:
+      required:
+        - tagid
+      type: object
+      properties:
+        tagid:
+          type: string
+        tagname:
+          type: string
+        tag_data:
+          type: object
+          properties: {}
+    associateTagsBody:
+      required:
+        - entity_id
+        - entity_type
+        - tags
+      type: object
+      properties:
+        entity_type:
+          type: string
+          enum:
+            - class
+        entity_id:
+          type: string
+        tags:
+          minItems: 1
+          type: array
+          example:
+            - tagid_1: tag_id
+              tagname_1: tag_name
+              taxonomyid_1: tag_taxonomy_id
+              context_1: tag_context
+              action: add/remove
+          items:
+            type: object
+            properties: {}
+    CreateTagAPIResponse:
+      required:
+        - message
+        - statusCode
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+          enum:
+            - Tag(s) created successfully.
+    CreateTagAPIPartialResponse:
+      required:
+        - message
+        - statusCode
+      type: object
+      properties:
+        statusCode:
+          type: string
+          enum:
+            - '206'
+        message:
+          type: string
+          enum:
+            - Tag(s) created partially.
+        error:
+          type: object
+          properties: {}
+    DeleteTagAPIResponse:
+      required:
+        - message
+        - statusCode
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+          enum:
+            - tag deleted successfully.
+    DeleteTagAPIPartialResponse:
+      required:
+        - message
+        - statusCode
+      type: object
+      properties:
+        statusCode:
+          type: string
+          enum:
+            - '206'
+        message:
+          type: string
+          enum:
+            - Tag and its children deleted partally!
+        error:
+          type: object
+          properties: {}
+    UpdateTagAPISucessResponse:
+      type: object
+      properties:
+        statusCode:
+          type: string
+          enum:
+            - '200'
+        message:
+          type: string
+          enum:
+            - tag updated successfully.
+    GetTagAPIResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties: {}
+          example:
+            pk: pk
+            sk: sk
+            tagid: tag_id
+            tagname: tag_name
+            context: tag_context
+            taxonomyid: tag_taxonomy_id
+            tag_data: {}
+        hierarchy:
+          minItems: 1
+          type: array
+          example:
+            - pk: pk
+              sk: sk
+              tagid: tag_id
+              tagname: tag_name
+              context: tag_context
+              taxonomyid: tag_taxonomy_id
+              tag_data: {}
+              tags:
+                - pk: pk
+                  sk: sk
+                  tagid: tag_id
+                  tagname: tag_name
+                  context: tag_context
+                  taxonomyid: tag_taxonomy_id
+                  tag_data: {}
+                  tags:
+                    - pk: pk
+                      sk: sk
+                      tagid: tag_id
+                      tagname: tag_name
+                      context: tag_context
+                      taxonomyid: tag_taxonomy_id
+                      tag_data: {}
+          items:
+            type: object
+            properties: {}

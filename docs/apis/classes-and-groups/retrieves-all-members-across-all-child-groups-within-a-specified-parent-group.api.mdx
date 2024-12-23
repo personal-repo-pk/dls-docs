@@ -1,0 +1,76 @@
+---
+id: retrieves-all-members-across-all-child-groups-within-a-specified-parent-group
+title: "Retrieves all members across all child groups within a specified parent group."
+description: "Retrieves all members from all child groups belonging to the given parent group path."
+sidebar_label: "Retrieves all members across all child groups within a specified parent group."
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVk1z3DYM/SsYnhKPurbT9LK3NE0z7sTTjO1MD4kn4UpYiTFFKgDkxt3Z/94BKXnXlmon7amnXQnQw3sg8bExYms2y/fmFNsVEjeuY3NZmAq5JNeJi8EszRkKObxGBus9tNkV1hTb9KJsnK+gpth3DCv0MdQu1CARpEGo3TUG6CxhkOwEnZVm8SF8CAcHb5Fax+xi4OXBwYfw6QJt2SAV8KJqXSjgvO+Q0v9P+YszKwhvXOtkeXAAx0dHQPilRxaGDglaF3pBU5jOkm1RkFTfxgTbolmaSLWrTGGc6lIe5r7YiwYhUm2D+8vqKzj5BeI6SekZaWEKowEdYWWWQj0WhssGW2uWGyM3nUZhIRdqs90Wt4HLnjjSGPlLj3QzCf3W1i7koNkd1pGAcvZTShuEgF8FGEVJDUehnL6Fw6D3AQYqXr1GxfvH9m+Vv+iliTRkcwzfoK2QJvHVF4O4MmdB4hWGBcBpzwIrBAvX1rsKfvvj4vvYXKozdzEwstqfHR3pz73gwH1ZIvO69zC6QxmDWBc0/fn2trelAi6sI7WJq/JRVwyiyLbr/KDi8DMr/GaP3o74e6NyxWEqu4F2XH3GUvQOU+yQknW52XnuBFoiq6foBFueILfWeVMYDBS9b5VZYdaOWD6moylMEmQK4+3unV5yVz3OZvCbJrswleePav74D/Y9DnPmHZs5a1Y1Z8lqJumtKjs0hHT7WSzJ8EqceHxcanabC7kDm6U6xJ6zJTZzdTNGM69Vzu+Z0fbOKd6TmC8kRa+S0s+jipLXHK09rAfJvbplMzLcM+ZhsmcYmt9cwDL2WdFgcUGwRprB04o7zyW03ar5+VwR/2yrcSAsAF42WF6Nz7AbCXerNYMdT8FOQu43UecKs/aAO91saFAzYD9Owd4xEnhbXjFwv1670mlr7XYDUCemTQ0IpHGsLSj2VOIc/vMp/tngDk9SITyFEAXWsQ/VDMCzn2b63xBbNUFjGfBrp3fs/ufpmkgTK7M0NcpYWktzGKk+3KQRuz3M+8Bhu7dYaO9fx72KMi+9Zda9IlSQ7rs6XSNxZnS8OFocTYbEr30o9a/1Tm7SiGxtsGnnKDNeAbtq4SKhE3orWIFWQTo7BhfAwhu0lJr7qWKgfgHnNyzYwpM3p+dPF3AiwH3XRRKGktCKeivkNGpjQ+X1DUtfKZK6Sd5o7lKqMSQeA1S6ZvkxgUEZKwW0zLF02dBaQXLWc7GLXJOtcBXjVULpkHQeqWHV+6t9rZolvL10XDYx+h88XqMHiqzAoV6kvhRZWpvm1TC/57c/W1Jknu5/fzppUmK5w9KtHVaTJeLOaW52V+v/uWcOfUvwqxx23rqgWewpjahcF+916zSFWY7LZz3e9Pbu1t1EFnXfbFaW8R357VZf51VNl9jKsV157fpr6xkfSOV/WSVnFV3hzf4We219r05GF71vp/XkbJhbT+GxVfMBFsMk33G41AdySuI783SP0COL/yyncRULN/ucRq75zLeX22LceZVgtmnD7WTvq8nWqMpue+3rVxdmu/0bUxDKiw==
+sidebar_class_name: "get api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieves all members across all child groups within a specified parent group."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/org/{orgid}/groups/memberships"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves all members from all child groups belonging to the given parent group path.
+
+**Permissions:**
+`Teacher, Admin, SuperAdmin`
+
+**Rate Limit:** 100 requests per minute
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"The organization ID of the user.","required":true,"schema":{"type":"string"}},{"name":"cursor","in":"query","description":"Pagination cursor for retrieving the next set of members.","schema":{"type":"string"}},{"name":"path","in":"query","description":"The path of the parent group.","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token.  Must be a valid JWT.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"A successful response containing group membership information.","content":{"application/json":{"schema":{"required":["entities"],"type":"object","properties":{"entities":{"type":"array","items":{"required":["email","enrollment","first_name","group","last_name","userid"],"type":"object","properties":{"userid":{"type":"string"},"dls_user_id":{"type":"string"},"first_name":{"type":"string"},"last_name":{"type":"string"},"email":{"type":"string"},"group":{"required":["enddate","path","startdate","title"],"type":"object","properties":{"title":{"type":"string"},"startdate":{"type":"string"},"enddate":{"type":"string"},"path":{"type":"string"}},"title":"GroupObject"},"enrollment":{"required":["memberrole","role"],"type":"object","properties":{"role":{"type":"string"},"memberrole":{"type":"string"}},"title":"EnrollmentObject"}},"title":"MemberObject"}},"cursor":{"type":"string"},"count":{"type":"integer"}},"title":"MembershipSchema"}}}},"400":{"description":"Bad request.  Check request parameters.","content":{}},"401":{"description":"Invalid or missing Authorization token.","content":{}},"403":{"description":"User lacks sufficient permissions to access this resource.","content":{}},"404":{"description":"Resource (group) not found.","content":{}},"425":{"description":"Access token has expired.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

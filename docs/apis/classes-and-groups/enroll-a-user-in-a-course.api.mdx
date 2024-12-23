@@ -1,0 +1,71 @@
+---
+id: enroll-a-user-in-a-course
+title: "Enroll a user in a course"
+description: "Enroll a user into a specific course within a given organization.  Requires ADMIN or TEACHER role with access to the specified course."
+sidebar_label: "Enroll a user in a course"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1zGzcM/SsYnpKZteSk6WV7cv3RaiZOMnZ88ugALaFdRlxyQ3DdqJr97x1wKVu21HiqU09a8ePhAXgAuFERa1blvbp0wVvbkous5oXSxFUwXTTeqTJvAkLPFMC46AGBO6rM0lRQ+T4wwV8mNsYBQm0eyIEPNTrzNwrEBOCGvvcmEMPZxfXsE/gAXy/Pzv+8vIHg7XgZsKqIGaKH2NAWn3Q2MFGF6jBgS5GCcN4ohy2pUvlQG60KZYRrh7FRLx34vEMGZhfgl8mEuKMKFUZuWpUx9FQorhpqUZUbFdedGOAYjKvVMBSPNiuLzK9YPR8DM7sQl2iM4dYsGHekZbn9iuE7MTCaXVC2TPpIe2d9bHzIwduabQh1it1zw3KWXDTVGOnoV/Tf3JzLYe68Y2LZf396Kj/Prdz2SSjL3mbfRLa/QaDYB8fb8C59aLecK+8iuShQ2HU285t+Y8Hb7PPxi29URRFc8B2FaEY2HDH2vM+7UOT6VsrIuJMueGGX3BYU0mo+FKolZqzpgNPFo5gO7eV0H0qRiibalKIvs5scNUn9WK5qGOTMh0MR/B11qkjiWMLMPaA1Gozr+gg7JbYbtxHq3T7UncMsENJPWD5Aa5iNqwEPa+Il9C/70Fc+LIzW5EpIirZYrRg6Cgk6YWUBHMD7sI/3yUe48r3TJew2hCI3mEJYJ/E4H2EpB/dx3/+6j3u27VsrckA/uiT15zeTAGLjtZSs5yQtqdxSTX2op5vUwoZpEgLxdJMVMUxH/06E1nQzamFIRbj0SRNZAefjRUCn4Y/g+06y90CBR4bvJqeT071qvepdJZ9oTVzDUnKGDmtJWiZS7BQYFwk9kMVIGqQuUvgYUtf/SBicXL0WDJIbcLvmSC28+Xh9+3YCswjcd50PkaEKhDGpw+kDVht02soKx14LkhyLhFVD4TmlmlzikaGS+sa/CQwqrwUQmX1lxo0WIwWDlosny3VATQvvVwmloyDdQzYWvV3t+ipRouXSVEZocdV4b08sPZCF4FmAXT2RupUst5jaS26kL6coYBbey8RsnqTz/xm9uftE+hGnnUXjUnMKVuiOUr6XQawKVW7ncU6nLD2Nyx1By0Zub/NCNVIW5b3abBbIdBfsMMjy957CWpX380I9YDC4EL3fb5Q2LN9alUu0TD8J4ZscAP0Wfv4OOOhiXkS3lopC28s/VagVrR+fHjItj+Lz+gvhCE7bWB/N6l+fD0eQyfkdZATmR4Nkb9yUxtnFnWt7w1keBI+N88vn269qGP4ByM26eg==
+sidebar_class_name: "post api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Enroll a user in a course"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/org/{orgid}/classes/{classid}/enroll-user/{userid}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Enroll a user into a specific course within a given organization.  Requires ADMIN or TEACHER role with access to the specified course.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID of the user","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"Course ID to enroll the user in","required":true,"schema":{"type":"string"}},{"name":"userid","in":"path","description":"User ID to be enrolled","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful enrollment; returns user information","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["in-process","rejected"]},"message":{"type":"string"},"classid":{"type":"string"},"userid":{"type":"string"}},"title":"APIResponseUserEnroll"}}}},"400":{"description":"Bad Request: Invalid input parameters","content":{}},"401":{"description":"Unauthorized: Invalid or missing authentication token","content":{}},"403":{"description":"Forbidden: User lacks permission to enroll","content":{}},"404":{"description":"Not Found: Organization, course, or user not found","content":{}},"425":{"description":"Access token expired","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

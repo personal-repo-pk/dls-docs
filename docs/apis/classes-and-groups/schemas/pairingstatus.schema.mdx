@@ -1,0 +1,33 @@
+---
+id: pairingstatus
+title: "PairingStatus"
+description: ""
+sidebar_label: "PairingStatus"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"association":{"product_id_1":"in-process","product_id_2":"in-process"},"unassociation":{"product_id_3":"in-process","product_id_4":"in-process"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"PairingStatus"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["association","unassociation"],"type":"object","properties":{"association":{"type":"object","properties":{"product_id_1":{"type":"string","enum":["in-process","complete","error"]},"product_id_2":{"type":"string","enum":["in-process","complete","error"]}}},"unassociation":{"type":"object","properties":{"product_id_3":{"type":"string","enum":["in-process","error"]},"product_id_4":{"type":"string","enum":["in-process","error"]}}}},"title":"PairingStatus"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

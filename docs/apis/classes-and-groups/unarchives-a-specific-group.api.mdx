@@ -1,0 +1,80 @@
+---
+id: unarchives-a-specific-group
+title: "Unarchives a specific group."
+description: "Unarchives a specific group."
+sidebar_label: "Unarchives a specific group."
+hide_title: true
+hide_table_of_contents: true
+api: eJzNV99T2zgQ/lf29ASMcICjL3mDAD1mWsoE0hfITBVr46jYklnJ0DTj//1mZTsBwgHTuymXh4z1a/fbT7ur3YUIKvOifyU+kqtKL8ZSaPQpmTIYZ0VfjKyidGbu0IMCX2JqpiaFjHcn1/babm/z/9bWOVJhvDfO+v7W1rX9dokqnSFJONCFsRIuqhIpfsPGwFlfFUh+81tz+vgObWgPfhx+GZ0no7OD4eCv06/HcOWrNEXvJSCRo/G3ayukKBWpAgMSo18IqwoUfeEoM1pIYRh6qcJMPLXnC2XKmp+Kh3B6BG4KYYaNQUIKwtvKEGrRD1ShFD6dYaFEfyHCvGQNPpCxmahruVQaz76idmTNbYVgNNpgpgbpv1B8UIWZo9aYTv0MlUZaA8B7WXfaWB7cDVrolMLUEagn0t6OaNxsRh8OnZ7zjse6h80iTJyeR1VV61TGZqBaZ4JBRYQ25HMJ1sHqfkERgkXUqBMhRepsQBtYiyrLvDWo992zqsU6Sjf5jmkQdV0/NGmqco9xxpfOevR8Ym9nZx38ReN90yrP50vgqFeX9y9ASVGSK5GCaQD4oELlB07jOs1SoK0KDlWGOa6lKNB7lb24NUb1Q9T+gTWJGDMpwYQ8etP56bBlo7V5GfvMXi3F/nP8HCoN7e0n8BXJTOfd+MEl/naS9l8jqZZtGP2zDDat9d3HVB0q3c13zOyuMzOyXUihTuDU3qncaHAEMVGy6z8Tk+9A1O5bvakz4bIBOn4bhQPCmPVU7h+z2Ip7lMWi6CWpf66TeuJoYrRGy4z6ajo1qUEboFy9PxDcyuXfMU4Z/xuZHXkkIJfjht9s8p0LENlJ4CDGIhyhNaj/eBKzca1ZWrK2v87amQtw4iqrE7icYfeOo26YgXvlo8Zp3PL7edp/K0/HNpgwX2EFY+FoblXhjg4fMzNE7ypK8cyFaHjHzt6HdXZahps3EX+U/EQkcJ6j8ghuEpSxoMDi/XuF6N6HtxLUou+cpgmnZ1wmLhw3myM1UXyYOc0VTBWRch3TFz1HWW8RC6u6F93F9xZtyVP3lnEmpGDjh6s64PiHKkpWuai5NJm6iLtFMciV91xTWg1t6SnFHZJvbmQ32Ul21mqYk8qm/KlydgIuJAplVcapNG3kSUBLLs8LLidllE6Yq4AamPZ4SR7idX5CRZaPfmYZyCfgYu4DFrDx6fPFZgKnAXxVlo6Ch5RQhZizrX5G60xZnfOMDxUnu7gtNBXwY0gZ2oijFRVjvBlGYZA6zQKV9y41zUKhAhKnT7nSnJHSOHHuJkopkaaOCl6YVPnNQ1uZJVxmSZ/OnMu3c7zDHMh5FmyzhB/D0vlQqOi9bXn5Uun/9G4Wq4j437YMbcwE/BF6Za6MZbMryhl94+xX3EAIKfpdH5F1rtlfFfkrlx9LMXM+8LnFYqI8jiiva56+rZDmon81luJOkVETdvqrhdDG83dXgL5A4sawrVU34ZWW5Vmz2kll5xxXKq94JKS4wfmyTeJO4pcAvdrM/AKkjt+aE13bwzBjzeqggbF9yTJWp9dSL5vUnOA0V4YX944fpLzz0aWQYtK2L0VMyILUPfdB6r4B6iIrMW/HuYXIlc2qmJFFI5J/fwNT9lez
+sidebar_class_name: "put api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Unarchives a specific group."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/org/{orgid}/groups/{groupid}/unarchive"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Unarchives a specific group.
+
+--
+
+**Permissions:**
+`Teacher, Admin, SuperAdmin (Consumers)`
+
+**Events:**
+`GROUP.UNARCHIVE [success, error]`
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID of the group","required":true,"schema":{"type":"string"}},{"name":"groupid","in":"path","description":"Unique identifier of the group","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token required for authorization","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"Request body for unarchiving a group. Currently, no parameters are needed.","content":{"application/json":{"schema":{"type":"object"}}},"required":false}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successfully unarchived the group.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["200"]},"message":{"type":"string","enum":["Group unarchived successfully."]}},"title":"APIResponseSuccessUnarchive"}}}},"400":{"description":"Bad request. Verify request parameters.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["400"]},"message":{"type":"string"},"name":{"type":"string","enum":["Bad Request"]}},"title":"BadRequest"}}}},"401":{"description":"Unauthorized. Invalid or missing authentication token.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["401"]},"message":{"type":"string","enum":["Invalid Token."]},"name":{"type":"string","enum":["BadCredentials"]}},"title":"InvalidAuthorizationToken"}}}},"403":{"description":"Forbidden. Insufficient permissions to unarchive the group.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["403"]},"message":{"type":"string","enum":["User role(s) are not valid. Access Denied!"]}},"title":"AccessDenied"}}}},"404":{"description":"Not Found. The specified group was not found.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["404"]},"message":{"type":"string","enum":["Entity not found in DynamoDB"]}},"title":"ResourceNotFound"}}}},"425":{"description":"Access token expired. Please obtain a new token.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["425"]},"message":{"type":"string","enum":["expired Access Token"]}},"title":"AccessTokenExpired"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

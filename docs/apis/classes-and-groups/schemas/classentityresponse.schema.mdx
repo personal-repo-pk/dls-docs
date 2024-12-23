@@ -1,0 +1,33 @@
+---
+id: classentityresponse
+title: "ClassEntityResponse"
+description: ""
+sidebar_label: "ClassEntityResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"account":"string","orgid":"string","created":0,"modified":0,"classid":"string","ext_classid":"string","class_code":"string","shadow":true,"class_ownership":{"model":"string","owner_status":"string"},"created_by":"string","category":"string","level":0,"path":"string","title":"string","class":{"provision_method":"string","startdate":0,"enddate":0,"instructor":{"first_name":"string","last_name":"string","email":"string","dls_user_id":"string","userid":"string"}},"description":"string","class.settings.active":true,"ext_data":{},"assignedPathCount":0,"studentCount":0,"teacherCount":0,"analyticsharingmodel":"NOINHERIT_SYNCBACK","analytics_score_aggregation_type":"string","limits":{"los":0,"students":0},"hidden":{"actorid":"string","dls_actor_id":"string","status":true,"timestamp":0}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ClassEntityResponse"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["account","category","class","class_code","class_ownership","classid","created_by","level","orgid","path","studentCount","teacherCount","title"],"type":"object","properties":{"account":{"type":"string"},"orgid":{"type":"string"},"created":{"type":"number"},"modified":{"type":"number"},"classid":{"type":"string"},"ext_classid":{"type":"string"},"class_code":{"type":"string"},"shadow":{"type":"boolean"},"class_ownership":{"required":["model","owner_status"],"type":"object","properties":{"model":{"type":"string"},"owner_status":{"type":"string"}},"title":"ClassOwnershipEntity"},"created_by":{"type":"string"},"category":{"type":"string"},"level":{"type":"number"},"path":{"type":"string"},"title":{"type":"string"},"class":{"type":"object","properties":{"provision_method":{"type":"string"},"startdate":{"type":"number"},"enddate":{"type":"number"},"instructor":{"type":"object","properties":{"first_name":{"type":"string"},"last_name":{"type":"string"},"email":{"type":"string"},"dls_user_id":{"type":"string"},"userid":{"type":"string"}},"title":"InstructorEntity"}}},"description":{"type":"string"},"class.settings.active":{"type":"boolean"},"ext_data":{"type":"object","properties":{}},"assignedPathCount":{"type":"number"},"studentCount":{"type":"number"},"teacherCount":{"type":"number"},"analyticsharingmodel":{"type":"string","enum":["NOINHERIT_SYNCBACK"]},"analytics_score_aggregation_type":{"type":"string"},"limits":{"type":"object","properties":{"los":{"maximum":10000,"type":"integer"},"students":{"maximum":500,"type":"integer"}},"title":"ClassLimits"},"hidden":{"type":"object","properties":{"actorid":{"type":"string"},"dls_actor_id":{"type":"string"},"status":{"type":"boolean"},"timestamp":{"type":"number"}},"title":"Hidden"}},"title":"ClassEntityResponse"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

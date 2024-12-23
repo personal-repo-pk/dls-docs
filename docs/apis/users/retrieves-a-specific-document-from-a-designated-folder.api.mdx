@@ -1,0 +1,71 @@
+---
+id: retrieves-a-specific-document-from-a-designated-folder
+title: "Retrieves a specific document from a designated folder."
+description: "This API endpoint retrieves a specific document from a user's designated folder within the LMS.  It requires the account ID, external user ID, document ID, and folder ID for accurate retrieval."
+sidebar_label: "Retrieves a specific document from a designated folder."
+hide_title: true
+hide_table_of_contents: true
+api: eJzdV99vGzcM/lcEvWwDznbaZsDmt3RpBwPbUGTtUxEE9Im21eikq0g58Yz73wfq7mwnPndpu2LAnuLoB/mR/Ch+t9UMS9LT9/pNxAVG9CWSvi60QSqjrdkGr6f67cqSungzU+hNHaxnFZGjxTWSAkU1lnZhS2VCmSr0rBYxVApUIozfkTJIdumB0ahFcAajurO8sl7xCtVvv/85VmomFj8mG5HyKpRlSJ7V7LJQeM8YPbhsLq/s/Mg/4HdmZ5dqEaJcThEYe5DgxrrQNUSokDFKuFvtoUI91Z0ja3ShrYRaA6/0cfyokrcfEypr0LNdWIzZl4DtwuxMia8uFqOnHBMWmnjjxBvZqnaoC433tQsG9XQBjuRAucIK9HSreVPnkxytX+qmKXZQ8Z7F0xOg7jI2u1RAknw0isMO7DeD2Bfmq9IpyJCELb25b4a35c0e7ceEcfOZcDvulcEzWG/9Mq8+BfoixOoQeLd7Eve1mKI6eEKS/ednZ/LnIdgLRakskWiRnOqPP0Y3nGI5hJ7FJtS1syWIzckHEsPbY2Bh/gFLltaKocbItoVV3w6ALzQNL3eUHtoyjm5k++bEPsNycD3E5SmLwP8cQNMUunTSN8NG6hhMKrnMNdvt+1TNMcp+33E3wv1T2A86ZcjGjphDdy1jNXrk/iDPSGSDP3G3jCgP8eBeFYxQe3gzF+ITJ6QeljOvL7vYZozVVcdA3TRy5HyIsjNvhGt5lszB9OwslLO36DbKJJTXq7JEQuAQlfVrcNao/Zv+L/KXGDjRL4P5LTT6VMm8lEiuJWlIBMvhUrSvzGkbL8GoqzZYfX2YwZdg+vU+b+efyhuvgE80troDUj6wWoTkjeqmLm2IsfoPknb+6aTtj77ybHnzEPnlxkMVLl8+TNYVUkixxD8Cv5aTOWXZCa+C0VO9xIxXJtFUT7oxTZPtbvY3E2E3Tba7EdtM+vzRZLvv1UZLf8V1LyJSdHqqV8z1dDIxjkZAS4hmxKsQR8/Of3zx4qcXZ89+Hica3SHx6PkY3XwMFfwVPNzRuAzVxM1HJto1To7mjsG1Eg/y8Fu/CDldXdDvBPDRjdfJl/ITnOROJlTWTJB4Jfjb2mbFVIGHJbYEacUY+FaLzVhRqusQmRSHW/SjORCax0bE+ANlRoVKtQGWFs1eDTJYR9ldDA6paL32B0hKOk/uttVwnVjbXZeIY5WdjdWFMbYNzG0KZVmBc+GOOjvyOOR4hNs2qnqvZYXiUq42P8/GZ+Oz/IYH4goywzspcPUUQXukZMePS7DdN9T/QjV37cl4z5PagfV5Fgjtt11Hve81tNBxeqinU8fR6aFy3fWVbBxMwetCrwKx2NtuhXHvomsaWW5FmbSbsQRzJ+On03gnU//9Vae5flBfq94GM3CLm4fycQ0uybHcrGuIVoB+K9DHHxyDILtF8JtDgD34faVEEH8xyqd8a3wBuj1lvgrd535lfAHSAw43MttWCAZjLn174KIsseaDq0dzVjizm1a/vnqrm+Zvenlx8w==
+sidebar_class_name: "get api-method"
+info_path: ./docs/apis/users/users
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieves a specific document from a designated folder."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/accounts/{accountid}/users/{extuserid}/documents/{documentid}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API endpoint retrieves a specific document from a user's designated folder within the LMS.  It requires the account ID, external user ID, document ID, and folder ID for accurate retrieval.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountid","in":"path","description":"The unique identifier for the user's account.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"extuserid","in":"path","description":"The external ID assigned to the user.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"documentid","in":"path","description":"The unique identifier for the requested document.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"folderid","in":"query","description":"The unique identifier for the folder containing the document.","required":true,"style":"form","explode":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"A successful response containing the requested document.","content":{"application/json":{"schema":{"type":"object","properties":{"pk":{"type":"string"},"sk":{"type":"string"},"userid":{"type":"string"},"dls_user_id":{"type":"string"},"tag":{"type":"string"},"orgid":{"type":"string"},"data":{"type":"object","properties":{}},"classid":{"type":"string"},"productcode":{"type":"number"},"assigned_path_id":{"type":"string"},"documentid":{"type":"number"},"folderid":{"type":"string"},"item-code":{"type":"string"},"sessionid":{"type":"string"},"created":{"type":"string"},"modified":{"type":"string"},"user_modified":{"type":"string"}},"title":"DocumentItemResponse"}}}},"400":{"description":"Indicates a bad request, likely due to missing or invalid parameters.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["400"]},"message":{"type":"string"},"name":{"type":"string","enum":["Bad Request"]}},"title":"BadRequest"}}}},"404":{"description":"Indicates that the requested document was not found in the system.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["404"]},"message":{"type":"string","enum":["Entity not found in DynamoDB"]}},"title":"ResourceNotFound"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

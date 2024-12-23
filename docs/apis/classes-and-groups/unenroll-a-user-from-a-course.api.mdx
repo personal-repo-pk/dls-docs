@@ -1,0 +1,71 @@
+---
+id: unenroll-a-user-from-a-course
+title: "Unenroll a user from a course."
+description: "Unenroll a specific user from a course within a specified organization.  Only administrators and teachers with access to the course can perform this action."
+sidebar_label: "Unenroll a user from a course."
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVktz2zYQ/isYnJIZWnLc9CKd0sTueMZpOnF98viwApYkIhBgsEs3qob/PbMg9bCl1I1OPUnE49vXh293rRkq0rN7fRlS9L7BwKQfCm2RTHItuxj0TN8FzNsKFLVoXOmM6giTKlNsFCgTu0So/nZcu7A7hFbFVEFw/4AATZT6FPxKgW1ccMQJOCZSEKxiBFNjogyhwBgkUhwV17gBNxBUi6mMqVFcO1JgMqgudAsJGmRMEslaB2hQz3RMlbO60E4iaIFr/TysT3vOqesPKpbZoEQmsAm/di6h1TNOHRaaTI0N6Nla86oVC8TJhUr3fbE1ajwQvWD2/RDQzmC+dKpF8fYFg3dSqqfxSXK7saqnWn7XcR3TmL+NAzWCxXTggpzFwM4Myea4xPBzdh/kMLUxEJLsX5yfy89TM7ddpk7Z+W10Qum5SshdCjTE7oKwCDb0MTEwBhY0aFs/+jj9QgK5PnQpLr6gYeFdii0mdoNDxMAdHbpeaAxdI2/MhbM2RXEwRy4oaPVDX+gGiaDCI3EXW0od2xuLf6xMmh37XKY/rz+PiRMiDA9d972cuTh/+xNJDFGNuRrzifZp/gTy7bG6/AZWSamReK5MjWa5+VS7x3sM680h1l2AkXho58qFR/BOhEY1jsiFSsEPuPYc+5dD7KuYFs5aDPOBKR7MkkR2MnYG2+Ykv6Wd0m1U47mVIwn+I7K6il2w8yf6WIxSV0gw2XyIrEo5eAT44tdD4Hcb4VxiUPitlZcl3C8TUq1WsUvHs5EZyHW0eqYtemTMqsq1nulpTNV0ncW0n2YuIk3XIyn76ZCLM3F3uh7o2GctKGOm5UjC98PFLPa/p9i18gQeMdHg+JvJ+eT8QDSuupA1HrzjlSqlxBCgkhqPjhRqx08qMnpCDyydp8WU00oq96QbhBTk6kfBQLmhblfE2KhXNx9vX0/UNSvq2jYmJmUSAmcyBXvEag3Belkh7qwg7TWxpy5VGLIfI1Qm6/CZwZSJVgCBKBo3bDTAmBx4KnaWqwQWFzEuM8rYB2Vj0fnlfqySJSxLZ5y4RaaO0Z95fESvUiQBDtVEpKONxA1khRv1fK/LHzb3yfPqrHcM+r/PB6M2Mn7jaevBhSydyUsQA8vvZVrQhZ5thoax0rK0a+l7XJeNUXwfCl1HYgFZrxdAeJd838vy1w7TSs/uHwr9CMnBQp7C/VpbR/Lf6lkJnvBfEvvq89gfX6sXhpWjMY6LEFby2sB38qULvcTVdkCShn6SQz8eY07wZZPkk735DzPOCW6NJe6lR4+TjRRw2BS1bXnv2sH0IEPLVlg/XN5c/nWp+/47tLgC+Q==
+sidebar_class_name: "delete api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Unenroll a user from a course."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/org/{orgid}/classes/{classid}/enroll-user/{userid}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Unenroll a specific user from a course within a specified organization.  Only administrators and teachers with access to the course can perform this action.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID of the user.","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"Course ID of the class.","required":true,"schema":{"type":"string"}},{"name":"userid","in":"path","description":"User ID of the user to unenroll.","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful unenrollment; returns user information.","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["in-process","rejected"]},"message":{"type":"string"},"classid":{"type":"string"},"userid":{"type":"string"}},"title":"APIResponseUserEnroll"}}}},"204":{"description":"Successful unenrollment; no content returned.","content":{}},"400":{"description":"Bad request; check request parameters.","content":{}},"401":{"description":"Unauthorized; invalid or missing authentication token.","content":{}},"403":{"description":"Forbidden; user lacks permission to unenroll the specified user.","content":{}},"404":{"description":"Not Found; organization, course, or user not found.","content":{}},"425":{"description":"Access token expired; refresh your token.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

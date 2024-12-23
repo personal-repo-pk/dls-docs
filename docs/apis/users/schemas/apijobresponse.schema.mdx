@@ -1,0 +1,33 @@
+---
+id: apijobresponse
+title: "APIJobResponse"
+description: ""
+sidebar_label: "APIJobResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"status":"in-process","message":"string","jobId":"string"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"APIJobResponse"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"status":{"type":"string","enum":["in-process","rejected"]},"message":{"type":"string"},"jobId":{"type":"string"}},"title":"APIJobResponse"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

@@ -1,0 +1,33 @@
+---
+id: badrequest
+title: "BadRequest"
+description: ""
+sidebar_label: "BadRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"statusCode":"400","message":"string","name":"Bad Request"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"BadRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"statusCode":{"type":"string","enum":["400"]},"message":{"type":"string"},"name":{"type":"string","enum":["Bad Request"]}},"title":"BadRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

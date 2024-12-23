@@ -1,0 +1,33 @@
+---
+id: gradebookcolumnresobj
+title: "GradebookColumnResObj"
+description: ""
+sidebar_label: "GradebookColumnResObj"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"pk":"string","sk":"string","gsi_2_pk":"string","gsi_2_sk":"string","classid":"string","class":{"title":"string","startdate":0,"enddate":0,"class_code":"string"},"gradebook_id":"string","column_id":"string","title":"string","type":"product","weightage":"string","bundle-codes":["string"],"productcode":"string","custom_component_code":"string","scoring_type":"SIMPLE","items":[{"item-code":"string"}],"data":{}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"GradebookColumnResObj"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"pk":{"type":"string"},"sk":{"type":"string"},"gsi_2_pk":{"type":"string"},"gsi_2_sk":{"type":"string"},"classid":{"type":"string"},"class":{"type":"object","properties":{"title":{"type":"string"},"startdate":{"type":"number"},"enddate":{"type":"number"},"class_code":{"type":"string"}},"title":"ClassBody"},"gradebook_id":{"type":"string"},"column_id":{"type":"string"},"title":{"type":"string"},"type":{"type":"string","enum":["product","custom"]},"weightage":{"type":"string"},"bundle-codes":{"type":"array","items":{"type":"string"}},"productcode":{"type":"string"},"custom_component_code":{"type":"string"},"scoring_type":{"type":"string","enum":["SIMPLE"]},"items":{"type":"array","items":{"type":"object","properties":{"item-code":{"type":"string"}}}},"data":{"type":"object","properties":{}}},"title":"GradebookColumnResObj"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

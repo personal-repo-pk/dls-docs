@@ -3,17 +3,15 @@
 
 import type * as Preset from "@docusaurus/preset-classic";
 import type { Config } from "@docusaurus/types";
-import type * as Plugin from "@docusaurus/types/src/plugin";
-import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
+import { generateDocusaurusOpenAPIConfig } from "./scripts/generate-docusaurus-openapi-config";
 
 const config: Config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: "ComproDLS | Documentation",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+  favicon: "img/favicon-dls.ico",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -25,6 +23,7 @@ const config: Config = {
       "classic",
       {
         docs: {
+          routeBasePath: '/',
           sidebarPath: require.resolve("./sidebars.ts"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -48,22 +47,22 @@ const config: Config = {
         },
       },
       navbar: {
-        title: "DLS",
+        title: "",
         logo: {
           alt: "My Site Logo",
-          src: "img/logo.svg",
+          src: "img/compro_technologies_logo.avif",
         },
         items: [
           {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "Guide",
+            label: "Documents",
           },
           {
-            label: "API",
+            label: "APIs",
             position: "left",
-            to: "/docs/category/petstore-api",
+            to: "/apis/intro",
           }
         ],
       },
@@ -181,16 +180,7 @@ const config: Config = {
       {
         id: "openapi",
         docsPluginId: "classic",
-        config: {
-          petstore: {
-            specPath: "examples",
-            outputDir: "docs/petstore1",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-              categoryLinkSource: "tag",
-            },
-          } satisfies OpenApiPlugin.Options,
-        } satisfies Plugin.PluginOptions,
+        config: generateDocusaurusOpenAPIConfig(),
       },
     ],
   ],

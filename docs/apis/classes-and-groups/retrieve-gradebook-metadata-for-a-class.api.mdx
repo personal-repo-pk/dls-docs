@@ -1,0 +1,74 @@
+---
+id: retrieve-gradebook-metadata-for-a-class
+title: "Retrieve gradebook metadata for a class"
+description: "This API fetches gradebook metadata for a given class.  If a `gradebook_id` is provided, only that specific gradebook's metadata is returned. Otherwise, all gradebook metadata records for the class are returned, with pagination support via the `cursor` parameter."
+sidebar_label: "Retrieve gradebook metadata for a class"
+hide_title: true
+hide_table_of_contents: true
+api: eJztVk1v2zgQ/SsEL9sGqp0WPfmWTXeDAM02aNJTYtRjcSyxoUh1hnLXa/i/L4aSLSdW0qTY454sc4Zv3nxxZq0jFKwnN/qMwOA8hDs9zbRBzsnW0QavJ/q6tKxOLs/VAmNeIqtiq6sqjGAggloEUqAKu0SvcgfMI6XOFwrUbKf81ZqZsqxqCktr0GQqeLdSsYSouMbcLmzeQ//GPbhlRRgb8mhG6lMskX5YxkyBc0NcCPNAhhOnWGLLRwHhDiVTP2wsVQ2F9SBeKm7qOlBUSwvpzixviAPNVA0EFUak0a2/9UdHl0iVZbbB8+To6NbPrmJj0MdZpmbXCHmJJJ8nprJePq6aGgnSP53pHZrEfK09VKgnOlBhjc60lWjXEEv9MAWfqABv/2m5nn/QmSb83lhCoyeRGsw05yVWoCdrHVe1gHIk6wu92WQ7OykQP7F0moL1yyb2s721871BWh0YOv+gwiLFendHP9ONlJqn0S/71O7Un4N90sQyUBfprYkSwSAd2BBd9NHmrZ0Y7tC/KGxTUeY6eEYW+bvjY/m5b+WqyXNkXjROypcsLsFJ5A4LX2c6Dz6ij4ICde06auNvLFDrPSo9yRudh8ZHnWnxJVpkeQE6qmH+DXOR1RRqpCSdrHvN3ikgAkmDjVjtnz+CUN8NBCTTPHwMectxSNY2z5BkW+5Dsnt1OqQQbXQ4DAsRi0CrYSEhRDRf50+K92S+qeZIIquCsQv7iHCJxLZN4oEs5f5nEd9seqf6x/4CI3xGlhbQD0PcG+g6aKhxDiG5xxT5u+P3hzX9VxieIY0394pYAN4fvz0E+OKha1Q06o0690tw1igY7shnd8XTNcsRYsOnwQzUhXRPU0k3Cd+ppBOZoRguofaxeRzjdzCnhDJWLDjW0/1Ad75eJ982bZArjGUw8vxioi0P+0SPAxXjdeqPzTg1A/J43XXFZrzLAKd3bhESo87KaauuwBt1RqGpRWlXhPrt6Hh0fPAg/tn4XD7B2bhK47cCLw9xoTrzmUJPwbkKfeQsoRM6aQklkU55YWW9AvURgbxcvRAMlBvqasURK/Xq48XV65E6j9uxzSo1lmgL5KHVErxxcsLttE5qsR3X9ykV6BOPDirFuv3brhF5MAIIzCG3raCCiCSJynrLfXkLSo20CFSJYN64u31fJUq4WNjcCi3OyxDcG4dLdIoCC7AvRlIzdeBYQSrYblZ9bscBPr6PJcoP07Tu++H/1e6/W+26Xo74dxzXDqyXpDXk0rRLDXkjs0pnerLd97rylKN+Ndtry2mmy8BRbq7Xc2D8Qm6zkeN26ZEV0liGuZOpsQDH+ESuhxeuQdp3uDrc5ZbgGlHVsi493+zQJvaE0Z1Ob24qf8iKvRe6/Opzt+a8Vocb9CCJ7TbjV/sUtuTaxL3M/z0Oe7v1LxjflshGpku3kko4WulJnmMd9+4dTDqJ425QnP1xrTebfwFfE+R0
+sidebar_class_name: "get api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieve gradebook metadata for a class"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/org/{orgid}/classes/{classid}/gradebooks"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API fetches gradebook metadata for a given class.  If a `gradebook_id` is provided, only that specific gradebook's metadata is returned. Otherwise, all gradebook metadata records for the class are returned, with pagination support via the `cursor` parameter.
+
+**Permissions:**
+`Student`, `Teacher`, `Admin`, `Superadmin`
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"Class ID","required":true,"schema":{"type":"string"}},{"name":"gradebook_id","in":"query","description":"ID of the gradebook","schema":{"type":"string"}},{"name":"cursor","in":"query","description":"Pagination cursor","schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful retrieval of gradebook metadata","content":{"application/json":{"schema":{"required":["count","entities"],"type":"object","properties":{"entities":{"type":"array","items":{"type":"object","properties":{"pk":{"type":"string"},"sk":{"type":"string"},"account":{"type":"string"},"orgid":{"type":"string"},"classid":{"type":"string"},"gradebook_id":{"type":"string"},"title":{"type":"string"},"category":{"type":"string"},"created_by":{"type":"string"},"created":{"type":"number"},"modified":{"type":"number"},"version":{"type":"number"},"data":{"type":"object","properties":{}}},"title":"GradebookMetaRes"}},"count":{"type":"number"},"cursor":{"type":"string"}},"title":"GradebooksMetaRes"}}}},"204":{"description":"No gradebook metadata found","content":{}},"401":{"description":"Unauthorized - Invalid authentication token","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["401"]},"message":{"type":"string"},"name":{"type":"string","enum":["BadCredentials"]}},"title":"InvalidToken"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

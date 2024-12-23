@@ -1,0 +1,1252 @@
+openapi: 3.0.0
+info:
+  title: Users
+  description: Functionality for user authentication and management within an LMS. It supports token-based authentication for external users, updating user details and roles, managing users in bulk, and retrieving user information. Additionally, it allows users to manage their preferences.
+  version: 1.0.0
+servers:
+  - url: http://dls-asgard-thor-1453383019.us-west-2.elb.amazonaws.com/lb-auth/
+    description: dev url
+paths:
+  /accounts/{accountid}/user/setup:
+    servers:
+      - url: http://dls-asgard-thor-1453383019.us-west-2.elb.amazonaws.com/lb-authextn/
+        description: dev url
+    post:
+      tags:
+        - User management
+      summary: Creates or updates a user account based on organizational entitlement.
+      description: |-
+        This API sets up a user account according to a specified workflow (organizational entitlement).  For organizational entitlement workflows, this API might create user progress, enroll the user in class records, and create a Getstream User Bundle follow relationship if the necessary conditions are met.
+
+        **Permissions:**
+        Open Access (Consumers)
+      parameters:
+        - name: accountid
+          in: path
+          description: The unique identifier for the account.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: The request body containing user account details.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReqBodyForUserSetup'
+        required: true
+      responses:
+        '200':
+          description: Returns the user setup details for the organizational entitlement.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResBodyForUserSetp'
+        '400':
+          description: Indicates an invalid request. Check request body for errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+  /accounts/{accountid}/update-user-information:
+    put:
+      tags:
+        - User management
+      summary: Update user information across all spaces.
+      description: |-
+        Updates user information in all spaces.
+
+        **Permissions:**
+        `Open Access (Consumers)`
+      parameters:
+        - name: accountid
+          in: path
+          description: The ID of the account to update.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: The JSON object containing the user information to update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserInfoBody'
+        required: true
+      responses:
+        '200':
+          description: Successful update of user information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserSpacesRes'
+  /org/{orgid}/users/all:
+    get:
+      tags:
+        - User management
+      summary: Retrieves all users within a specified organization.
+      description: |-
+        **Permissions:**
+        `Admin, SuperAdmin (Consumers)`
+        `Admin, SuperAdmin (Publishers)`
+      parameters:
+        - name: orgid
+          in: path
+          description: The ID of the organization whose users are to be retrieved.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: A string used to search for users by name or other relevant criteria.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: role
+          in: query
+          description: A comma-separated list of roles to filter users by (e.g., teacher,student).
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: lookup
+          in: query
+          description: A comma-separated list of key-value pairs for advanced search filtering (e.g., key1:val1,key2:val2).
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: lookup-operator
+          in: query
+          description: The logical operator to use when combining multiple lookup parameters (AND or OR). Defaults to AND.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            default: AND
+            enum:
+              - AND
+              - OR
+        - name: cursor
+          in: query
+          description: A cursor used for pagination.  Provides a starting point for the next set of results.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: The maximum number of users to return in a single response.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: sortField
+          in: query
+          description: The field to sort the results by (first_name, last_name, created, ext_email). Defaults to last_name, then first_name in ascending order.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - first_name
+              - last_name
+              - created
+              - ext_email
+        - name: sortOrder
+          in: query
+          description: The order to sort the results by (asc or desc). Defaults to desc.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        - name: Authorization
+          in: header
+          description: A valid authentication token required for access.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A successful response containing user information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+        '400':
+          description: Bad request due to invalid input parameters.
+          content: {}
+        '401':
+          description: Unauthorized access due to an invalid or missing authentication token.
+          content: {}
+        '403':
+          description: Forbidden access due to insufficient permissions.
+          content: {}
+        '404':
+          description: The requested resource (organization or users) was not found.
+          content: {}
+        '425':
+          description: The provided access token has expired.
+          content: {}
+  /org/{orgid}/users/{userid}:
+    get:
+      tags:
+        - User management
+      summary: Retrieves detailed information for a specific user.
+      description: |-
+        This API endpoint retrieves comprehensive information for a specified user within the system.  The 'me' parameter can be used to retrieve the details of the currently authenticated user.
+
+        **Permissions:**
+
+        * **Students (Consumers):** Access granted only with appropriate roles.
+        * **Teachers:** Access granted with appropriate roles.
+        * **Administrators:** Full access.
+        * **SuperAdministrators:** Full access.
+        * **Collaborators (Publishers):** Access granted only with appropriate roles.
+        * **Authors (Publishers):** Access granted only with appropriate roles.
+      parameters:
+        - name: orgid
+          in: path
+          description: The organization ID associated with the user.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            default: demo6
+        - name: userid
+          in: path
+          description: The unique identifier for the user.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: A valid authentication token required for access.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A successful response containing the user's information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Indicates a bad request, likely due to missing or invalid parameters.
+          content: {}
+        '401':
+          description: Authentication failure; invalid or missing authorization token.
+          content: {}
+        '403':
+          description: The requesting user lacks the necessary permissions to access this resource.
+          content: {}
+        '404':
+          description: The requested user resource was not found.
+          content: {}
+        '425':
+          description: The provided access token has expired.
+          content: {}
+    delete:
+      tags:
+        - User management
+      summary: Deletes a teacher or admin user from the system.
+      description: |-
+        Deletes an admin or teacher user from the LMS system.  This operation removes the user's account and associated data.
+
+        **Permissions:**
+        `Admin`, `SuperAdmin`
+
+        **Events:**
+        `USER.DELETE`  [success, error]
+        `CLASS.USER_ENROLMENT_REMOVE` [success, error]
+      parameters:
+        - name: orgid
+          in: path
+          description: The organization ID of the user to delete.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: userid
+          in: path
+          description: The ID of the user to delete.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: The authentication token for the request.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful user deletion. Returns an APIJobResponse object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIJobResponse'
+        '400':
+          description: Bad request. The request is invalid or contains errors.
+          content: {}
+        '401':
+          description: Unauthorized. The provided authentication token is invalid or missing.
+          content: {}
+        '403':
+          description: Forbidden. The authenticated user does not have permission to delete the specified user.
+          content: {}
+        '404':
+          description: Not Found. The specified user or organization does not exist.
+          content: {}
+        '425':
+          description: Token Expired. The provided access token has expired.
+          content: {}
+  /org/{orgid}/users/{userid}/update-role:
+    put:
+      tags:
+        - User management
+      summary: Update a user's role within an organization.
+      description: |-
+        Modify a user's role within a specific organization.  This operation allows for promoting or demoting users.
+
+        **Permissions:**
+        `Admin, SuperAdmin (Consumers)`
+
+        **Events:**
+        `CLASS.ENROLLMENT_USER_META_UPDATE [success, error]`
+      parameters:
+        - name: orgid
+          in: path
+          description: The organization ID of the user.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: userid
+          in: path
+          description: The ID of the user to update.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Authentication token for authorization.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: Data required to update the user's role.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoleRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful user role update response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        '400':
+          description: Bad request.  Check request parameters and body for errors.
+          content: {}
+        '401':
+          description: Invalid or missing authorization token.
+          content: {}
+        '403':
+          description: Insufficient permissions or invalid user role. Access denied!
+          content: {}
+        '404':
+          description: User not found.
+          content: {}
+        '425':
+          description: Access token has expired.
+          content: {}
+  /auth/{orgid}/ext-users/token:
+    post:
+      tags:
+        - Authentication
+      summary: Get an access token for an external user using OAuth 2.0
+      description: |-
+        comproDLS&trade; uses the OAuth 2.0 standard for authenticating users, clients and API requests.  This endpoint generates an access token for external users of your application using their username and password. This token must be included in subsequent API requests to authorize access to resources based on user permissions.
+        
+        **Permissions:**
+        `Teacher, Admin, SuperAdmin, Student (Consumers)`
+        `Collaborator, Admin, SuperAdmin, Author (Publishers)`
+      parameters:
+        - name: orgid
+          in: path
+          description: Unique comproDLS&trade; organization identifier.  Use 'demo6' for testing purposes.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            default: demo6
+      requestBody:
+        description: User credentials (username and password) for authentication.  The format is application/json.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExternalUserRequestBody'
+        required: true
+      responses:
+        '200':
+          description: Successful authentication. Returns an access token in the response body.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Authentication failed.  Check your username and password.
+          content: {}
+        '404':
+          description: User not found.  Verify that the provided external user ID exists.
+          content: {}
+  /accounts/{accountid}/users/{extuserid}/documents:
+    servers:
+      - url: http://dls-asgard-thor-1453383019.us-west-2.elb.amazonaws.com/lb-drive/
+        description: dev url
+    get:
+      tags:
+        - Preferences
+      summary: Retrieves all documents within a specified folder, including subfolders.
+      description: This API endpoint retrieves all documents residing in a given folder, encompassing all subfolders within that folder's hierarchy.  It provides a comprehensive list of documents associated with the specified account and user.
+      parameters:
+        - name: accountid
+          in: path
+          description: The unique identifier for the user's account.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: extuserid
+          in: path
+          description: The external ID assigned to the user.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: folderid
+          in: query
+          description: The unique identifier for the folder to search within.
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: classid
+          in: query
+          description: Optional class ID for filtering documents.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: productcode
+          in: query
+          description: Optional product code for filtering documents.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: assigned_path_id
+          in: query
+          description: Optional assigned path ID for filtering documents.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: item-code
+          in: query
+          description: Optional item code for filtering documents.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: cursor
+          in: query
+          description: Optional cursor for pagination.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A successful response containing an array of Document objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentResponse'
+        '400':
+          description: Indicates a bad request, likely due to missing or invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+  /accounts/{accountid}/users/{extuserid}/documents/{documentid}:
+    servers:
+      - url: http://dls-asgard-thor-1453383019.us-west-2.elb.amazonaws.com/lb-drive/
+        description: dev url
+    get:
+      tags:
+        - Preferences
+      summary: Retrieves a specific document from a designated folder.
+      description: This API endpoint retrieves a specific document from a user's designated folder within the LMS.  It requires the account ID, external user ID, document ID, and folder ID for accurate retrieval.
+      parameters:
+        - name: accountid
+          in: path
+          description: The unique identifier for the user's account.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: extuserid
+          in: path
+          description: The external ID assigned to the user.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: documentid
+          in: path
+          description: The unique identifier for the requested document.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: folderid
+          in: query
+          description: The unique identifier for the folder containing the document.
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A successful response containing the requested document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentItemResponse'
+        '400':
+          description: Indicates a bad request, likely due to missing or invalid parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '404':
+          description: Indicates that the requested document was not found in the system.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFound'
+  /accounts/{accountid}/users/{extuserid}/documents/multi:
+    servers:
+      - url: http://dls-asgard-thor-1453383019.us-west-2.elb.amazonaws.com/lb-drive/
+        description: dev url
+    put:
+      tags:
+        - Preferences
+      summary: Updates documents within specified folders.
+      description: |-
+        This API endpoint allows for updating documents within designated folders.  It supports partial updates.
+
+        **Permissions:**
+        `Open access`
+
+        **Request Body:**  Provides the data for updating the Drive document(s).
+
+        **Responses:**
+        * `200`: Successful document update.
+        * `206`: Partial successful document update.
+        * `400`: Bad request.  Check request parameters and body for errors.
+      parameters:
+        - name: accountid
+          in: path
+          description: The unique identifier for the account.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: extuserid
+          in: path
+          description: The unique identifier for the user.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: The data payload for updating the Drive document(s).
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDriveDocBody'
+        required: true
+      responses:
+        '200':
+          description: A successful response containing updated document information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiDocumentResponse'
+        '206':
+          description: A partial success response, indicating some documents were updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiDocumentResponse'
+        '400':
+          description: Indicates a malformed request. Check request body and parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+    post:
+      tags:
+        - Preferences
+      summary: Creates a new document or folder.
+      description: |-
+        This API endpoint allows the creation of new documents or folders within the LMS.  It requires both the account ID and the external user ID for authorization.  The request body must contain the necessary details for creating the document or folder.
+
+        **Permissions:**
+        `Open Access`
+
+        **Request Body:**  The structure of the request body is defined by the `CreateDriveDocBody` schema.  This includes details such as the document's name, content, and parent folder.
+
+        **Responses:**
+        * 201: Successful creation of the document or folder. Returns a `MultiDocumentResponse` object.
+        * 206: Partial success.  Some documents or folders may have been created. Returns a `MultiDocumentResponse` object.
+        * 400: Bad request. Indicates an issue with the request data.  Returns a `BadRequest` object.
+      parameters:
+        - name: accountid
+          in: path
+          description: The unique identifier for the account.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: extuserid
+          in: path
+          description: The unique identifier for the user.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: Details for creating the document or folder.  Refer to the `CreateDriveDocBody` schema for the expected structure.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDriveDocBody'
+        required: true
+      responses:
+        '201':
+          description: Successful document or folder creation. Returns a list of created documents/folders.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiDocumentResponse'
+        '206':
+          description: Partial creation. Returns a list of created and failed documents/folders.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiDocumentResponse'
+        '400':
+          description: Bad request.  The request is malformed or contains invalid data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+    delete:
+      tags:
+        - Preferences
+      summary: Deletes documents from specified folders.
+      description: |-
+        This API endpoint deletes documents from the specified folders.  It supports partial deletion.
+
+        **Permissions:**
+        `Open Access`
+
+        **Responses:**
+        * `200`: Successful deletion of all specified documents.
+        * `206`: Partial deletion successful.  Some documents may not have been deleted (e.g., due to permissions).
+        * `400`: Bad request.  Check the request parameters for errors.
+      parameters:
+        - name: accountid
+          in: path
+          description: The ID of the account.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: extuserid
+          in: path
+          description: The ID of the user.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful deletion of documents.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiDocumentResponse'
+        '206':
+          description: Partial successful deletion of documents.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiDocumentResponse'
+        '400':
+          description: Bad request.  Check request parameters for errors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+components:
+  schemas:
+    APIResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - in-process
+            - rejected
+        message:
+          type: string
+    APIJobResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - in-process
+            - rejected
+        message:
+          type: string
+        jobId:
+          type: string
+    ResourceNotFound:
+      type: object
+      properties:
+        statusCode:
+          type: string
+          enum:
+            - '404'
+        message:
+          type: string
+          enum:
+            - Entity not found in DynamoDB
+    BadRequest:
+      type: object
+      properties:
+        statusCode:
+          type: string
+          enum:
+            - '400'
+        message:
+          type: string
+        name:
+          type: string
+          enum:
+            - Bad Request
+    ReqBodyForUserSetup:
+      required:
+        - ext_user_id
+        - org_entitlement
+        - workflow_type
+      type: object
+      properties:
+        ext_user_id:
+          type: string
+        workflow_type:
+          type: string
+          enum:
+            - org_entitlement
+        org_entitlement:
+          $ref: '#/components/schemas/OrgEntitlementObject'
+    OrgEntitlementObject:
+      required:
+        - dls_user_id
+        - ext_role
+        - orgid
+        - productcode
+      type: object
+      properties:
+        productcode:
+          type: string
+        orgid:
+          type: string
+        dls_user_id:
+          type: string
+        ext_role:
+          type: string
+          enum:
+            - student
+            - teacher
+    ResBodyForUserSetp:
+      required:
+        - message
+        - status
+      type: object
+      properties:
+        message:
+          type: string
+          enum:
+            - Request for Setting up user for Org-Entitlement is Accepted
+            - Request for Setting up user for Org-Entitlement is Rejected
+        status:
+          type: string
+          enum:
+            - in-process
+            - rejected
+    CreateDriveDocBody:
+      required:
+        - dls_user_id
+        - entities
+        - orgid
+        - productcode
+      type: object
+      properties:
+        orgid:
+          type: string
+        classid:
+          type: string
+        productcode:
+          type: string
+        dls_user_id:
+          type: string
+        collaborator_id:
+          type: string
+        entities:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateDocumentsEntites'
+    CreateDocumentsEntites:
+      required:
+        - data
+        - documentid
+        - folderid
+        - timestamp
+      type: object
+      properties:
+        item_code:
+          type: string
+        folderid:
+          type: string
+        documentid:
+          type: string
+        tag:
+          type: string
+        timestamp:
+          type: number
+        ttl:
+          type: number
+        data:
+          type: object
+          properties: {}
+    MultiDocumentResponse:
+      type: object
+      properties:
+        success:
+          $ref: '#/components/schemas/MultiDocumentResponse_success'
+        error:
+          $ref: '#/components/schemas/MultiDocumentResponse_success'
+        count:
+          type: integer
+    UpdateDriveDocBody:
+      required:
+        - entities
+      type: object
+      properties:
+        collaborator_id:
+          type: string
+        entities:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateDocumentEntities'
+    UpdateDocumentEntities:
+      required:
+        - documentid
+        - folderid
+        - timestamp
+      type: object
+      properties:
+        folderid:
+          type: string
+        documentid:
+          type: string
+        timestamp:
+          type: number
+        ttl:
+          type: number
+        data:
+          type: object
+          properties: {}
+    DocumentResponse:
+      type: object
+      properties:
+        entities:
+          type: object
+        count:
+          type: integer
+        cursor:
+          type: string
+    DocumentItemResponse:
+      type: object
+      properties:
+        pk:
+          type: string
+        sk:
+          type: string
+        userid:
+          type: string
+        dls_user_id:
+          type: string
+        tag:
+          type: string
+        orgid:
+          type: string
+        data:
+          type: object
+          properties: {}
+        classid:
+          type: string
+        productcode:
+          type: number
+        assigned_path_id:
+          type: string
+        documentid:
+          type: number
+        folderid:
+          type: string
+        item-code:
+          type: string
+        sessionid:
+          type: string
+        created:
+          type: string
+        modified:
+          type: string
+        user_modified:
+          type: string
+    ExternalUserRequestBody:
+      required:
+        - ext_user_id
+      type: object
+      properties:
+        ext_user_id:
+          minLength: 1
+          type: string
+    TokenResponse:
+      required:
+        - access_token
+        - user
+      type: object
+      properties:
+        access_token:
+          type: string
+        user:
+          $ref: '#/components/schemas/TokenUser'
+        address:
+          $ref: '#/components/schemas/UserAddress'
+    User:
+      required:
+        - org
+        - uuid
+      type: object
+      properties:
+        uuid:
+          type: string
+        org:
+          $ref: '#/components/schemas/Organization'
+        class:
+          $ref: '#/components/schemas/ClassData'
+        resource:
+          $ref: '#/components/schemas/ResourceData'
+        name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        username:
+          type: string
+        ext_user_id:
+          type: string
+        ext_parent_id:
+          type: string
+        ext_username:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        address:
+          $ref: '#/components/schemas/UserAddress'
+        meta:
+          $ref: '#/components/schemas/User_meta'
+    TokenUser:
+      required:
+        - org
+        - uuid
+      type: object
+      properties:
+        uuid:
+          type: string
+        org:
+          $ref: '#/components/schemas/Organization'
+        name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        ext_username:
+          type: string
+        username:
+          type: string
+        roles:
+          $ref: '#/components/schemas/Role'
+    Role:
+      type: object
+      properties:
+        role1:
+          type: array
+          items:
+            type: string
+        role2:
+          type: array
+          items:
+            type: string
+    Organization:
+      required:
+        - id
+        - type
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+    ClassData:
+      required:
+        - status
+        - title
+        - uuid
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - provisioned
+            - exists
+            - not-found
+        uuid:
+          type: string
+        title:
+          type: string
+    ResourceData:
+      required:
+        - status
+        - title
+        - uuid
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - provisioned
+            - exists
+            - not-found
+        uuid:
+          type: string
+        title:
+          type: string
+    UserList:
+      required:
+        - entities
+      type: object
+      properties:
+        cursor:
+          type: string
+        count:
+          type: integer
+          format: int32
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    UpdateUserInfoBody:
+      required:
+        - ext_user_id
+      type: object
+      properties:
+        ref_id:
+          minLength: 1
+          type: string
+        ext_user_id:
+          minLength: 1
+          type: string
+        ext_email:
+          minLength: 1
+          type: string
+        ext_username:
+          minLength: 1
+          type: string
+        ext_first_name:
+          minLength: 1
+          type: string
+        ext_last_name:
+          minLength: 1
+          type: string
+        address:
+          $ref: '#/components/schemas/UserAddress'
+    UpdateUserSpacesRes:
+      required:
+        - count
+        - entities
+      type: object
+      properties:
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserSpaceEntity'
+        count:
+          type: integer
+    UserSpaceEntity:
+      required:
+        - dls_account_id
+        - dls_org_id
+        - ext_user_id
+        - space_key
+        - space_org_context
+        - space_role
+        - space_title
+        - space_type
+      type: object
+      properties:
+        ext_user_id:
+          type: string
+        space_title:
+          type: string
+        space_key:
+          type: string
+        dls_account_id:
+          type: string
+        dls_org_id:
+          type: string
+        space_org_context:
+          type: string
+        space_role:
+          type: string
+        space_type:
+          type: string
+        visibility:
+          type: boolean
+        dls_teacher_id:
+          type: string
+    UpdateRoleRequest:
+      required:
+        - target_role
+      type: object
+      properties:
+        ext_data:
+          $ref: '#/components/schemas/UpdateRoleExtData'
+        target_role:
+          type: string
+          enum:
+            - admin
+            - teacher
+      additionalProperties: false
+    UpdateRoleExtData:
+      type: object
+      properties:
+        email_template_id:
+          type: string
+    UserAddress:
+      type: object
+      properties:
+        country:
+          type: string
+    MultiDocumentResponse_success:
+      type: object
+      properties:
+        entities:
+          type: array
+          items:
+            type: object
+            properties: {}
+        count:
+          type: integer
+    User_meta:
+      type: object
+      properties:
+        additionalProp1:
+          type: string
+        additionalProp2:
+          type: string

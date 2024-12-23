@@ -1,0 +1,33 @@
+---
+id: bundleentity
+title: "BundleEntity"
+description: ""
+sidebar_label: "BundleEntity"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"dls_account_id":"string","bundle-code":"string","title":"string","path":"string","path-common":"string","products":[{"ext-product":{"id":"string","type":"string"},"dls-product":{"code":"string","type":"string"},"meta":{"title":"string","very-short-description":"string","short-description":"string","icon":"string"},"activation":{"gated":{},"free":{},"prior-to-activitation-rules":{}},"classes":{"enabled":true},"analytics":{"student":true,"teacher":true}}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"BundleEntity"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["bundle-code","dls_account_id","products","title"],"type":"object","properties":{"dls_account_id":{"type":"string"},"bundle-code":{"type":"string"},"title":{"type":"string"},"path":{"type":"string"},"path-common":{"type":"string"},"products":{"type":"array","items":{"required":["activation","analytics","classes","dls-product","ext-product","meta"],"type":"object","properties":{"ext-product":{"type":"object","properties":{"id":{"type":"string"},"type":{"type":"string"}},"title":"BundleProductExt"},"dls-product":{"type":"object","properties":{"code":{"type":"string"},"type":{"type":"string"}},"title":"BundleProductDls"},"meta":{"type":"object","properties":{"title":{"type":"string"},"very-short-description":{"type":"string"},"short-description":{"type":"string"},"icon":{"type":"string"}},"title":"BundleProductMeta"},"activation":{"type":"object","properties":{"gated":{"type":"object","properties":{}},"free":{"type":"object","properties":{}},"prior-to-activitation-rules":{"type":"object","properties":{}}},"title":"BundleProductActivation"},"classes":{"type":"object","properties":{"enabled":{"type":"boolean"}},"title":"BundleProductClasses"},"analytics":{"type":"object","properties":{"student":{"type":"boolean"},"teacher":{"type":"boolean"}},"title":"BundleProductAnalytics"}},"title":"BundleProduct"}}},"title":"BundleEntity"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

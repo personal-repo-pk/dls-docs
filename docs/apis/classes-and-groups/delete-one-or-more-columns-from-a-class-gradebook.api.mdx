@@ -1,0 +1,77 @@
+---
+id: delete-one-or-more-columns-from-a-class-gradebook
+title: "Delete one or more columns from a class gradebook."
+description: "This API deletes columns from a class gradebook.  For successful deletion, the user must have Teacher, Admin, or Superadmin permissions.  The API returns success or partial success events."
+sidebar_label: "Delete one or more columns from a class gradebook."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVktv20YQ/iuLOSUGIzlFT7zJsuIatWvDUk62YK/IEbnxcpeZWQpVCf73YkjqYcuNESHHnsh9fd88vtnZGoLOGOJ7uCCd4sL7Z5hHkCInZMpgvIMYZrlhNbq9VClaDMgq8bYqHKsl+UJplVjNrLINwECpL54UV0mCzMvKdueMd5EKOaqKkVRRcVC5XqGaoU5ypEiN0sK4SHlS06pE0jJUJVJhmI13PFBqlmNrCGGoyPGGQ86UmoLRdjuFK3SBB+rBPbiTk9sdTHxy8uCeXrPuKJ+6E5P2fLd5fDWaTgcXd6PzydnNzZ+P45urr9d/PZ6NZuM/Hs8nV5PZ5End98zRxpQ5RFBq0gUGJIlxDU4XCDF4ykwKERiJbqlDDq9DfkOZduYfLUN1eQ4REH6vDGEKcaAKI+Akx0JDXENYlwLKgYzLoGmiLU+bmHeYxm3yjqbYZv3xHZ6tvo7nGlUh99RHZUOWo06RDuhkL7pgki6EwT+j+ynauWzm0jtGlvXfTk/l85JlutP4NhB9dWxFP4AIEu8CuiAAuixtb9XwGwtKfWiFX3zDJIh+yJdIwXQ2cNCh4kNrI0BXFVLFxn0qyYtNrbOCginMmwgKZNYZvhlhCCbYNsK3l3e909A0svL76edDty/dSluTKr2fkC7Gv9zbsU/fMHrnsRj4Y/+iXj//jXGm0zFhKnrRlmG+H5Le11kroKYLSoEh9ynE0F2IbZ2HHGIYesqGdVvezbCtPuRh3ZdhM9xqhIf1fuE0w/5GbUW99K2tPf+4Q1HapeqCfFXKphUSd6n4PDgdnB6o/0vlEvnV1oS1WnpShXY6My5TvVWRQkfe2kJuuahFJ7Q6YKokB23GWBmntLpCTU6OXgsGygk1XXPAQn24up5+HKjLoLgqS0+BVUKog+wWyEPWXLvUygyHSgLebgvdZfzSpAxda0cP1WahG3b9JvGpAGpmn5huodABSVIY7Zh3dSkoJdLSUyELi8o+7/sqUcLl0iRGzOIk995+srhCq8izALtsIGoqPYdCt1LuL6bzVgbKO5ROVHjC91rk64zVu6L5v90e3277Ag/4dxiWVhsn+arISoC7Er2X5gsRxJse3CtTpnbtcleoMv+qx21qdR5B7jkIZl0vNONXsk0j098rpDXE9/MIVpqMXkgl39eQGpb/FOKltow/0MCHu75RfVSHT4E3vewntVvL/aBtJSOI4BnX2xeH9NKjbNh7JBxBvonr0fSv3g5HmPAihY30i/7dIGnptoySBMuwd/igd8mbYHv1dzqEpvkX7ZPplA==
+sidebar_class_name: "delete api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Delete one or more columns from a class gradebook."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/org/{orgid}/classes/{classid}/gradebooks/{gradebook_id}/columns"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API deletes columns from a class gradebook.  For successful deletion, the user must have Teacher, Admin, or Superadmin permissions.  The API returns success or partial success events. 
+
+**Permissions:**
+`Teacher, Admin, Superadmin`
+
+**Events:**
+`CLASS.GRADEBOOK_COLUMN_BATCH_DELETE` [success, partial]
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"Class ID","required":true,"schema":{"type":"string"}},{"name":"gradebook_id","in":"path","description":"Gradebook ID","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful gradebook column deletion.","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["in-process","rejected"]},"message":{"type":"string"}},"title":"APIResponse"}}}},"401":{"description":"Invalid authorization token.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["401"]},"message":{"type":"string"},"name":{"type":"string","enum":["BadCredentials"]}},"title":"InvalidToken"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

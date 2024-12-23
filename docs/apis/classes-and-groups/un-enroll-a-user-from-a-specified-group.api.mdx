@@ -1,0 +1,74 @@
+---
+id: un-enroll-a-user-from-a-specified-group
+title: "Un-enroll a user from a specified group."
+description: "Un-enroll a user from a given group."
+sidebar_label: "Un-enroll a user from a specified group."
+hide_title: true
+hide_table_of_contents: true
+api: eJy9VU1v20YQ/SuDOSUGLTlpeuHNddzCgA0EtX2yBXjEHZILLXeZnaUaVeB/L4bUlyO1SIMgJ3K/3rw383Z2jYkqwfwJ77iZc5TatoKzDA1LEW2bbPCY46M/Zx+Dc0DQCUcoY2iAoLJL9lDF0LWTZ//sz84+cWysiA1e8rOzZ//ywFTUHF8yeLk0jfX6c9+1HHejq+Clazi+YIYtRWo4cVROa/TUMOYYYmUNZmiVS0upxq8JPtQMIVbk7d+kU3DzEUIJqeYNO8ww8ufORjaYp9hxhlLU3BDma0yrVsNIitZX2PfZLvJw+Bti/6Bwl12qQ9xo2AatmQzHo7C6l32yxSg4hQX7/xd3ppulDV5YdP39xYV+Xoe574qCRcrOuRV0Wx+wOfDBK9lF8Il9wnzd9xl+OAX5GxlQlixpAnBVc7HYjmFvgFNg747BbvySnDVAh6nbZAM+OSZhaGNYWsNAMO7d5epr/F+O8R9VphXwIe1isEJAy7EMUeVbASp0/ynMD8eYf2iyIMQxh4pchs6bE6ff/3p8+nIoyCgCahLgL60WfCc3zBNZDwSe/zqttc+w4VQHgzkadpx4uHupxhynIVbT9XDl+ulQVpmuN/egn47lP1fi06ZzyQ4uLcPgL5ucGuzKkQgLkDcwSBXMcMlRRv7vJheTiyM7/975IYXkbFpBGSI05KmyvoJixMtgDN6wT5IN6JEdJTYQWo5D4QUG4bdM0evRO8VgPQH3K0ncwJvbu/u3E7hJIF3bhpgEisiUdLdCHketyRunM5I6o0i6LY1t7TWliv3AYwM1mG0cDmBQBKOAJBIKOy40lDhacpLtI1eRDM9DWAwoG5vpwrxzi0OtmiUuS1tYpSVFHYI7d7xkBzGIAvtqgn2GbZDUkNcibTrNv3V0abmwpWWzv9Gv6rTe++jnvQqbxpX4S5q2jqxXTV10Smd07ZO+EZhhvn0qqq3v8n0LP/AuZji6d5ZhHSQpwno9J+HH6Ppepz93HFeYP80yXFK0NFdvP63RWNF/g3lJTvg/8vPmz00rfgvf8j6dVLmZJL/SO0Su0xFmuODV7mHUB+S7Wf0YItsk97PD1vLx+vb64Rr7/h+ncOz5
+sidebar_class_name: "delete api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Un-enroll a user from a specified group."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/org/{orgid}/groups/{groupid}/enroll-user/multi"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Un-enroll a user from a given group.
+
+**Permissions:**
+`Teacher`, `Admin`, `SuperAdmin`, `Consumer`
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"The organization ID of the group.","required":true,"schema":{"type":"string"}},{"name":"groupid","in":"path","description":"The ID of the group.","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successfully un-enrolled user from the group.","content":{}},"400":{"description":"Bad request.  Check request parameters.","content":{}},"401":{"description":"Invalid authorization token. Please provide a valid token.","content":{}},"403":{"description":"User is not authorized to perform this action.","content":{}},"404":{"description":"Group or user not found.","content":{}},"425":{"description":"Access token has expired. Please obtain a new token.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,33 @@
+---
+id: bundleproduct
+title: "BundleProduct"
+description: ""
+sidebar_label: "BundleProduct"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"ext-product":{"id":"string","type":"string"},"dls-product":{"code":"string","type":"string"},"meta":{"title":"string","very-short-description":"string","short-description":"string","icon":"string"},"activation":{"gated":{},"free":{},"prior-to-activitation-rules":{}},"classes":{"enabled":true},"analytics":{"student":true,"teacher":true}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"BundleProduct"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["activation","analytics","classes","dls-product","ext-product","meta"],"type":"object","properties":{"ext-product":{"type":"object","properties":{"id":{"type":"string"},"type":{"type":"string"}},"title":"BundleProductExt"},"dls-product":{"type":"object","properties":{"code":{"type":"string"},"type":{"type":"string"}},"title":"BundleProductDls"},"meta":{"type":"object","properties":{"title":{"type":"string"},"very-short-description":{"type":"string"},"short-description":{"type":"string"},"icon":{"type":"string"}},"title":"BundleProductMeta"},"activation":{"type":"object","properties":{"gated":{"type":"object","properties":{}},"free":{"type":"object","properties":{}},"prior-to-activitation-rules":{"type":"object","properties":{}}},"title":"BundleProductActivation"},"classes":{"type":"object","properties":{"enabled":{"type":"boolean"}},"title":"BundleProductClasses"},"analytics":{"type":"object","properties":{"student":{"type":"boolean"},"teacher":{"type":"boolean"}},"title":"BundleProductAnalytics"}},"title":"BundleProduct"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

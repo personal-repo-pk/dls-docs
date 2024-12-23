@@ -1,0 +1,33 @@
+---
+id: createdrivedocbody
+title: "CreateDriveDocBody"
+description: ""
+sidebar_label: "CreateDriveDocBody"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"orgid":"string","classid":"string","productcode":"string","dls_user_id":"string","collaborator_id":"string","entities":[{"item_code":"string","folderid":"string","documentid":"string","tag":"string","timestamp":0,"ttl":0,"data":{}}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CreateDriveDocBody"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["dls_user_id","entities","orgid","productcode"],"type":"object","properties":{"orgid":{"type":"string"},"classid":{"type":"string"},"productcode":{"type":"string"},"dls_user_id":{"type":"string"},"collaborator_id":{"type":"string"},"entities":{"minItems":1,"type":"array","items":{"required":["data","documentid","folderid","timestamp"],"type":"object","properties":{"item_code":{"type":"string"},"folderid":{"type":"string"},"documentid":{"type":"string"},"tag":{"type":"string"},"timestamp":{"type":"number"},"ttl":{"type":"number"},"data":{"type":"object","properties":{}}},"title":"CreateDocumentsEntites"}}},"title":"CreateDriveDocBody"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

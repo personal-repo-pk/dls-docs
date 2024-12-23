@@ -1,0 +1,33 @@
+---
+id: orgentitlementobject
+title: "OrgEntitlementObject"
+description: ""
+sidebar_label: "OrgEntitlementObject"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"productcode":"string","orgid":"string","dls_user_id":"string","ext_role":"student"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"OrgEntitlementObject"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["dls_user_id","ext_role","orgid","productcode"],"type":"object","properties":{"productcode":{"type":"string"},"orgid":{"type":"string"},"dls_user_id":{"type":"string"},"ext_role":{"type":"string","enum":["student","teacher"]}},"title":"OrgEntitlementObject"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

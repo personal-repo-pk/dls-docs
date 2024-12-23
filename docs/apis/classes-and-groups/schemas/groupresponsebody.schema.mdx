@@ -1,0 +1,33 @@
+---
+id: groupresponsebody
+title: "GroupResponseBody"
+description: ""
+sidebar_label: "GroupResponseBody"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"uuid":"string","category":"string","title":"string","path":"string","group":{"startdate":0,"enddate":0}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"GroupResponseBody"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["category","path","title","uuid"],"type":"object","properties":{"uuid":{"type":"string"},"category":{"type":"string"},"title":{"type":"string"},"path":{"type":"string"},"group":{"required":["enddate","startdate"],"type":"object","properties":{"startdate":{"type":"integer"},"enddate":{"type":"integer"}},"title":"GroupInfo"}},"title":"GroupResponseBody"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

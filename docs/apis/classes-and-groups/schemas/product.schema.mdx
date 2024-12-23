@@ -1,0 +1,33 @@
+---
+id: product
+title: "Product"
+description: ""
+sidebar_label: "Product"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"productcode":"string","currentversion":0,"status":"string","schema":0,"producttype":"string","group":"string","title":"string","paths":{},"description":"string","author":"string","thumbnaillarge":"string","thumbnailsmall":"string","model":{},"context":"string","class":{}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Product"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["author","context","currentversion","group","paths","productcode","producttype","schema","status","thumbnaillarge","thumbnailsmall","title"],"type":"object","properties":{"productcode":{"type":"string"},"currentversion":{"type":"integer"},"status":{"type":"string"},"schema":{"type":"integer"},"producttype":{"type":"string"},"group":{"type":"string"},"title":{"type":"string"},"paths":{"type":"object","properties":{}},"description":{"type":"string"},"author":{"type":"string"},"thumbnaillarge":{"type":"string"},"thumbnailsmall":{"type":"string"},"model":{"type":"object","properties":{}},"context":{"type":"string"},"class":{"type":"object","properties":{}}},"title":"Product"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

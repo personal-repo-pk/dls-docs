@@ -1,0 +1,71 @@
+---
+id: validates-a-class-code-for-a-given-account
+title: "Validates a class code for a given account."
+description: "This endpoint validates a class code against a specific account.  It returns details about the class code's validity and associated information, including institutional space if requested."
+sidebar_label: "Validates a class code for a given account."
+hide_title: true
+hide_table_of_contents: true
+api: eJzVV0tvGzcQ/isEL02AlWynPumWuGkRIEELO83FMIzRcrRizCU35KwTQdj/XgzJXa28kuUUvVQnLR/ffDOc51YSVEEubuWVUxjkXSEVhtLrhrSzciE/r3UQaFXjtCXxCEYrIAwCRGkgBFE6hQIq0DaQABEaLPVKlwLK0rWW5kJ8IOGRWm+DUEigTRCwdC0JWuMI5JeQ0DVtBFglIARXaiBUQtuV8zUwo0JoW5pWaVsJFqmp5WUwIjRQotAr4fFbi4FQzWUhG/BQI6FnHbfSQo1yITM5rWQhNWvZAK3lVHUUrdXfWhRaoSW90ujFyvnIvFdQFpIlao9KLsi3WMhQrrEGudhK2jQsL5DXtpJdVwwUsil6At9a9JsJgw9RVzyoaW9LbSMdj6FxNiDzmchfOmcQrOy6u8QWA71zasNHpjqPHpbc8OQMXDpLaImvQdMYXcY3Ofsa+O52JHdnkVsZ4e4Zjr0rM3LLr1gSP5B3DXrSGPje6OxiK2ttP6KtaC0XF8XUlpI0GV664lvsv1Gnjrf2nyQuJPtEMW/Oz6eq37RliSGsWtPrrJ2di+vsuyOrZNP/FxYppDLhPi1Ed6yRQBbS+Sp9E0K5Rs8fP2m9fXs9da2dOmela31A8YCbs7T6gBvhVrv4lN0TmifRlQmzeHqmVfJQIOF8xUgjjV6Ek8/PtCpE22o1UPMI5Pwe06eyshlPynG+mo2Qe6VjpN1nNzuFkcIyHR7uPuDm9M1pkslEEqRbCRBtQL+DZb2i6/2g0/D72cN5EdbAnthlb9sBHPGrFxogHtuz4TwyJvDEGWSEoC1hhX5qQz4r+PDkWWttjA5YOqsSLlr1QlS06kWYo5TyJWe9IbV8Ykv19n8a0KCUxxByNOfKkOKXF4ZgTo+XAz99jJmOnWbf+YYvVvRkHhjJnNagZz3zlM93Ew2PQxzOQ92eKoe2e2M+TZqaNjHhtpZiqVy7NuC9day+C9Sb1WOVbUkekS6Gf2+Gf78O/y5fkFSzwIOaZLjje5cH96IuhzZ2ihzaHTQ+Lu/imb03B/eyvQ41K0M0vE1P8tvIV7tDDnwkLE7aePTkx0ncsLg9CqPN95Y0bY7tTqL5GgP3CV0hL88vp63A1a7WO993esI6EivXWrVf+CNMjbR2ijtJF6J+3FAu5Fm+G862Q8/ZpSo7i7W3765kIblnuN71Zu9/QN2kGBzX9dHLcVs8Ss+JNbfmVok/vGsbTkiP6ENS6mJ+Pj+f5MbfW1umysCNNze3NViouL8uE14h0HpnTI2WQhHRPZrYmPMbxoYnZlMQHxG85aufGAP5hrjZBMJavPr46eb1nIeB0DaN8xRSAefTDDmVugarDK8EarkyxmO5GdinVKGNPDJU3731YPEhmXmeKHijBkKvwYRiJ7nyoHDp3ENEadDz1MEby9Y8jHVlK+FqpUvNtEK5ds7MDD6iEd4FBrbVvA/nGmJc5Lb/y+EBihFBVPoR7XiweBJbg8/936eyHOTcvpw1BnRMJ603rGSKnNt+RmMfXozntV3wsHf34XPH2TEQX9xulxDwb2+6jpfTZMXDn9IBloZT0wpMwGfM+y/nroNqxTo7GvcewbR8SvIs9gheM6ef5PfqOmfZ1+LFQ+pBcnkR7GbMrCe9M3t3x+UHQaGPVNP+VSI0+8wou/uTQYjH3nTjbVliQ8+evRsl07/+vPksC7nMo2qdMqCH71zn4Xvi6qKBUr/Aa1tpwFYtVHw2YfLvH30s9NY=
+sidebar_class_name: "post api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Validates a class code for a given account."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/accounts/{accountid}/class-code/validate"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This endpoint validates a class code against a specific account.  It returns details about the class code's validity and associated information, including institutional space if requested.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountid","in":"path","description":"The unique identifier for the account.","required":true,"schema":{"type":"string"}},{"name":"details","in":"query","description":"Include institutional space details in the response.","schema":{"type":"boolean"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"The class code to validate.","content":{"application/json":{"schema":{"required":["class_code"],"type":"object","properties":{"class_code":{"minLength":1,"type":"string"}},"title":"ClassCodeBody"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful validation. Returns class code details.","content":{"application/json":{"schema":{"required":["class_code","dls_class_id","meta","org_id","teacher_id"],"type":"object","properties":{"class_code":{"type":"string","description":"class code/course key/class key of the class"},"dls_class_id":{"type":"string","description":"dls-class-id in that org"},"teacher_id":{"type":"string","description":"dls-teacher-id, uuid of the creator of the class in that org"},"org_id":{"type":"string","description":"org-id of the class"},"space_title":{"type":"string","description":"space title"},"space_key":{"type":"string","description":"unique identifier of the space of a user"},"space_org_context":{"type":"string","description":"institutional or shared"},"meta":{"type":"object","properties":{"title":{"type":"string","description":"title of the class."},"startdate":{"type":"integer","description":"start date of the class in milliseconds."},"enddate":{"type":"integer","description":"end date of the class in milliseconds."}},"title":"ValidateClassCodeMeta"},"space":{"required":["address","dls_account_id","dls_org_id","space_code","space_description","space_key","space_title","space_type"],"type":"object","properties":{"dls_org_id":{"type":"string"},"space_key":{"type":"string"},"space_title":{"type":"string"},"dls_account_id":{"type":"string"},"space_code":{"type":"string"},"space_type":{"type":"string"},"address":{"required":["city","country","house_no","post_code","region","street1","street2","street3","street4"],"type":"object","properties":{"country":{"type":"string"},"street3":{"type":"string"},"street4":{"type":"string"},"city":{"type":"string"},"post_code":{"type":"string"},"house_no":{"type":"string"},"street1":{"type":"string"},"street2":{"type":"string"},"region":{"type":"string"}},"title":"AddressDescription"},"space_description":{"required":["address"],"type":"object","properties":{"address":{"type":"string"}},"title":"SpaceDescription"}},"title":"EntityDescription"}},"title":"ValidateClassCodeRes"}}}},"404":{"description":"Class code or account not found.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

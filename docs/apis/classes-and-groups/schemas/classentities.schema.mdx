@@ -1,0 +1,33 @@
+---
+id: classentities
+title: "ClassEntities"
+description: ""
+sidebar_label: "ClassEntities"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"title":"string","startdate":0,"enddate":0,"rowId":"string","description":"string","ext_data":{},"limits":{"los":0,"students":0},"analyticsharingmodel":"NOINHERIT_SYNCBACK","analytics_score_aggregation_type":"best","owner":{"userid":"string","email":"string"},"teachers":[{"email":"string","first_name":"string","last_name":"string","userid":"string","ext_user_id":"string","dls_org_status":"string","ext_account_status":"string"}],"products":[{"productcode":"string","title":"string"}],"tags":[{"tagid_1":"tag_id","tagname_1":"tag_name","taxonomyid_1":"tag_taxonomy_id","context_1":"tag_context"}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ClassEntities"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["enddate","rowId","startdate","title"],"type":"object","properties":{"title":{"type":"string"},"startdate":{"type":"integer"},"enddate":{"type":"integer"},"rowId":{"type":"string"},"description":{"type":"string"},"ext_data":{"type":"object","properties":{}},"limits":{"type":"object","properties":{"los":{"maximum":10000,"type":"integer"},"students":{"maximum":500,"type":"integer"}},"title":"ClassLimits"},"analyticsharingmodel":{"type":"string","enum":["NOINHERIT_SYNCBACK"]},"analytics_score_aggregation_type":{"type":"string","enum":["best","first","last"]},"owner":{"required":["userid"],"type":"object","properties":{"userid":{"type":"string"},"email":{"type":"string"}},"additionalProperties":false,"title":"OwnerInMultiClasses"},"teachers":{"uniqueItems":true,"type":"array","items":{"required":["email","first_name","last_name"],"type":"object","properties":{"email":{"type":"string"},"first_name":{"type":"string"},"last_name":{"type":"string"},"userid":{"type":"string"},"ext_user_id":{"type":"string"},"dls_org_status":{"type":"string"},"ext_account_status":{"type":"string"}},"additionalProperties":false,"title":"TeachersInMultiClasses"}},"products":{"maxItems":50,"uniqueItems":true,"type":"array","items":{"required":["productcode"],"type":"object","properties":{"productcode":{"type":"string"},"title":{"type":"string"}},"additionalProperties":false,"title":"ProductEntitiesInMultiClasses"}},"tags":{"type":"array","example":[{"tagid_1":"tag_id","tagname_1":"tag_name","taxonomyid_1":"tag_taxonomy_id","context_1":"tag_context"}],"items":{"type":"object","properties":{}}}},"additionalProperties":false,"title":"ClassEntities"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

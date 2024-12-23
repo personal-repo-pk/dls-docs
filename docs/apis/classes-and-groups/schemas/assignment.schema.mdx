@@ -1,0 +1,33 @@
+---
+id: assignment
+title: "Assignment"
+description: ""
+sidebar_label: "Assignment"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"title":"string","duedate":0,"description":"string","uuid":"string","name":"string","provision_method":"string"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Assignment"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["description","duedate","name","provision_method","title","uuid"],"type":"object","properties":{"title":{"type":"string"},"duedate":{"type":"integer"},"description":{"type":"string"},"uuid":{"type":"string"},"name":{"type":"string"},"provision_method":{"type":"string"}},"title":"Assignment"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

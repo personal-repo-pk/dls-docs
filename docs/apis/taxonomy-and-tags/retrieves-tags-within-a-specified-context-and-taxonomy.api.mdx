@@ -1,0 +1,74 @@
+---
+id: retrieves-tags-within-a-specified-context-and-taxonomy
+title: "Retrieves tags within a specified context and taxonomy."
+description: "Retrieves tags from a given taxonomy within a specified context.  This operation allows for filtering by tag ID and retrieving hierarchical tag structures."
+sidebar_label: "Retrieves tags within a specified context and taxonomy."
+hide_title: true
+hide_table_of_contents: true
+api: eJztV01v4zYQ/SsDnpxAsJPt9qJbNmkXPjXIek9JkIylkcS1RDIk5cQV9N+LoSR/xN58YYECReGDJXI488h5w3lqhMfcifhazPj/NhIpucRK46VWIhZX5K2kJTlgO8isrgAhl0tS4PFJK12t4FH6QipAcIYSmUlKIdHK05MfA8wK6UAbssguActSPzrItIVMlp6sVDnMV+wepheAKgXbxeSJQpJFmxQywTKYOG/rxNeW3PhG3ajj40uylXROauXi4+MbdX+WVlLdR3D/rTZkuzcYnWvl6oqsOxKRMGixIk+WN94IhRWJWGiby1REQvK+DfpCPD+Mv2yOSv7dbWR6ISJh6aGWllIRe1tTJFxSUIUiboRfGXbqPG9QtG20jtMfzYuRzjsb0Bn4gtYn/cGIw/JXtje9+GXxtk7yoSa7ejFWDl4PSScY6WCDJWfqLdEGjqxejvhn2QWSKpUJeoLHgnxBdif4AGjtE0YpZViXPoYMS0cHQc21LglVCBmMRRyMt1Ge1b7QtifPgLQgTMnuQWVbUp5hMtO8XpB6Vypu2dgZrRw5nv90csJ/u1G+1UlCzmV1Oewfy5AUzEehTAJRleeVaEzZw5n8cLy82Q+v5z8oYV4by/XuZRc8Rf+6VRsJesLKlMSmZsEcXfBZ85Pjp45UgVx3gV0e8w3f7sJjtC6ubnBTalsl0E0NA2tfdz3Otm2jLU7FjaikmnqqnIhPo2EXaC0yx9agr/9l1NFwkf+Po8viLf8iIbvMvUa/kHUvPadSfCU/w/zscnrVF5Ho5j8fKqMvyB3roSbnx3BeULIYXmHTZ8Y75dT5Ot33NVVLLGUK2kJoaiqHnXujuwoOOftt39l3RxZKTBYOFHGlo12B2bTLQ24+77u5IqdrmxCM+GLUdt0cjkBpD5muVXrA1aff912dhQun2wQU6ICeDF9oz5e3kajIF5qznFNIFverWEy0zSdNaNTtpKfFpOkf2smAbNJsiMKjuWMOkl0OHb+2Jd++3hsXTyZmgUaO+0oeJ7qaLE9F4I7KdKBOz4vZIHhYpcw6t+yz293p+GR8sneXB/lzdjkFY/VSpuQgq1XSdTjpV0EIVagw52Qz1DFMPbjaGG29g8QSeqnyaEsVRVCbtB9lJCmV5IflEaCDRypL/kfndCKxmyyoCkoNuLUw77nzkcJ5STAn78mC3hY47JobZb6hn87A9nRwY9FGwmjnKwztoK/iZ4Lx59Iw+B/yNH5+bs2GEP9NDdpfR4HBpkSp+DgDL5ue7desSEUk4kGYbu7BeP9K5NEdned7PV9o59lZ08zR0Xdbti0PdyKJiyGVjjmQ9qLlhUS8UbQd3NqCVlvKcIllzTaCFdLbAfw6DfcCxm09ucF5yy9WMtB3ntroqtdtR7D/AXEQx6Ax1A6EAV9Hh/cd3BaGn39afADLwMMPozn4zfEBIFvUb29ZwHXKmjPVGXDvMX5r6Z6k5RSv287XP2aibf8Blts/wA==
+sidebar_class_name: "get api-method"
+info_path: ./docs/apis/taxonomy-and-tags/taxonomy-and-tags
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieves tags within a specified context and taxonomy."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/org/{orgid}/context/{context}/taxonomy/{taxonomyid}/tags"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves tags from a given taxonomy within a specified context.  This operation allows for filtering by tag ID and retrieving hierarchical tag structures.
+
+**Permissions:**
+`Admin`, `SuperAdmin` (Consumers)
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID","required":true,"schema":{"type":"string"}},{"name":"context","in":"path","description":"Context of the taxonomy","required":true,"schema":{"type":"string"}},{"name":"taxonomyid","in":"path","description":"ID of the taxonomy","required":true,"schema":{"type":"string"}},{"name":"tagid","in":"query","description":"ID of the tag to retrieve (optional)","schema":{"type":"string"}},{"name":"hierarchy","in":"query","description":"Flag to indicate whether to retrieve the tag hierarchy (default: false)","schema":{"type":"boolean","default":false}},{"name":"Authorization","in":"header","description":"Authentication token","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful retrieval of tag(s)","content":{"application/json":{"schema":{"type":"object","properties":{"data":{"type":"object","properties":{},"example":{"pk":"pk","sk":"sk","tagid":"tag_id","tagname":"tag_name","context":"tag_context","taxonomyid":"tag_taxonomy_id","tag_data":{}}},"hierarchy":{"minItems":1,"type":"array","example":[{"pk":"pk","sk":"sk","tagid":"tag_id","tagname":"tag_name","context":"tag_context","taxonomyid":"tag_taxonomy_id","tag_data":{},"tags":[{"pk":"pk","sk":"sk","tagid":"tag_id","tagname":"tag_name","context":"tag_context","taxonomyid":"tag_taxonomy_id","tag_data":{},"tags":[{"pk":"pk","sk":"sk","tagid":"tag_id","tagname":"tag_name","context":"tag_context","taxonomyid":"tag_taxonomy_id","tag_data":{}}]}]}],"items":{"type":"object","properties":{}}}},"title":"GetTagAPIResponse"}}}},"400":{"description":"Bad request. Check request parameters.","content":{}},"401":{"description":"Invalid or missing Authorization token.","content":{}},"403":{"description":"User lacks necessary permissions.","content":{}},"404":{"description":"Resource (tag or taxonomy) not found.","content":{}},"425":{"description":"Access token has expired.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

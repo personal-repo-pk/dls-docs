@@ -1,0 +1,74 @@
+---
+id: retrieve-all-classes-associated-with-a-specific-gradebook-column-component
+title: "Retrieve all classes associated with a specific gradebook column component."
+description: "This API endpoint retrieves all classes that include a specified component within their gradebook column."
+sidebar_label: "Retrieve all classes associated with a specific gradebook column component."
+hide_title: true
+hide_table_of_contents: true
+api: eJzVV01T5DgM/Ssun2ao0M1M7alvDDVLUQW1FLCngQK3rU4Mjh0smdnerv7vW3ISOvTH8LF72RMhUuSnJ1l6vZCkSpSTH/I4KgPTEB7kTSENoI62IRu8nMiryqI4PD8R4E0TrCcRgaKFJ0ChnBPaKURAQZUiYb12yYBQAhvQdmbBCB3qJnjwJH5aqqwXVIGNouyPFDq4VPvRtb/2e3vnEGuLaIPHyd7etb+7AqUriHeFuDs0tfX8cJkaiCr/JwvZqKhqIIicykJ6VYOcyBBLa2QhLSfRKKrkZmYgkrePCYQ14InhRjELkRGKEEvl7d+KnUeykBEek41g5IRigkKirqBWcrKQNG/4QKRofSmXy+IZw3PqtzoYeBUMO4kwy8evWKMgEFTUFUP7MJIUMcQewWOCON+AcK5K63O+onXPXHTVtr4UmKYIj4lBNaoEZKwRMDlCxvUWHIeJqhA7Wns4FSgDcQMP+3JZdIuJwgN40SefsalhtPdRc8PO2ASPgGz/enDAf9YQCExaA+IsOdG7Cx08KeuZESWcRWIe+mtQK9IVm7iIg0sQLUG0ikHy9+CJj1NN47r8xvfIZy42MYfpPWjiRo+hgUi2RczU9M+dp4pRcV0tQY2vR2getjBTSNz+ukR7+/V2xzetcceXmRtrdtteh0qWHGxHSyqSUTS0+lRPIbIVvNlpy0e3N3Nbz/ZnyiP2+xbMPCfaj63bXQnlabbLujuP9sW6gTNINY/oJgaTMjM6IYVa3iwL+RNsWZEqt4ecJm8c7HOGb+mSQerdYTu46SHcrs23reXRgR9vX0vv8uTs/PR7Tmod1zu7mt32d1WVkzOKXr9ey2EHPK/Ho1zcC8A/pveZqG6ubm+E1F7yzmI9QcmdNwwMtBYbL6DrtYzgt4Mvm2PpxBseGryAvbD+STlrRIgiL06eSsOx2M7N/3DuIClKeLSV4FU9GTgXswbEXf3Z7oTdMb4pcxQhr2blUN4MmTtp077i5DJX+SyqgpETWUKGzXt2IschluNFlgPL8XPH4njxsnuX426E5600C4Op006ATLcRxzGkhp2eIGJbjy+jg9HBxvr6PXnNj8pZmud1VSvPK7bsl0UhwMfgXM14ihw9glMERjDhuTworBdKnIKKeeOccQzgL8TlHAlq8en07PLzSJyQwNQ0IRIKHUFR7gRvtpxaKW9cXuiUmN3sRq3OegmpBJ9xdKEy5e2/OVhWLIwcMWjbGmqVF53DYnXySutxlAbiLMSaDdPkHoa5Mkswm1ltGRbqKgS37+AJnIgBObAvR9w6TUCqVe7bTllcdKr0hSjtgYHJ4nOlS/WG/lwprtF6KRerq/M/kMPdbSL4i8aNU9YzXym6vPHzlfjB4lgWctJr5NWt4LcbqrW/GDeFrAISB1gspgrhz+iWS37dCkpW38aimjpWYDPlEH7B5L+Vm1vzfID5UO0+KZfYSbLee1LRMrZ34vx00YnKz+J9vxi2Aux3mp8P4fXA24KwXv4wvjf+iPgAuLW+WPJ476Q7M9o6HWoNDQ0+31g1XIrnSX38/Uoul/8ArzwdPQ==
+sidebar_class_name: "get api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieve all classes associated with a specific gradebook column component."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/org/{orgid}/components/{component_code}/classes"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API endpoint retrieves all classes that include a specified component within their gradebook column.
+
+**Permissions:**
+`Teacher`, `Admin`, `Superadmin`
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"The unique identifier for the organization.","required":true,"schema":{"type":"string"}},{"name":"component_code","in":"path","description":"The code of the component to search for.","required":true,"schema":{"type":"string"}},{"name":"cursor","in":"query","description":"Pagination cursor for retrieving subsequent pages of results.","schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token required for authorization.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"A successful response containing a list of classes matching the specified criteria.","content":{"application/json":{"schema":{"type":"object","properties":{"entities":{"type":"array","items":{"type":"object","properties":{"pk":{"type":"string"},"sk":{"type":"string"},"gsi_2_pk":{"type":"string"},"gsi_2_sk":{"type":"string"},"classid":{"type":"string"},"class":{"type":"object","properties":{"title":{"type":"string"},"startdate":{"type":"number"},"enddate":{"type":"number"},"class_code":{"type":"string"}},"title":"ClassBody"},"gradebook_id":{"type":"string"},"column_id":{"type":"string"},"title":{"type":"string"},"type":{"type":"string","enum":["product","custom"]},"weightage":{"type":"string"},"bundle-codes":{"type":"array","items":{"type":"string"}},"productcode":{"type":"string"},"custom_component_code":{"type":"string"},"scoring_type":{"type":"string","enum":["SIMPLE"]},"items":{"type":"array","items":{"type":"object","properties":{"item-code":{"type":"string"}}}},"data":{"type":"object","properties":{}}},"title":"GradebookColumnResObj"}},"cursor":{"type":"string"},"count":{"type":"integer"}},"title":"GetGradebookColumnsResBody"}}}},"401":{"description":"Indicates an invalid or missing authorization token.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["401"]},"message":{"type":"string"},"name":{"type":"string","enum":["BadCredentials"]}},"title":"InvalidToken"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

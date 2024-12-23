@@ -1,0 +1,33 @@
+---
+id: invalidtoken
+title: "InvalidToken"
+description: ""
+sidebar_label: "InvalidToken"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"statusCode":"401","message":"string","name":"BadCredentials"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"InvalidToken"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"statusCode":{"type":"string","enum":["401"]},"message":{"type":"string"},"name":{"type":"string","enum":["BadCredentials"]}},"title":"InvalidToken"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

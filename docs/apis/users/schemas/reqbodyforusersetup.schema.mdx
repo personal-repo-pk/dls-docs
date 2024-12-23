@@ -1,0 +1,33 @@
+---
+id: reqbodyforusersetup
+title: "ReqBodyForUserSetup"
+description: ""
+sidebar_label: "ReqBodyForUserSetup"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"ext_user_id":"string","workflow_type":"org_entitlement","org_entitlement":{"productcode":"string","orgid":"string","dls_user_id":"string","ext_role":"student"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ReqBodyForUserSetup"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["ext_user_id","org_entitlement","workflow_type"],"type":"object","properties":{"ext_user_id":{"type":"string"},"workflow_type":{"type":"string","enum":["org_entitlement"]},"org_entitlement":{"required":["dls_user_id","ext_role","orgid","productcode"],"type":"object","properties":{"productcode":{"type":"string"},"orgid":{"type":"string"},"dls_user_id":{"type":"string"},"ext_role":{"type":"string","enum":["student","teacher"]}},"title":"OrgEntitlementObject"}},"title":"ReqBodyForUserSetup"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

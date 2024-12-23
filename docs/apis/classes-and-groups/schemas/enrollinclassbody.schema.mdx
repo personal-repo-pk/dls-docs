@@ -1,0 +1,33 @@
+---
+id: enrollinclassbody
+title: "EnrollInClassBody"
+description: ""
+sidebar_label: "EnrollInClassBody"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"ext_user_id":"string","ext_first_name":"string","ext_last_name":"string","ext_parent_id":"string","ext_username":"string","ext_email":"string","ref_id":"string","ext_role":"student","class_code":"string","address":{"country":"string"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"EnrollInClassBody"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["class_code","ext_role","ext_user_id"],"type":"object","properties":{"ext_user_id":{"minLength":1,"type":"string"},"ext_first_name":{"minLength":1,"type":"string"},"ext_last_name":{"minLength":1,"type":"string"},"ext_parent_id":{"type":"string"},"ext_username":{"type":"string"},"ext_email":{"minLength":1,"type":"string"},"ref_id":{"type":"string"},"ext_role":{"type":"string","enum":["student","teacher"]},"class_code":{"minLength":1,"type":"string"},"address":{"type":"object","properties":{"country":{"type":"string"}},"title":"UserAddress"}},"title":"EnrollInClassBody"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

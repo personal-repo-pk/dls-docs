@@ -1,0 +1,33 @@
+---
+id: classlimits
+title: "ClassLimits"
+description: ""
+sidebar_label: "ClassLimits"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"los":0,"students":0}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ClassLimits"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"los":{"maximum":10000,"type":"integer"},"students":{"maximum":500,"type":"integer"}},"title":"ClassLimits"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

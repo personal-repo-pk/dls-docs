@@ -1,0 +1,33 @@
+---
+id: newclassmetadata
+title: "NewClassMetadata"
+description: ""
+sidebar_label: "NewClassMetadata"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"title":"string","startdate":0,"enddate":0,"description":"string","class_ownership":"STRICT","ext_data":{},"analyticsharingmodel":"NOINHERIT_SYNCBACK","analytics_score_aggregation_type":"best","limits":{"los":0,"students":0}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"NewClassMetadata"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["enddate","startdate","title"],"type":"object","properties":{"title":{"type":"string"},"startdate":{"type":"integer"},"enddate":{"type":"integer"},"description":{"type":"string"},"class_ownership":{"type":"string","enum":["STRICT","NO_OWNER"]},"ext_data":{"type":"object","properties":{}},"analyticsharingmodel":{"type":"string","enum":["NOINHERIT_SYNCBACK"]},"analytics_score_aggregation_type":{"type":"string","enum":["best","first","last"]},"limits":{"type":"object","properties":{"los":{"maximum":10000,"type":"integer"},"students":{"maximum":500,"type":"integer"}},"title":"ClassLimits"}},"title":"NewClassMetadata"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

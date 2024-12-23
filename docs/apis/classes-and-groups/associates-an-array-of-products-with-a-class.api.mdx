@@ -1,0 +1,81 @@
+---
+id: associates-an-array-of-products-with-a-class
+title: "Associates an array of products with a class."
+description: "Associates an array of products with an Instructor-led class."
+sidebar_label: "Associates an array of products with a class."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVktT4zgQ/iuqPs1QIoF9XHzLJCyVKhioJBy2Qgo6dsfWYEtGkgOZVP77Vss2ISTLzHDY0+aQsqTW191fP9Rr8Jg6iKZwiZ6swtzBTEJCLraq9MpoiKDnnIkVenICtUBrcSXMQpTWJFXsnXhSPuOToXbeVrE39jinRMQ5Ote51bf66OiabKGcU0a76OjoVt9PCOOMrBS9pFBainFVkg3f9/WNsyVp3wj3L3rjced6dDW46U/ueuPxVX/Ymwyvvt71BgMxxTim0lMihavimJyTgqw1dnb/cjf8370g8K0fyPa+9i7+ngz745+TPj8fnZ2/sulf5W/GZ6NBb9I7LAYSSrRYkCfLYVmDxoIgAmNTlYAExQEp0WfwNkpXNkWtviMvxXDAEfIZicqRBQmWHitlKYHI24okuDijAiFag1+VrMB5q3QKm4180RkC+AOtfZYRw8EHVfQqnxnbWN0qygiTYPSbNKx8RtqruHbRmwfSv6R2VguT819MsmKJXQWj+lDMTbISsdEelVY6bRNdDAeuAxL4hLTn+1iWeWNP95tjkPUr/VvLptBgxCahUGGNbWb+jWLPUbemJOsVOb65Ix2tocDnoafCQfTniYRC6WZ1KqHS6rGiZl0z0GCHQmVO67N9PjYSvPI5711WuVdtnSujR/QYOApCuwyHDVca7Wrbfjs52adyXOf1osrrNnDccohbHb9C5ft0FeQcpnTARwnOo68Ouv+e97V/7P5Gwh+HPPyCiWiyqSP6GcUP7bLOH9SJ2Jbybt7UoKf7oEO9xFwlwlgR2qVOxU6FiAkn/SGw3/fBbhxZoZzQxgtsUCgR3oiS7MLYQvhMOYExy7/F3EgoyGcm4cI3LnDO9R9B19i0uw79aNMNwSXXXTe9YtNtA0xtyLsFswsSOKqjbf2dPWNR5rSf7tM2RLMNN4SFCcFrQtWvFQZ6z62pSgcSlmRd7fNp56Rzstc5/qp0cBJz5VdiweyixpTpbRyQgrQ1eV7woyMDuqUcPSWCEy2Q74TSAsUFoQ1t4ZIxiG+I8cp5KsSni8vx544YeuGqsjTWOxFbQs/SDLmvNUOd5LzjfJUwEov5+m3cNSklHexooEKe1MsAJgJ5cltfOhVF+6TLrebUYkJzYx7qBK0TgQ/mVf7w2ldmiRYLFSs2y8WZMflxTkvKhTWOgXXa4QLj7Cgw1Gvb1H9qXmjmg7fBWm/T8P/B4z8dPJr+6OnZd8scleboVjYPFRpqf8pjCEiI2mmkyWPe2g4Lex0AJNQ9YCYh414STWG9nqOjG5tvNrz9WJFdQTSdSViiVTjnYp+uIVGOvxOIFpg7eidXPo2aV+qzeH8SOuhm+2RqfjCXmFe8AgkPtHoZvnhs+ZA9r2akDyhvid1wO2xGI6amPu3XCo8njLG9vfeasvH1jV5I2ndlZ6+a//XVeAIS5s3EVJiE71h84tELn2pLTSAgvLJhbw056rQKbzLUmPz7B1gdUmw=
+sidebar_class_name: "post api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Associates an array of products with a class."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/org/{orgid}/classes/{classid}/associate-product/multi"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Associates an array of products with an Instructor-led class.
+
+**Permissions:**
+`Teacher, Admin, SuperAdmin`
+
+**Events:**
+`CLASS.PRODUCT_ASSOCIATION_ADD [accepted, success, error]`
+`CLASS.CLASS_PRODUCT_ADD [success, error]`
+`CLASS.CLASS_ANALYTICS_ADD [success, error]`
+`CLASS.CLASS_AGGREGATION_ADD [success, error]`
+`CLASS.USERDATA_ADD [success, error]`
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID of the user","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"Class ID","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"Request body containing product IDs.","content":{"application/json":{"schema":{"required":["productcodes"],"type":"object","properties":{"productcodes":{"maxItems":50,"minItems":1,"uniqueItems":true,"type":"array","items":{"type":"string"}}},"title":"MultiAssociationReqBody"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful class-product association","content":{"application/json":{"schema":{"type":"object","properties":{"message":{"type":"string"},"status":{"type":"string"}},"title":"MultiAssociationResponse"}}}},"400":{"description":"Bad request. Check request body and parameters.","content":{}},"401":{"description":"Invalid or missing Authorization Token.","content":{}},"403":{"description":"User is not authorized to perform this action.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

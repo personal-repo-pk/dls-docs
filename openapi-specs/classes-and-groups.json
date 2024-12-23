@@ -1,0 +1,6264 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Classes and Groups",
+    "version": "1.0.0",
+    "description": "Functionality for managing classes, enrollments, and related operations in a Learning Management System (LMS). It supports creating and managing classes, handling student and teacher enrollments, generating and validating class codes, associating materials, managing gradebook and performing bulk operations for efficient school-level rostering."
+  },
+  "paths": {
+    "/org/{orgid}/classes": {
+      "get": {
+        "tags": [
+          "Classes"
+        ],
+        "summary": "Retrieves the list of all classes within a specified organization.",
+        "description": "This endpoint retrieves a list of classes associated with a given organization.  Results can be filtered, sorted, and paginated using query parameters.  Supports searching by class title and filtering by various class settings.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The unique identifier for the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A valid authentication token required for accessing this endpoint.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "A string used to search for classes by title.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lookup",
+            "in": "query",
+            "description": "A comma-separated list of key-value pairs for filtering results.  Currently supports filtering by class settings (e.g., class.settings.active:true).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "description": "Specifies the field to sort the results by (startdate, enddate, title, or created). Defaults to 'created'.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "startdate",
+                "enddate",
+                "title",
+                "created"
+              ]
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "description": "Specifies the order of sorting (ascending or descending). Defaults to 'desc'.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "desc",
+                "asc"
+              ]
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "A cursor for paginating results; use the cursor from a previous response to fetch the next set of classes.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of classes to return in a single response.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a paginated list of class information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetOfClasses"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Indicates a bad request, likely due to invalid input parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Indicates an invalid or missing authorization token.",
+            "content": {}
+          },
+          "403": {
+            "description": "Indicates that the user is not authorized to access this endpoint.",
+            "content": {}
+          },
+          "425": {
+            "description": "Indicates that the provided access token has expired.",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Classes"
+        ],
+        "summary": "Creates a new instructor-led class.",
+        "description": "This endpoint allows authorized instructors to create new instructor-led classes within a specific organization.  The class data includes a date represented as a Unix epoch timestamp in milliseconds.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The organization ID of the user.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A valid authentication token required for authorization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The class details including the start date as a Unix epoch timestamp in milliseconds.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewClassMetadata"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful class creation. Returns the class information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClassEntityResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.  Check the request body for errors.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized.  Invalid or missing authentication token.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden. The user is not authorized to create classes in this organization.",
+            "content": {}
+          },
+          "425": {
+            "description": "Token expired. The provided authentication token has expired.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/classes/{classid}": {
+      "get": {
+        "tags": [
+          "Classes"
+        ],
+        "summary": "Retrieve a specific class's details.",
+        "description": "This endpoint retrieves detailed information for a specific class within an organization.  Requires authentication.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The unique identifier for the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "The unique identifier for the class.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token for authorization.  Must be a valid JWT.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response containing the class information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClassEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "A bad request.  Check request parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized. Invalid or missing authentication token.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden. The user is not authorized to access this class.",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found.  The specified class or organization could not be found.",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Classes"
+        ],
+        "summary": "Updates the details of a class. Only teachers or creators of the class can perform this action.",
+        "description": "Updates a specific class within a given organization.  Only users with the 'teacher' or 'creator' class role have the necessary permissions.  The date must be provided as a Unix epoch timestamp in milliseconds.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The ID of the organization the class belongs to.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "The unique ID of the class to be updated.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A valid authentication token required for authorization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The updated class data, including a date field represented as a Unix epoch timestamp in milliseconds.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateClassMetadata"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful class update. Returns the updated class information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. This typically indicates an issue with the request data.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized. The provided authentication token is invalid or missing.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden. The user does not have permission to update this class.",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found. The specified class or organization was not found.",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Classes"
+        ],
+        "summary": "Deletes an empty class from a specific organization.",
+        "description": "Deletes an empty class identified by classid within the organization specified by orgid.  Requires a valid Authorization token.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The unique identifier for the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "The unique identifier for the class.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A valid authentication token required for authorization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful class deletion. Returns a response indicating success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponseDeleteClass"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. The request is malformed or contains invalid parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. The provided Authorization token is invalid or missing.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden. The user lacks the necessary permissions to delete the class.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/{orgid}/class/enrolments/stat": {
+      "get": {
+        "tags": [
+          "Enrollments"
+        ],
+        "summary": "Retrieves the total number of students or teachers enrolled in a specific class.",
+        "description": "This API endpoint retrieves the enrollment count for a given class, allowing you to filter by student or teacher roles.  It returns a count of users enrolled in the specified class based on the provided organization ID and role.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Unique identifier for the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "query",
+            "description": "Unique identifier for the class.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "description": "Filter results by user role (teacher or student). Defaults to 'student'.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "teacher",
+                "student"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response containing the number of enrollments.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Enrolments"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.  Check the request parameters for errors.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized.  Provide a valid authentication token.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden.  The requesting user lacks permission to access this resource.",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found.  No enrollment data found for the given class and organization.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/class/{classid}/users": {
+      "get": {
+        "tags": [
+          "Enrollments"
+        ],
+        "summary": "Retrieve a list of users enrolled in a specific class.",
+        "description": "This API endpoint retrieves a paginated list of users enrolled in a given class within a specified organization.  It requires an authentication token and uses a cursor for pagination.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The organization ID of the user.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "The unique identifier for the class.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A valid authentication token required for accessing the API.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "An optional cursor for paginating results.  Use the cursor from a previous response to retrieve the next page of users.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response containing a list of enrolled users.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClassUsersList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.  Check the request parameters for errors.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized. The provided authentication token is invalid or missing.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden. The user lacks permission to access the requested class enrollment information.",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found. The specified organization or class does not exist.",
+            "content": {}
+          },
+          "425": {
+            "description": "The access token has expired.  Please obtain a new token and retry the request.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/users/{userid}/class-enrollments": {
+      "get": {
+        "tags": [
+          "Enrollments"
+        ],
+        "summary": "Retrieve a user's class enrollments within an organization.",
+        "description": "Retrieves a paginated list of class enrollments for a given user in a specific organization.  Allows filtering by enrollment status (active, ended, expired), visibility (hidden/visible), and class type (LTI/Non-LTI).  Optionally includes detailed assignment, product, and bundle data.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The organization ID of the user.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userid",
+            "in": "path",
+            "description": "The ID of the user.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shadow",
+            "in": "query",
+            "description": "Filter to include or exclude LTI classes.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hidden",
+            "in": "query",
+            "description": "Filter to include or exclude hidden classes.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "status_active",
+            "in": "query",
+            "description": "Filter to include only active enrollments.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "status_ended",
+            "in": "query",
+            "description": "Filter to include only ended enrollments.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "status_expired",
+            "in": "query",
+            "description": "Filter to include only expired enrollments.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "details",
+            "in": "query",
+            "description": "Include assignment and product details in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "bundleDetails",
+            "in": "query",
+            "description": "Include product bundle details in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the number of results per page (maximum 100).",
+            "schema": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor for fetching subsequent pages of results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token required for authorization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response containing the user's class enrollment information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetClassesResponseWithEnrollment"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.  Check the request parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized.  Invalid or missing authorization token.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden. The user is not authorized to access this resource.",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found. The requested resource could not be found.",
+            "content": {}
+          },
+          "425": {
+            "description": "Access token expired.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/classes/{classid}/enroll-user/{userid}": {
+      "post": {
+        "tags": [
+          "Enrollments"
+        ],
+        "summary": "Enroll a user in a course",
+        "description": "Enroll a user into a specific course within a given organization.  Requires ADMIN or TEACHER role with access to the specified course.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "Course ID to enroll the user in",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userid",
+            "in": "path",
+            "description": "User ID to be enrolled",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful enrollment; returns user information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponseUserEnroll"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request: Invalid input parameters",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized: Invalid or missing authentication token",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden: User lacks permission to enroll",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found: Organization, course, or user not found",
+            "content": {}
+          },
+          "425": {
+            "description": "Access token expired",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Enrollments"
+        ],
+        "summary": "Unenroll a user from a course.",
+        "description": "Unenroll a specific user from a course within a specified organization.  Only administrators and teachers with access to the course can perform this action.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the user.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "Course ID of the class.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userid",
+            "in": "path",
+            "description": "User ID of the user to unenroll.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful unenrollment; returns user information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponseUserEnroll"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Successful unenrollment; no content returned.",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request; check request parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized; invalid or missing authentication token.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden; user lacks permission to unenroll the specified user.",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found; organization, course, or user not found.",
+            "content": {}
+          },
+          "425": {
+            "description": "Access token expired; refresh your token.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/classes/{classid}/enroll-self": {
+      "post": {
+        "tags": [
+          "Enrollments"
+        ],
+        "summary": "Enroll user in a course",
+        "description": "Allows a user with 'ADMIN' or 'TEACHER' role to enroll themselves or another user in a course within a specific organization.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The ID of the organization the course belongs to",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "The ID of the course to enroll the user in",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token for authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful enrollment; returns user information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponseSelfEnroll"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request: invalid input parameters",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized: invalid or missing authentication token",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden: insufficient permissions to enroll user in the course",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found: specified organization or course does not exist",
+            "content": {}
+          },
+          "425": {
+            "description": "Access token expired",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/accounts/{accountid}/enroll-with-classcode": {
+      "post": {
+        "tags": [
+          "Codes"
+        ],
+        "summary": "Enroll a user in a class using a class code.",
+        "description": "This endpoint enables users to enroll in a class using a valid class code.  The class code is a unique identifier for each class.",
+        "parameters": [
+          {
+            "name": "accountid",
+            "in": "path",
+            "description": "The unique identifier for the user's account.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body containing the required data for class enrollment.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrollInClassBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful enrollment. Returns enrollment details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JoinSpacesResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountid}/class-code/validate": {
+      "post": {
+        "tags": [
+          "Codes"
+        ],
+        "summary": "Validates a class code for a given account.",
+        "description": "This endpoint validates a class code against a specific account.  It returns details about the class code's validity and associated information, including institutional space if requested.",
+        "parameters": [
+          {
+            "name": "accountid",
+            "in": "path",
+            "description": "The unique identifier for the account.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "details",
+            "in": "query",
+            "description": "Include institutional space details in the response.",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The class code to validate.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClassCodeBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful validation. Returns class code details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateClassCodeRes"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Class code or account not found.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/classes/{classid}/class-code/generate": {
+      "post": {
+        "tags": [
+          "Codes"
+        ],
+        "summary": "Generates a unique code for a class.",
+        "description": "Generates a unique code for a class, identified by its Org ID and Class ID.  Requires authentication.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The unique identifier for the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "The unique identifier for the class within the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token for the request.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful code generation. Returns the generated class code.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenClassCodeRes"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Either the organization or the class with the given IDs was not found.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/classes/{classid}/associate-product/{productcode}": {
+      "post": {
+        "tags": [
+          "Materials"
+        ],
+        "summary": "Associate a product with a class.",
+        "description": "Associates a product with an instructor-led class.  \n\n**Permissions:** Teacher, Admin, SuperAdmin (Consumers)\n\n**Events:** CLASS.PRODUCT_ASSOCIATION_ADD [accepted, success, error], CLASS.CLASS_PRODUCT_ADD [success, error], CLASS.XAPI_TASKS_ADD [success, error], CLASS.CLASS_ANALYTICS_ADD [success, error], CLASS.CLASS_AGGREGATION_ADD [success, error], CLASS.USERDATA_ADD [success, error]",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "Unique identifier for the class",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productcode",
+            "in": "path",
+            "description": "Product code of the product to be linked to the class",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token.  Must be a valid JWT.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful product-class association. Returns the association details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Association"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.  Check request parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized. Invalid or missing Authorization token.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden. User lacks permission to associate products with this class.",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found.  Either the class or product was not found.",
+            "content": {}
+          },
+          "425": {
+            "description": "Access token expired.  Please obtain a new token.",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Materials"
+        ],
+        "summary": "Unlink a product from a course",
+        "description": "Removes the association between a product and a course.\n\n**Permissions:** Teacher, Admin, SuperAdmin\n\n**Events:** CLASS.PRODUCT_ASSOCIATION_REMOVE [accepted, success, error]\n\n**Parameters:**\n* `orgid` (path): The organization ID of the user.\n* `classid` (path): The course ID.\n* `productcode` (path): The product code to unlink from the course.\n* `Authorization` (header): Authentication token.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "Course ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productcode",
+            "in": "path",
+            "description": "Product code to unlink from the course",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful product unlinking from course",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Association"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Please check request parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Invalid or missing Authorization token.",
+            "content": {}
+          },
+          "403": {
+            "description": "User is not authorized to perform this action.",
+            "content": {}
+          },
+          "404": {
+            "description": "Resource (course or product) not found.",
+            "content": {}
+          },
+          "425": {
+            "description": "Access token expired.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/classes/{classid}/associate-product/multi": {
+      "post": {
+        "tags": [
+          "Materials"
+        ],
+        "summary": "Associates an array of products with a class.",
+        "description": "Associates an array of products with an Instructor-led class.\n\n**Permissions:**\n`Teacher, Admin, SuperAdmin`\n\n**Events:**\n`CLASS.PRODUCT_ASSOCIATION_ADD [accepted, success, error]`\n`CLASS.CLASS_PRODUCT_ADD [success, error]`\n`CLASS.CLASS_ANALYTICS_ADD [success, error]`\n`CLASS.CLASS_AGGREGATION_ADD [success, error]`\n`CLASS.USERDATA_ADD [success, error]`",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "Class ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body containing product IDs.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MultiAssociationReqBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful class-product association",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiAssociationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Check request body and parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Invalid or missing Authorization Token.",
+            "content": {}
+          },
+          "403": {
+            "description": "User is not authorized to perform this action.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/classes/{classid}/gradebooks": {
+      "get": {
+        "tags": [
+          "Gradebook"
+        ],
+        "summary": "Retrieve gradebook metadata for a class",
+        "description": "This API fetches gradebook metadata for a given class.  If a `gradebook_id` is provided, only that specific gradebook's metadata is returned. Otherwise, all gradebook metadata records for the class are returned, with pagination support via the `cursor` parameter.\n\n**Permissions:**\n`Student`, `Teacher`, `Admin`, `Superadmin`",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "Class ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gradebook_id",
+            "in": "query",
+            "description": "ID of the gradebook",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of gradebook metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GradebooksMetaRes"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No gradebook metadata found",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized - Invalid authentication token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Gradebook"
+        ],
+        "summary": "Creates a gradebook for a class.",
+        "description": "This API endpoint creates the metadata for a gradebook within an existing class.\n\n**Permissions:**\n`Teacher`, `Admin`, `Superadmin`\n\n**Events:**\n`CLASS.GRADEBOOK_META_CREATE` (success, error)",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The ID of the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "The ID of the class.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authentication token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Gradebook metadata payload.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GradebookMetaBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Gradebook metadata created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GradebookMetaRes"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Check the request payload.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Invalid or missing authentication token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{orgid}/classes/{classid}/gradebooks/{gradebook_id}": {
+      "put": {
+        "tags": [
+          "Gradebook"
+        ],
+        "summary": "Updates the metadata of a class's gradebook.",
+        "description": "Updates the metadata of a specific gradebook for a given class.  This operation requires authentication.\n\n**Permissions:** Teacher, Admin, Superadmin\n**Events:** `CLASS.GRADEBOOK_META_UPDATE` (success, error)\n**Request Body:** `UpdateGradebookMetaBody`\n**Response 200:** `GradebookMetaRes`\n**Response 401:** `InvalidToken`\n**Response 404:** `ResourceNotFound`",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The ID of the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "The ID of the class.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gradebook_id",
+            "in": "path",
+            "description": "The ID of the gradebook.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Details of the gradebook metadata updates.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGradebookMetaBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response containing updated gradebook metadata.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GradebookMetaRes"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Invalid or missing authentication token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Gradebook or class not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFound"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Gradebook"
+        ],
+        "summary": "Deletes gradebook metadata for a specific class.",
+        "description": "Deletes the metadata associated with a class's gradebook.  This operation requires appropriate authorization.\n\n**Permissions:**\n`Teacher, Admin, Superadmin`\n\n**Events:**\n`CLASS.GRADEBOOK_META_DELETE` (success, error)\n",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The ID of the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "The ID of the class.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gradebook_id",
+            "in": "path",
+            "description": "The ID of the gradebook to delete metadata from.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful deletion of gradebook metadata.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing authentication token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The specified gradebook or class was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFound"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{orgid}/classes/{classid}/gradebooks/{gradebook_id}/columns": {
+      "get": {
+        "tags": [
+          "Gradebook"
+        ],
+        "summary": "Retrieve gradebook columns for a class.",
+        "description": "This API fetches gradebook columns for a specified class.  If a `column_id` is provided, only that specific column's details are returned. Otherwise, all gradebook columns for the class are returned, including a cursor for pagination (if applicable).  \n\n**Permissions:**\n`Student, Teacher, Admin, Superadmin`",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "Class ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gradebook_id",
+            "in": "path",
+            "description": "Gradebook ID for the class",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "column_id",
+            "in": "query",
+            "description": "ID of the specific gradebook column to retrieve (optional)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor for retrieving subsequent pages of results",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of gradebook column(s). Returns a list of columns or a single column if column_id is specified.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddGradebookColumnsResBody"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing authentication token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested resource (class, gradebook, or column) not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFound"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Gradebook"
+        ],
+        "summary": "Update multiple gradebook columns for a class.",
+        "description": "This API updates multiple columns in a class's gradebook (maximum 10 columns).\n\n**Permissions:**\n`Teacher, Admin, Superadmin`\n\n**Events:**\n`CLASS.GRADEBOOK_COLUMN_BATCH_UPDATE` [success, partial, error]",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "Class ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gradebook_id",
+            "in": "path",
+            "description": "Gradebook ID for the class",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body containing the updated gradebook columns",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateColumnsOfGradebookBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful gradebook column update",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateColumnsOfGradebookRes"
+                }
+              }
+            }
+          },
+          "206": {
+            "description": "Partial success in updating gradebook columns",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateColumnsOfGradebookRes"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid authorization token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Gradebook"
+        ],
+        "summary": "Add multiple columns to a specific gradebook within a class.",
+        "description": "This API endpoint allows adding multiple columns to a specified gradebook within a class.  Requires authentication.\n\n**Permissions:**\n`Teacher`, `Admin`, `Superadmin`\n\n**Events:**\n`CLASS.GRADEBOOK_COLUMN_BATCH_CREATE` (success, partial failure events supported)\n",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The unique identifier for the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "The unique identifier for the class.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gradebook_id",
+            "in": "path",
+            "description": "The unique identifier for the gradebook.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A valid authentication token required for access.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body for adding columns to the gradebook.  See AddGradebookColumnBody schema for details.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddGradebookColumnBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful creation of gradebook columns.  Returns an array of created column objects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddGradebookColumnsResBody"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.  Check request parameters and body for errors.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized.  Invalid or missing authentication token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Gradebook"
+        ],
+        "summary": "Delete one or more columns from a class gradebook.",
+        "description": "This API deletes columns from a class gradebook.  For successful deletion, the user must have Teacher, Admin, or Superadmin permissions.  The API returns success or partial success events. \n\n**Permissions:**\n`Teacher, Admin, Superadmin`\n\n**Events:**\n`CLASS.GRADEBOOK_COLUMN_BATCH_DELETE` [success, partial]",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "Class ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gradebook_id",
+            "in": "path",
+            "description": "Gradebook ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful gradebook column deletion.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid authorization token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{orgid}/components/{component_code}/classes": {
+      "get": {
+        "tags": [
+          "Gradebook"
+        ],
+        "summary": "Retrieve all classes associated with a specific gradebook column component.",
+        "description": "This API endpoint retrieves all classes that include a specified component within their gradebook column.\n\n**Permissions:**\n`Teacher`, `Admin`, `Superadmin`",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The unique identifier for the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "component_code",
+            "in": "path",
+            "description": "The code of the component to search for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor for retrieving subsequent pages of results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token required for authorization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response containing a list of classes matching the specified criteria.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGradebookColumnsResBody"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Indicates an invalid or missing authorization token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{orgid}/gradebook/columns/custom-components/{component_code}": {
+      "delete": {
+        "tags": [
+          "Gradebook"
+        ],
+        "summary": "Remove all gradebook columns associated with a specific component.",
+        "description": "This API endpoint removes all columns from gradebooks associated with a given component.\n\n**Permissions:**\n`Admin`, `Superadmin` (Consumers)\n\n**Events:**\n`CLASS.GRADEBOOK_COLUMN_BATCH_DELETE` [success, error]\n`CLASS.GRADEBOOK_COLUMNS_BULK_DELETE` [success, error]",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The unique identifier for the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "component_code",
+            "in": "path",
+            "description": "The code of the component whose gradebook columns need to be deleted.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authentication token required for accessing this API.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful deletion of gradebook columns.  Returns an API response object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized access.  The provided authorization token is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{orgid}/classes/multi": {
+      "post": {
+        "tags": [
+          "Bulk actions"
+        ],
+        "summary": "Create multiple classes within an organization simultaneously.",
+        "description": "This endpoint enables authorized administrators to create multiple classes within a specified organization concurrently.  Only users with administrative privileges can perform this operation.  The request body must adhere to the specified format, including the use of Epoch timestamps for dates.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The unique identifier for the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "A valid authentication token required for authorization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "An array of class data objects. Each object must include the necessary class details, with dates represented as Epoch timestamps in milliseconds.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewClassMetadataMulti"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response containing an array of newly created class information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateClassResponseMulti"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Indicates a bad request, likely due to missing or invalid data in the request body.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the provided authorization token is invalid or missing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidToken"
+                }
+              }
+            }
+          },
+          "425": {
+            "description": "The access token provided has expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExpiredAccessToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{orgid}/classes/{classid}/enroll-user/multi": {
+      "post": {
+        "tags": [
+          "Bulk actions"
+        ],
+        "summary": "Enroll multiple users in a course",
+        "description": "Enroll multiple users into a course within a specific organization.  Only administrators and teachers with access to the target course can perform this action.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "Course ID to enroll users into",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "List of user IDs to enroll in the course.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrollUsers"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful enrollment; returns user information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponseMultiUserEnroll"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request; likely due to invalid input.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized; invalid authentication token.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden; user lacks permission to enroll users in this course.",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found; either the organization, course, or user(s) were not found.",
+            "content": {}
+          },
+          "425": {
+            "description": "Token expired; the authentication token has expired.",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Bulk actions"
+        ],
+        "summary": "Unenroll multiple users from a course",
+        "description": "Unenroll multiple users from a specific course within a particular organization.  Only administrators (ADMINs) and teachers (TEACHERs) with access to the specified course can perform this action.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classid",
+            "in": "path",
+            "description": "Course ID from which to unenroll users",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token for authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful unenrollment; returns user information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponseMultiUserEnroll"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Check request parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Invalid or missing authorization token.",
+            "content": {}
+          },
+          "403": {
+            "description": "User lacks authorization to unenroll users from this course.",
+            "content": {}
+          },
+          "404": {
+            "description": "Resource (organization, course, or user) not found.",
+            "content": {}
+          },
+          "425": {
+            "description": "Access token has expired.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/groups": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Retrieves all groups matching the specified path.",
+        "description": "This API retrieves all child groups of the group specified by the path parameter.  It supports pagination using the cursor parameter.\n\n**Permissions:**\n`Student, Teacher, Admin, SuperAdmin`\n\n**Rate Limits:**  (Add rate limit information here if applicable)\n\n**Error Codes:**  See the response codes section for details.",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The organization ID of the group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "path",
+            "in": "query",
+            "description": "The path of the group. Groups matching this path will be returned.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "The cursor for paginating results. Use the value from a previous response to fetch the next set of groups.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token.  Must be a valid JWT (JSON Web Token).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response containing an array of group information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupAndMembershipSchemaWithArchiveKeys"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.  Check the request parameters for errors.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized. Invalid or missing authentication token.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden. The user does not have permission to access the requested groups.",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found. No groups match the specified path or organization ID.",
+            "content": {}
+          },
+          "425": {
+            "description": "Token expired. The provided authentication token has expired.",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Creates a new group within the specified organization.",
+        "description": "Creates a new group under the specified organizational path.  The request body must contain the complete group data. \n\n**Permissions:**\n`Teacher, Admin, SuperAdmin`\n\n**Events:**\n`GROUP.CREATE [success, error]`",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Unique identifier for the organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token for authorization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Details required for creating a new group.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupObjectBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the created group's information, including membership details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupAndMembershipSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Check request body for errors.",
+            "content": {}
+          },
+          "401": {
+            "description": "Invalid or missing Authorization token.",
+            "content": {}
+          },
+          "403": {
+            "description": "User lacks the necessary permissions to create a group.",
+            "content": {}
+          },
+          "404": {
+            "description": "Organization with the given 'orgid' not found.",
+            "content": {}
+          },
+          "425": {
+            "description": "Provided access token has expired.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/groups/{groupid}": {
+      "get": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Retrieves metadata for a specific group, excluding child groups.",
+        "description": "Retrieves metadata for a specific group.  Child groups are not included.\n\n**Permissions:**\n`Student, Teacher, Admin, SuperAdmin`",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the group",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupid",
+            "in": "path",
+            "description": "Unique identifier for the group",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token required for authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing group information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupAndMembershipSchemaWithArchiveKeys"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request due to invalid input parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized access; invalid or missing authentication token.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden access; the requesting user lacks necessary permissions.",
+            "content": {}
+          },
+          "404": {
+            "description": "Group not found for the given orgid and groupid.",
+            "content": {}
+          },
+          "425": {
+            "description": "Access token has expired.",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Updates the metadata of a specific group, including membership records and product associations.",
+        "description": "Updates the metadata of a specific group. This API call modifies details in the membership records and product associations.  It triggers GROUP.UPDATE events upon success or failure.\n\n**Permissions:** Teacher, Admin, SuperAdmin (Consumers)\n\n**Events:** GROUP.UPDATE [success, error]",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the group",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupid",
+            "in": "path",
+            "description": "Unique identifier for the group",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token required for authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "JSON payload containing the updated group data.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WithoutPathGroupObjectBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Group updated successfully. Returns the updated group data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponseSuccess"
+                }
+              }
+            }
+          },
+          "206": {
+            "description": "Group partially updated. Returns details of the update.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponsePartialComplete"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Check request parameters and payload for errors.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing authorization token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidAuthorizationToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied. User does not have permission to update the group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessDenied"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Group not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFound"
+                }
+              }
+            }
+          },
+          "425": {
+            "description": "Access token expired. Renew your access token and retry the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokenExpired"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Deletes a specific group.",
+        "description": "Deletes a specific group. Returns an error if the group has child groups or existing memberships.\n\n**Permissions:**\n`Teacher, Admin, SuperAdmin`\n\n**Events:**\n`GROUP.DELETE [success, error]`",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupid",
+            "in": "path",
+            "description": "ID of the group to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIDeleteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid authorization token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidAuthorizationToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessDenied"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Group not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFound"
+                }
+              }
+            }
+          },
+          "425": {
+            "description": "Access token expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokenExpired"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{orgid}/groups/{groupid}/archive": {
+      "put": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Archives a specific group, preserving its membership at the time of archiving.",
+        "description": "Archives a specific group, preserving its members at the time of archiving.\n\n**Permissions:**\n`Teacher, Admin, SuperAdmin (Consumers)`\n\n**Events:**\n`GROUP.ARCHIVE [success, error]`",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the group",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupid",
+            "in": "path",
+            "description": "Unique identifier of the group",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body for archiving a group (currently not used)",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Group archived successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponseSuccessArchive"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request: Check request parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Invalid or missing authentication token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidAuthorizationToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: Insufficient permissions to archive group",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessDenied"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found: Group or organization not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFound"
+                }
+              }
+            }
+          },
+          "425": {
+            "description": "Access token expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokenExpired"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{orgid}/groups/{groupid}/unarchive": {
+      "put": {
+        "tags": [
+          "Groups"
+        ],
+        "summary": "Unarchives a specific group.",
+        "description": "Unarchives a specific group.\n\n--\n\n**Permissions:**\n`Teacher, Admin, SuperAdmin (Consumers)`\n\n**Events:**\n`GROUP.UNARCHIVE [success, error]`\n",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the group",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupid",
+            "in": "path",
+            "description": "Unique identifier of the group",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token required for authorization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request body for unarchiving a group. Currently, no parameters are needed.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully unarchived the group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponseSuccessUnarchive"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Verify request parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Invalid or missing authentication token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvalidAuthorizationToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden. Insufficient permissions to unarchive the group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessDenied"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found. The specified group was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceNotFound"
+                }
+              }
+            }
+          },
+          "425": {
+            "description": "Access token expired. Please obtain a new token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessTokenExpired"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{orgid}/groups/{groupid}/memberships": {
+      "get": {
+        "tags": [
+          "Memberships"
+        ],
+        "summary": "Retrieve all memberships for a specific group.",
+        "description": "Retrieves all memberships associated with a specific group.  This excludes members of any child groups.\n\n**Permissions:**\n`Student`, `Teacher`, `Admin`, `SuperAdmin`, `Consumer`",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The organization ID of the user.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupid",
+            "in": "path",
+            "description": "The ID of the group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor for retrieving the next set of members.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response containing the group's membership information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - indicates an issue with the request parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing authentication token.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden - the user lacks the necessary permissions.",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found - the specified group or resource was not found.",
+            "content": {}
+          },
+          "425": {
+            "description": "Too Early - access token has expired.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/groups/memberships": {
+      "get": {
+        "tags": [
+          "Memberships"
+        ],
+        "summary": "Retrieves all members across all child groups within a specified parent group.",
+        "description": "Retrieves all members from all child groups belonging to the given parent group path.\n\n**Permissions:**\n`Teacher, Admin, SuperAdmin`\n\n**Rate Limit:** 100 requests per minute",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The organization ID of the user.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor for retrieving the next set of members.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "path",
+            "in": "query",
+            "description": "The path of the parent group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token.  Must be a valid JWT.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response containing group membership information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MembershipSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request.  Check request parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Invalid or missing Authorization token.",
+            "content": {}
+          },
+          "403": {
+            "description": "User lacks sufficient permissions to access this resource.",
+            "content": {}
+          },
+          "404": {
+            "description": "Resource (group) not found.",
+            "content": {}
+          },
+          "425": {
+            "description": "Access token has expired.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/groups/{groupid}/enroll-user/multi": {
+      "post": {
+        "tags": [
+          "Memberships"
+        ],
+        "summary": "Enroll multiple users into a specific group.  Requires the external user IDs and DLS user IDs in the request body.",
+        "description": "Enroll multiple users into a given group.  This API endpoint supports batch enrollment.\n\n--\n\n**Permissions:**\n\n`Teacher, Admin, SuperAdmin`\n\n**Events:**\n\n`GROUP.USER_ENROLLMENT_ADD [success, error]`\n\n**Request Body:** The request body must contain an array of user objects, each with `external_userid` and `dls_userid` fields.\n",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The organization ID of the users.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupid",
+            "in": "path",
+            "description": "The ID of the group to enroll users into.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token.  Must be a valid JWT.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request Body containing an array of user objects for group enrollment. Each object requires 'external_userid' and 'dls_userid'",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupMultiUserBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Users successfully enrolled in the group.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponseEnrollMultiUserSuccessful"
+                }
+              }
+            }
+          },
+          "206": {
+            "description": "Some users were enrolled in the group; others failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponseEnrollMultiUserPartial"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "No users were enrolled in the group due to invalid input.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/APIResponseEnrollMultiUserError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or missing authorization token.",
+            "content": {}
+          },
+          "403": {
+            "description": "The requesting user lacks sufficient permissions.",
+            "content": {}
+          },
+          "404": {
+            "description": "The specified group or organization was not found.",
+            "content": {}
+          },
+          "425": {
+            "description": "The provided access token has expired.",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Memberships"
+        ],
+        "summary": "Un-enroll a user from a specified group.",
+        "description": "Un-enroll a user from a given group.\n\n**Permissions:**\n`Teacher`, `Admin`, `SuperAdmin`, `Consumer`",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "The organization ID of the group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupid",
+            "in": "path",
+            "description": "The ID of the group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully un-enrolled user from the group.",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request.  Check request parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Invalid authorization token. Please provide a valid token.",
+            "content": {}
+          },
+          "403": {
+            "description": "User is not authorized to perform this action.",
+            "content": {}
+          },
+          "404": {
+            "description": "Group or user not found.",
+            "content": {}
+          },
+          "425": {
+            "description": "Access token has expired. Please obtain a new token.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/org/{orgid}/users/{userid}/groups": {
+      "get": {
+        "tags": [
+          "Memberships"
+        ],
+        "summary": "Retrieve all memberships accessible via a specified path.",
+        "description": "Retrieves all memberships accessible through the given path, including child groups.  \n\n**Permissions:**\n`Teacher, Admin, SuperAdmin, Consumer`",
+        "parameters": [
+          {
+            "name": "orgid",
+            "in": "path",
+            "description": "Organization ID of the group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userid",
+            "in": "path",
+            "description": "Unique identifier of the user.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "path",
+            "in": "query",
+            "description": "Path to the group.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Pagination cursor for retrieving subsequent groups.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authentication token required for authorization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response containing group information.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupAndMembershipSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request due to invalid input parameters.",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized access; invalid or missing authentication token.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden access; insufficient permissions.",
+            "content": {}
+          },
+          "404": {
+            "description": "Resource not found; specified group or path does not exist.",
+            "content": {}
+          },
+          "425": {
+            "description": "Access token has expired.",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Enrolments": {
+        "required": [
+          "total"
+        ],
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer"
+          }
+        }
+      },
+      "ProductMeta": {
+        "required": [
+          "meta",
+          "productcode"
+        ],
+        "type": "object",
+        "properties": {
+          "meta": {
+            "type": "object",
+            "properties": {}
+          },
+          "productcode": {
+            "type": "string"
+          }
+        }
+      },
+      "APIResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "in-process",
+              "rejected"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "APIResponseMultiUserEnroll": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "in-process",
+              "rejected"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "classid": {
+            "type": "string"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "jobid": {
+            "type": "string"
+          }
+        }
+      },
+      "APIResponseUserEnroll": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "in-process",
+              "rejected"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "classid": {
+            "type": "string"
+          },
+          "userid": {
+            "type": "string"
+          }
+        }
+      },
+      "APIResponseSelfEnroll": {
+        "required": [
+          "class",
+          "userid"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "in-process",
+              "rejected"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "userid": {
+            "type": "string"
+          },
+          "class": {
+            "$ref": "#/components/schemas/ClassInfo"
+          }
+        }
+      },
+      "ClassInfo": {
+        "required": [
+          "classid",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "classid": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "APIResponseEnrollMultiUserSuccessful": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "200"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "All user(s) enrolled in the group"
+            ]
+          }
+        }
+      },
+      "APIResponseEnrollMultiUserPartial": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "206"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "Partial user(s) enrolled in the group"
+            ]
+          }
+        }
+      },
+      "APIResponseEnrollMultiUserError": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "400"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "No user enrolled in the group"
+            ]
+          }
+        }
+      },
+      "APIResponsePartialComplete": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "206"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "Request Completed Partially."
+            ]
+          }
+        }
+      },
+      "APIResponseSuccess": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "200"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "Request Completed Successfully."
+            ]
+          }
+        }
+      },
+      "APIResponseSuccessArchive": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "200"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "Group archived successfully."
+            ]
+          }
+        }
+      },
+      "APIResponseSuccessUnarchive": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "200"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "Group unarchived successfully."
+            ]
+          }
+        }
+      },
+      "APIResponseDeleteClass": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "rejected"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "classid": {
+                "type": "string"
+              },
+              "class_code": {
+                "type": "string"
+              },
+              "orgid": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Organization": {
+        "required": [
+          "id",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      },
+      "ClassCodeBody": {
+        "required": [
+          "class_code"
+        ],
+        "type": "object",
+        "properties": {
+          "class_code": {
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      },
+      "JoinSpacesResp": {
+        "required": [
+          "entities"
+        ],
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserSpaceEntityInprocess"
+            }
+          }
+        }
+      },
+      "EnrollInClassBody": {
+        "required": [
+          "class_code",
+          "ext_role",
+          "ext_user_id"
+        ],
+        "type": "object",
+        "properties": {
+          "ext_user_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ext_first_name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ext_last_name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ext_parent_id": {
+            "type": "string"
+          },
+          "ext_username": {
+            "type": "string"
+          },
+          "ext_email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ref_id": {
+            "type": "string"
+          },
+          "ext_role": {
+            "type": "string",
+            "enum": [
+              "student",
+              "teacher"
+            ]
+          },
+          "class_code": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/components/schemas/UserAddress"
+          }
+        }
+      },
+      "EnrollUsers": {
+        "required": [
+          "users"
+        ],
+        "type": "object",
+        "properties": {
+          "users": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        }
+      },
+      "NewClassMetadata": {
+        "required": [
+          "enddate",
+          "startdate",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "startdate": {
+            "type": "integer"
+          },
+          "enddate": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "class_ownership": {
+            "type": "string",
+            "enum": [
+              "STRICT",
+              "NO_OWNER"
+            ]
+          },
+          "ext_data": {
+            "type": "object",
+            "properties": {}
+          },
+          "analyticsharingmodel": {
+            "type": "string",
+            "enum": [
+              "NOINHERIT_SYNCBACK"
+            ]
+          },
+          "analytics_score_aggregation_type": {
+            "type": "string",
+            "enum": [
+              "best",
+              "first",
+              "last"
+            ]
+          },
+          "limits": {
+            "$ref": "#/components/schemas/ClassLimits"
+          }
+        }
+      },
+      "ClassLimits": {
+        "type": "object",
+        "properties": {
+          "los": {
+            "maximum": 10000,
+            "type": "integer"
+          },
+          "students": {
+            "maximum": 500,
+            "type": "integer"
+          }
+        }
+      },
+      "UpdateClassMetadata": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "startdate": {
+            "type": "integer"
+          },
+          "enddate": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "ext_data": {
+            "type": "object",
+            "properties": {}
+          },
+          "analytics_score_aggregation_type": {
+            "type": "string",
+            "enum": [
+              "best",
+              "first",
+              "last"
+            ]
+          },
+          "limits": {
+            "$ref": "#/components/schemas/ClassLimits"
+          },
+          "hidden": {
+            "type": "boolean"
+          }
+        }
+      },
+      "GetClassesResponseWithEnrollment": {
+        "required": [
+          "entities"
+        ],
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClassEntityWithEnrollment"
+            }
+          }
+        }
+      },
+      "ClassEntityWithEnrollment": {
+        "required": [
+          "assignments",
+          "category",
+          "class",
+          "path",
+          "products",
+          "title",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "class_code": {
+            "type": "string"
+          },
+          "ext_classid": {
+            "type": "string"
+          },
+          "limits": {
+            "$ref": "#/components/schemas/ClassLimits"
+          },
+          "created": {
+            "type": "number"
+          },
+          "assignedPathCount": {
+            "type": "integer"
+          },
+          "hidden": {
+            "type": "object",
+            "properties": {
+              "actorid": {
+                "type": "string"
+              },
+              "dls_actor_id": {
+                "type": "string"
+              },
+              "status": {
+                "type": "boolean"
+              },
+              "timestamp": {
+                "type": "number"
+              }
+            }
+          },
+          "enrollment": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": "string"
+              },
+              "classrole": {
+                "type": "string"
+              },
+              "created": {
+                "type": "number"
+              },
+              "modified": {
+                "type": "number"
+              }
+            }
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "class"
+            ]
+          },
+          "class": {
+            "$ref": "#/components/schemas/ClassMetadata"
+          },
+          "assignments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Assignment"
+            }
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            }
+          },
+          "pairing_data": {
+            "type": "object",
+            "properties": {}
+          },
+          "class.pairing-status": {
+            "$ref": "#/components/schemas/PairingStatus"
+          },
+          "path": {
+            "type": "string"
+          },
+          "bundles": {
+            "$ref": "#/components/schemas/Bundles"
+          },
+          "ext_data": {
+            "type": "object",
+            "properties": {}
+          },
+          "analyticsharingmodel": {
+            "type": "string",
+            "enum": [
+              "NOINHERIT_SYNCBACK"
+            ]
+          },
+          "analytics_score_aggregation_type": {
+            "type": "string"
+          }
+        }
+      },
+      "ClassEntity": {
+        "required": [
+          "assignments",
+          "category",
+          "class",
+          "class_ownership",
+          "path",
+          "products",
+          "studentCount",
+          "teacherCount",
+          "title",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "class_code": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "class"
+            ]
+          },
+          "analyticsharingmodel": {
+            "type": "string",
+            "enum": [
+              "NOINHERIT_SYNCBACK"
+            ]
+          },
+          "analytics_score_aggregation_type": {
+            "type": "string",
+            "enum": [
+              "best",
+              "first",
+              "last"
+            ]
+          },
+          "class": {
+            "$ref": "#/components/schemas/ClassMetadata"
+          },
+          "assignments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Assignment"
+            }
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductMeta"
+            }
+          },
+          "pairing_data": {
+            "type": "object",
+            "properties": {}
+          },
+          "class.pairing-status": {
+            "$ref": "#/components/schemas/PairingStatus"
+          },
+          "path": {
+            "type": "string"
+          },
+          "class_ownership": {
+            "$ref": "#/components/schemas/ClassOwnershipEntity"
+          },
+          "bundles": {
+            "$ref": "#/components/schemas/Bundles"
+          },
+          "hidden": {
+            "$ref": "#/components/schemas/Hidden"
+          },
+          "studentCount": {
+            "type": "number"
+          },
+          "teacherCount": {
+            "type": "number"
+          },
+          "limits": {
+            "$ref": "#/components/schemas/ClassLimits"
+          },
+          "assignedPathCount": {
+            "type": "number"
+          }
+        }
+      },
+      "Bundles": {
+        "type": "object",
+        "properties": {
+          "bundle-code1": {
+            "$ref": "#/components/schemas/BundleEntity"
+          }
+        }
+      },
+      "BundleEntity": {
+        "required": [
+          "bundle-code",
+          "dls_account_id",
+          "products",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "dls_account_id": {
+            "type": "string"
+          },
+          "bundle-code": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "path-common": {
+            "type": "string"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BundleProduct"
+            }
+          }
+        }
+      },
+      "BundleProduct": {
+        "required": [
+          "activation",
+          "analytics",
+          "classes",
+          "dls-product",
+          "ext-product",
+          "meta"
+        ],
+        "type": "object",
+        "properties": {
+          "ext-product": {
+            "$ref": "#/components/schemas/BundleProductExt"
+          },
+          "dls-product": {
+            "$ref": "#/components/schemas/BundleProductDls"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/BundleProductMeta"
+          },
+          "activation": {
+            "$ref": "#/components/schemas/BundleProductActivation"
+          },
+          "classes": {
+            "$ref": "#/components/schemas/BundleProductClasses"
+          },
+          "analytics": {
+            "$ref": "#/components/schemas/BundleProductAnalytics"
+          }
+        }
+      },
+      "BundleProductExt": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "BundleProductDls": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "BundleProductMeta": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "very-short-description": {
+            "type": "string"
+          },
+          "short-description": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          }
+        }
+      },
+      "BundleProductClasses": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "BundleProductActivation": {
+        "type": "object",
+        "properties": {
+          "gated": {
+            "type": "object",
+            "properties": {}
+          },
+          "free": {
+            "type": "object",
+            "properties": {}
+          },
+          "prior-to-activitation-rules": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "BundleProductAnalytics": {
+        "type": "object",
+        "properties": {
+          "student": {
+            "type": "boolean"
+          },
+          "teacher": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Hidden": {
+        "type": "object",
+        "properties": {
+          "actorid": {
+            "type": "string"
+          },
+          "dls_actor_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "timestamp": {
+            "type": "number"
+          }
+        }
+      },
+      "ClassMetadata": {
+        "required": [
+          "enddate",
+          "instructorid",
+          "instructorname",
+          "startdate"
+        ],
+        "type": "object",
+        "properties": {
+          "startdate": {
+            "type": "integer"
+          },
+          "enddate": {
+            "type": "integer"
+          },
+          "instructorname": {
+            "type": "string"
+          },
+          "instructorid": {
+            "type": "string"
+          }
+        }
+      },
+      "Assignment": {
+        "required": [
+          "description",
+          "duedate",
+          "name",
+          "provision_method",
+          "title",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "duedate": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "provision_method": {
+            "type": "string"
+          }
+        }
+      },
+      "PairingStatus": {
+        "required": [
+          "association",
+          "unassociation"
+        ],
+        "type": "object",
+        "properties": {
+          "association": {
+            "type": "object",
+            "properties": {
+              "product_id_1": {
+                "type": "string",
+                "enum": [
+                  "in-process",
+                  "complete",
+                  "error"
+                ]
+              },
+              "product_id_2": {
+                "type": "string",
+                "enum": [
+                  "in-process",
+                  "complete",
+                  "error"
+                ]
+              }
+            }
+          },
+          "unassociation": {
+            "type": "object",
+            "properties": {
+              "product_id_3": {
+                "type": "string",
+                "enum": [
+                  "in-process",
+                  "error"
+                ]
+              },
+              "product_id_4": {
+                "type": "string",
+                "enum": [
+                  "in-process",
+                  "error"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "SetOfClasses": {
+        "required": [
+          "entities"
+        ],
+        "type": "object",
+        "properties": {
+          "cursor": {
+            "type": "string"
+          },
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Class"
+            }
+          }
+        }
+      },
+      "Product": {
+        "required": [
+          "author",
+          "context",
+          "currentversion",
+          "group",
+          "paths",
+          "productcode",
+          "producttype",
+          "schema",
+          "status",
+          "thumbnaillarge",
+          "thumbnailsmall",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "productcode": {
+            "type": "string"
+          },
+          "currentversion": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "integer"
+          },
+          "producttype": {
+            "type": "string"
+          },
+          "group": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "paths": {
+            "type": "object",
+            "properties": {}
+          },
+          "description": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "thumbnaillarge": {
+            "type": "string"
+          },
+          "thumbnailsmall": {
+            "type": "string"
+          },
+          "model": {
+            "type": "object",
+            "properties": {}
+          },
+          "context": {
+            "type": "string"
+          },
+          "class": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "EnrollmentMeta": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "classrole": {
+            "type": "string"
+          }
+        }
+      },
+      "Class": {
+        "required": [
+          "category",
+          "class",
+          "class_ownership",
+          "path",
+          "title",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": [
+              "class"
+            ]
+          },
+          "class": {
+            "$ref": "#/components/schemas/ClassMetadata"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "class_code": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "class_ownership": {
+            "$ref": "#/components/schemas/ClassOwnershipEntity"
+          },
+          "analyticsharingmodel": {
+            "type": "string",
+            "enum": [
+              "NOINHERIT_SYNCBACK"
+            ]
+          }
+        }
+      },
+      "Association": {
+        "required": [
+          "classid",
+          "message",
+          "productcode",
+          "status",
+          "userid"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "userid": {
+            "type": "string"
+          },
+          "classid": {
+            "type": "string"
+          },
+          "productcode": {
+            "type": "string"
+          }
+        }
+      },
+      "MultiAssociationReqBody": {
+        "required": [
+          "productcodes"
+        ],
+        "type": "object",
+        "properties": {
+          "productcodes": {
+            "maxItems": 50,
+            "minItems": 1,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "MultiAssociationResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "GenClassCodeRes": {
+        "required": [
+          "class_code"
+        ],
+        "type": "object",
+        "properties": {
+          "class_code": {
+            "type": "string"
+          }
+        }
+      },
+      "AccessTokenExpired": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "425"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "expired Access Token"
+            ]
+          }
+        }
+      },
+      "AccessDenied": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "403"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "User role(s) are not valid. Access Denied!"
+            ]
+          }
+        }
+      },
+      "InvalidAuthorizationToken": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "401"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "Invalid Token."
+            ]
+          },
+          "name": {
+            "type": "string",
+            "enum": [
+              "BadCredentials"
+            ]
+          }
+        }
+      },
+      "ResourceNotFound": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "404"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "Entity not found in DynamoDB"
+            ]
+          }
+        }
+      },
+      "UserSpaceEntityInprocess": {
+        "required": [
+          "dls_account_id",
+          "dls_org_id",
+          "ext_user_id",
+          "space_key",
+          "space_org_context",
+          "space_role",
+          "space_title",
+          "space_type",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "ext_user_id": {
+            "type": "string"
+          },
+          "space_title": {
+            "type": "string"
+          },
+          "space_key": {
+            "type": "string"
+          },
+          "dls_account_id": {
+            "type": "string"
+          },
+          "dls_org_id": {
+            "type": "string"
+          },
+          "space_org_context": {
+            "type": "string"
+          },
+          "space_role": {
+            "type": "string"
+          },
+          "space_type": {
+            "type": "string"
+          },
+          "visibility": {
+            "type": "boolean"
+          },
+          "dls_teacher_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "ValidateClassCodeRes": {
+        "required": [
+          "class_code",
+          "dls_class_id",
+          "meta",
+          "org_id",
+          "teacher_id"
+        ],
+        "type": "object",
+        "properties": {
+          "class_code": {
+            "type": "string",
+            "description": "class code/course key/class key of the class"
+          },
+          "dls_class_id": {
+            "type": "string",
+            "description": "dls-class-id in that org"
+          },
+          "teacher_id": {
+            "type": "string",
+            "description": "dls-teacher-id, uuid of the creator of the class in that org"
+          },
+          "org_id": {
+            "type": "string",
+            "description": "org-id of the class"
+          },
+          "space_title": {
+            "type": "string",
+            "description": "space title"
+          },
+          "space_key": {
+            "type": "string",
+            "description": "unique identifier of the space of a user"
+          },
+          "space_org_context": {
+            "type": "string",
+            "description": "institutional or shared"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ValidateClassCodeMeta"
+          },
+          "space": {
+            "$ref": "#/components/schemas/EntityDescription"
+          }
+        }
+      },
+      "ValidateClassCodeMeta": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "title of the class."
+          },
+          "startdate": {
+            "type": "integer",
+            "description": "start date of the class in milliseconds."
+          },
+          "enddate": {
+            "type": "integer",
+            "description": "end date of the class in milliseconds."
+          }
+        }
+      },
+      "NewClassMetadataMulti": {
+        "type": "object",
+        "properties": {
+          "space_title": {
+            "type": "string"
+          },
+          "skip_email_to_actor": {
+            "type": "boolean",
+            "default": false
+          },
+          "ext_data": {
+            "type": "object",
+            "properties": {}
+          },
+          "classes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClassEntities"
+            }
+          },
+          "clone_classes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MultiClassCloneBody"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClassEntities": {
+        "required": [
+          "enddate",
+          "rowId",
+          "startdate",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "startdate": {
+            "type": "integer"
+          },
+          "enddate": {
+            "type": "integer"
+          },
+          "rowId": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "ext_data": {
+            "type": "object",
+            "properties": {}
+          },
+          "limits": {
+            "$ref": "#/components/schemas/ClassLimits"
+          },
+          "analyticsharingmodel": {
+            "type": "string",
+            "enum": [
+              "NOINHERIT_SYNCBACK"
+            ]
+          },
+          "analytics_score_aggregation_type": {
+            "type": "string",
+            "enum": [
+              "best",
+              "first",
+              "last"
+            ]
+          },
+          "owner": {
+            "$ref": "#/components/schemas/OwnerInMultiClasses"
+          },
+          "teachers": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TeachersInMultiClasses"
+            }
+          },
+          "products": {
+            "maxItems": 50,
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductEntitiesInMultiClasses"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "example": [
+              {
+                "tagid_1": "tag_id",
+                "tagname_1": "tag_name",
+                "taxonomyid_1": "tag_taxonomy_id",
+                "context_1": "tag_context"
+              }
+            ],
+            "items": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "OwnerInMultiClasses": {
+        "required": [
+          "userid"
+        ],
+        "type": "object",
+        "properties": {
+          "userid": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TeachersInMultiClasses": {
+        "required": [
+          "email",
+          "first_name",
+          "last_name"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "userid": {
+            "type": "string"
+          },
+          "ext_user_id": {
+            "type": "string"
+          },
+          "dls_org_status": {
+            "type": "string"
+          },
+          "ext_account_status": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProductEntitiesInMultiClasses": {
+        "required": [
+          "productcode"
+        ],
+        "type": "object",
+        "properties": {
+          "productcode": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BadRequest": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "400"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "enum": [
+              "Bad Request"
+            ]
+          }
+        }
+      },
+      "InvalidToken": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "401"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "enum": [
+              "BadCredentials"
+            ]
+          }
+        }
+      },
+      "ExpiredAccessToken": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "425"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "enum": [
+              "Accees Token Expired"
+            ]
+          }
+        }
+      },
+      "CreateClassResponseMulti": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "in-process",
+              "rejected"
+            ]
+          },
+          "jobid": {
+            "type": "string"
+          }
+        }
+      },
+      "ClassOwnershipEntity": {
+        "required": [
+          "model",
+          "owner_status"
+        ],
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string"
+          },
+          "owner_status": {
+            "type": "string"
+          }
+        }
+      },
+      "ClassUsersList": {
+        "required": [
+          "count",
+          "entities"
+        ],
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "cursor": {
+            "type": "string"
+          },
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClassUsers"
+            }
+          }
+        }
+      },
+      "ClassUsers": {
+        "required": [
+          "enrollment",
+          "org"
+        ],
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "ext_username": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "address": {
+            "$ref": "#/components/schemas/UserAddress"
+          },
+          "enrollment": {
+            "$ref": "#/components/schemas/EnrollmentMeta"
+          },
+          "org": {
+            "$ref": "#/components/schemas/Organization"
+          }
+        }
+      },
+      "EntityDescription": {
+        "required": [
+          "address",
+          "dls_account_id",
+          "dls_org_id",
+          "space_code",
+          "space_description",
+          "space_key",
+          "space_title",
+          "space_type"
+        ],
+        "type": "object",
+        "properties": {
+          "dls_org_id": {
+            "type": "string"
+          },
+          "space_key": {
+            "type": "string"
+          },
+          "space_title": {
+            "type": "string"
+          },
+          "dls_account_id": {
+            "type": "string"
+          },
+          "space_code": {
+            "type": "string"
+          },
+          "space_type": {
+            "type": "string"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AddressDescription"
+          },
+          "space_description": {
+            "$ref": "#/components/schemas/SpaceDescription"
+          }
+        }
+      },
+      "AddressDescription": {
+        "required": [
+          "city",
+          "country",
+          "house_no",
+          "post_code",
+          "region",
+          "street1",
+          "street2",
+          "street3",
+          "street4"
+        ],
+        "type": "object",
+        "properties": {
+          "country": {
+            "type": "string"
+          },
+          "street3": {
+            "type": "string"
+          },
+          "street4": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "post_code": {
+            "type": "string"
+          },
+          "house_no": {
+            "type": "string"
+          },
+          "street1": {
+            "type": "string"
+          },
+          "street2": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          }
+        }
+      },
+      "SpaceDescription": {
+        "required": [
+          "address"
+        ],
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          }
+        }
+      },
+      "UserAddress": {
+        "type": "object",
+        "properties": {
+          "country": {
+            "type": "string"
+          }
+        }
+      },
+      "GroupAndMembershipSchema": {
+        "required": [
+          "entities"
+        ],
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GroupResponseBody"
+            }
+          },
+          "cursor": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer"
+          }
+        }
+      },
+      "GroupAndMembershipSchemaWithArchiveKeys": {
+        "required": [
+          "entities"
+        ],
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GroupResponseBodyWithArchiveKeys"
+            }
+          },
+          "cursor": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer"
+          }
+        }
+      },
+      "MembershipSchema": {
+        "required": [
+          "entities"
+        ],
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MemberObject"
+            }
+          },
+          "cursor": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer"
+          }
+        }
+      },
+      "MemberObject": {
+        "required": [
+          "email",
+          "enrollment",
+          "first_name",
+          "group",
+          "last_name",
+          "userid"
+        ],
+        "type": "object",
+        "properties": {
+          "userid": {
+            "type": "string"
+          },
+          "dls_user_id": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "group": {
+            "$ref": "#/components/schemas/GroupObject"
+          },
+          "enrollment": {
+            "$ref": "#/components/schemas/EnrollmentObject"
+          }
+        }
+      },
+      "GroupInfo": {
+        "required": [
+          "enddate",
+          "startdate"
+        ],
+        "type": "object",
+        "properties": {
+          "startdate": {
+            "type": "integer"
+          },
+          "enddate": {
+            "type": "integer"
+          }
+        }
+      },
+      "GroupResponseBody": {
+        "required": [
+          "category",
+          "path",
+          "title",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "group": {
+            "$ref": "#/components/schemas/GroupInfo"
+          }
+        }
+      },
+      "GroupResponseBodyWithArchiveKeys": {
+        "required": [
+          "archived",
+          "category",
+          "first_active_on",
+          "has_data",
+          "path",
+          "title",
+          "uuid"
+        ],
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "archived": {
+            "type": "boolean"
+          },
+          "has_data": {
+            "type": "boolean"
+          },
+          "first_active_on": {
+            "type": "number"
+          },
+          "last_archived_on": {
+            "type": "string"
+          },
+          "last_archived_snapshot": {
+            "$ref": "#/components/schemas/MembersSnapshot"
+          },
+          "path": {
+            "type": "string"
+          },
+          "group": {
+            "$ref": "#/components/schemas/GroupInfo"
+          }
+        }
+      },
+      "MembersSnapshot": {
+        "required": [
+          "members"
+        ],
+        "type": "object",
+        "properties": {
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MembersSnapshotObject"
+            }
+          }
+        }
+      },
+      "MembersSnapshotObject": {
+        "required": [
+          "dls_user_id",
+          "ext_user_id",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "ext_user_id": {
+            "type": "string"
+          },
+          "dls_user_id": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        }
+      },
+      "GroupObject": {
+        "required": [
+          "enddate",
+          "path",
+          "startdate",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "startdate": {
+            "type": "string"
+          },
+          "enddate": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        }
+      },
+      "GroupObjectBody": {
+        "required": [
+          "enddate",
+          "startdate",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "startdate": {
+            "type": "integer"
+          },
+          "enddate": {
+            "type": "integer"
+          },
+          "path": {
+            "type": "string"
+          }
+        }
+      },
+      "WithoutPathGroupObjectBody": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "startdate": {
+            "type": "integer"
+          },
+          "enddate": {
+            "type": "integer"
+          }
+        }
+      },
+      "EnrollmentObject": {
+        "required": [
+          "memberrole",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "memberrole": {
+            "type": "string"
+          }
+        }
+      },
+      "APIDeleteResponse": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "enum": [
+              "200"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "enum": [
+              "Entity deleted successfully"
+            ]
+          }
+        }
+      },
+      "GroupMultiUserBody": {
+        "required": [
+          "users"
+        ],
+        "type": "object",
+        "properties": {
+          "users": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GroupMultiUserObject"
+            }
+          }
+        }
+      },
+      "GroupMultiUserObject": {
+        "required": [
+          "dls_user_id",
+          "first_name",
+          "id",
+          "last_name",
+          "name",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "external user id"
+          },
+          "dls_user_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        }
+      },
+      "ClassEntityResponse": {
+        "required": [
+          "account",
+          "category",
+          "class",
+          "class_code",
+          "class_ownership",
+          "classid",
+          "created_by",
+          "level",
+          "orgid",
+          "path",
+          "studentCount",
+          "teacherCount",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "account": {
+            "type": "string"
+          },
+          "orgid": {
+            "type": "string"
+          },
+          "created": {
+            "type": "number"
+          },
+          "modified": {
+            "type": "number"
+          },
+          "classid": {
+            "type": "string"
+          },
+          "ext_classid": {
+            "type": "string"
+          },
+          "class_code": {
+            "type": "string"
+          },
+          "shadow": {
+            "type": "boolean"
+          },
+          "class_ownership": {
+            "$ref": "#/components/schemas/ClassOwnershipEntity"
+          },
+          "created_by": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "level": {
+            "type": "number"
+          },
+          "path": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "class": {
+            "type": "object",
+            "properties": {
+              "provision_method": {
+                "type": "string"
+              },
+              "startdate": {
+                "type": "number"
+              },
+              "enddate": {
+                "type": "number"
+              },
+              "instructor": {
+                "$ref": "#/components/schemas/InstructorEntity"
+              }
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "class.settings.active": {
+            "type": "boolean"
+          },
+          "ext_data": {
+            "type": "object",
+            "properties": {}
+          },
+          "assignedPathCount": {
+            "type": "number"
+          },
+          "studentCount": {
+            "type": "number"
+          },
+          "teacherCount": {
+            "type": "number"
+          },
+          "analyticsharingmodel": {
+            "type": "string",
+            "enum": [
+              "NOINHERIT_SYNCBACK"
+            ]
+          },
+          "analytics_score_aggregation_type": {
+            "type": "string"
+          },
+          "limits": {
+            "$ref": "#/components/schemas/ClassLimits"
+          },
+          "hidden": {
+            "$ref": "#/components/schemas/Hidden"
+          }
+        }
+      },
+      "InstructorEntity": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "dls_user_id": {
+            "type": "string"
+          },
+          "userid": {
+            "type": "string"
+          }
+        }
+      },
+      "MultiClassCloneBody": {
+        "required": [
+          "classid",
+          "clone_settings",
+          "enddate",
+          "instructor",
+          "rowId",
+          "startdate",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "startdate": {
+            "type": "integer"
+          },
+          "enddate": {
+            "type": "integer"
+          },
+          "instructor": {
+            "type": "string"
+          },
+          "rowId": {
+            "type": "string"
+          },
+          "classid": {
+            "type": "string"
+          },
+          "clone_settings": {
+            "$ref": "#/components/schemas/CloneSettingsObject"
+          }
+        }
+      },
+      "CloneSettingsObject": {
+        "type": "object",
+        "properties": {
+          "students": {
+            "type": "boolean"
+          },
+          "invite-students": {
+            "type": "boolean",
+            "default": false
+          },
+          "teachers": {
+            "type": "boolean"
+          },
+          "invite-teachers": {
+            "type": "boolean",
+            "default": false
+          },
+          "products": {
+            "type": "boolean"
+          },
+          "groups": {
+            "type": "boolean"
+          },
+          "assigned_paths": {
+            "type": "boolean"
+          },
+          "skip_assigned_path_create_notification": {
+            "type": "boolean"
+          },
+          "tags": {
+            "type": "boolean"
+          },
+          "analyticsharingmodel": {
+            "type": "boolean"
+          },
+          "analytics_score_aggregation_type": {
+            "type": "boolean"
+          },
+          "ext_data": {
+            "type": "boolean"
+          },
+          "limits": {
+            "type": "boolean"
+          },
+          "advanced": {
+            "$ref": "#/components/schemas/CloneSettingsAdvancedObject"
+          }
+        }
+      },
+      "CloneSettingsAdvancedObject": {
+        "type": "object",
+        "properties": {
+          "students": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdvancedStudentEnrollmentObject"
+            }
+          },
+          "teachers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdvancedTeacherEnrollmentObject"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "required": [
+                "groupid"
+              ],
+              "type": "object",
+              "properties": {
+                "groupid": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "assigned_paths": {
+            "type": "array",
+            "items": {
+              "required": [
+                "assigned_path_id"
+              ],
+              "type": "object",
+              "properties": {
+                "assigned_path_id": {
+                  "type": "string"
+                },
+                "startdate": {
+                  "type": "integer"
+                },
+                "duedate": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "required": [
+                "productcode"
+              ],
+              "type": "object",
+              "properties": {
+                "productcode": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "limits": {
+            "$ref": "#/components/schemas/ClassLimits"
+          },
+          "analyticsharingmodel": {
+            "type": "string",
+            "enum": [
+              "NOINHERIT_SYNCBACK"
+            ]
+          },
+          "analytics_score_aggregation_type": {
+            "type": "string",
+            "enum": [
+              "best",
+              "first",
+              "last"
+            ]
+          }
+        }
+      },
+      "AdvancedStudentEnrollmentObject": {
+        "type": "object",
+        "properties": {
+          "ext_user_id": {
+            "type": "string"
+          },
+          "invite-students": {
+            "type": "boolean"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "dls_org_status": {
+            "type": "string",
+            "default": "existing",
+            "enum": [
+              "new",
+              "existing"
+            ]
+          },
+          "ext_account_status": {
+            "type": "string",
+            "default": "existing",
+            "enum": [
+              "new",
+              "existing"
+            ]
+          }
+        }
+      },
+      "AdvancedTeacherEnrollmentObject": {
+        "type": "object",
+        "properties": {
+          "ext_user_id": {
+            "type": "string"
+          },
+          "invite-teachers": {
+            "type": "boolean"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "dls_org_status": {
+            "type": "string",
+            "default": "existing",
+            "enum": [
+              "new",
+              "existing"
+            ]
+          },
+          "ext_account_status": {
+            "type": "string",
+            "default": "existing",
+            "enum": [
+              "new",
+              "existing"
+            ]
+          }
+        }
+      },
+      "GradebookMetaBody": {
+        "required": [
+          "gradebook_id",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "gradebook_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "GradebookMetaRes": {
+        "type": "object",
+        "properties": {
+          "pk": {
+            "type": "string"
+          },
+          "sk": {
+            "type": "string"
+          },
+          "account": {
+            "type": "string"
+          },
+          "orgid": {
+            "type": "string"
+          },
+          "classid": {
+            "type": "string"
+          },
+          "gradebook_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "created_by": {
+            "type": "string"
+          },
+          "created": {
+            "type": "number"
+          },
+          "modified": {
+            "type": "number"
+          },
+          "version": {
+            "type": "number"
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "GradebooksMetaRes": {
+        "required": [
+          "count",
+          "entities"
+        ],
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GradebookMetaRes"
+            }
+          },
+          "count": {
+            "type": "number"
+          },
+          "cursor": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateGradebookMetaBody": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "AddGradebookColumnBody": {
+        "required": [
+          "columns"
+        ],
+        "type": "object",
+        "properties": {
+          "columns": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GradebookColumnObj"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddGradebookColumnsResBody": {
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GradebookColumnResObj"
+            }
+          }
+        }
+      },
+      "GetGradebookColumnsResBody": {
+        "type": "object",
+        "properties": {
+          "entities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GradebookColumnResObj"
+            }
+          },
+          "cursor": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer"
+          }
+        }
+      },
+      "GradebookColumnObj": {
+        "required": [
+          "column_id",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "column_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "product",
+              "custom"
+            ]
+          },
+          "weightage": {
+            "type": "string"
+          },
+          "bundle-codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "productcode": {
+            "type": "string"
+          },
+          "custom_component_code": {
+            "type": "string"
+          },
+          "scoring_type": {
+            "type": "string",
+            "enum": [
+              "SIMPLE"
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item-code": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "GradebookColumnResObj": {
+        "type": "object",
+        "properties": {
+          "pk": {
+            "type": "string"
+          },
+          "sk": {
+            "type": "string"
+          },
+          "gsi_2_pk": {
+            "type": "string"
+          },
+          "gsi_2_sk": {
+            "type": "string"
+          },
+          "classid": {
+            "type": "string"
+          },
+          "class": {
+            "$ref": "#/components/schemas/ClassBody"
+          },
+          "gradebook_id": {
+            "type": "string"
+          },
+          "column_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "product",
+              "custom"
+            ]
+          },
+          "weightage": {
+            "type": "string"
+          },
+          "bundle-codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "productcode": {
+            "type": "string"
+          },
+          "custom_component_code": {
+            "type": "string"
+          },
+          "scoring_type": {
+            "type": "string",
+            "enum": [
+              "SIMPLE"
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "item-code": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "data": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      },
+      "ClassBody": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "startdate": {
+            "type": "number"
+          },
+          "enddate": {
+            "type": "number"
+          },
+          "class_code": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateColumnsOfGradebookBody": {
+        "type": "object",
+        "properties": {
+          "columns": {
+            "maxItems": 20,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "column_id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "weightage": {
+                  "type": "string"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "item-code": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "UpdateColumnsOfGradebookRes": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "object",
+            "properties": {
+              "entities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "count": {
+                "type": "integer"
+              }
+            }
+          },
+          "error": {
+            "type": "object",
+            "properties": {
+              "entities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "count": {
+                "type": "integer"
+              }
+            }
+          },
+          "count": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

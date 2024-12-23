@@ -1,0 +1,74 @@
+---
+id: retrieves-metadata-for-a-specific-group-excluding-child-groups
+title: "Retrieves metadata for a specific group, excluding child groups."
+description: "Retrieves metadata for a specific group.  Child groups are not included."
+sidebar_label: "Retrieves metadata for a specific group, excluding child groups."
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVlFv20YM/iuHe2oDzUm77sV7Sru1CNaiQ91gD0mQ0jpKuuZ0p/IoI67h/z7wJFmOLTRB97InSybv+z7yKJIbzVBGPb/S7yi0TdQ3mTYYc7IN2+D1XH9CJosrjKpGBgMMqgikQMUGc1vYXJVycqbUm8o6071FBYTKB1bW5641aGbX/tqfnPyNVNsYbfBxfnJy7b8suDXoOVOfEfIKKVPnprY+U4u2QUrPX3SmGyCokZFE60Z7qFHPdaDSGp1pK0Ib4Eofqv9IJXj7HeRVXfyhQqG4wk6kzjTht9YSGj1najHTMa+wBj3faF43whCZrC/1dpvtSNPZR2gvvf3WorISmi0sUsrZf2U+b7kK1Ecz8FcIBulIgfgKed6FzuEOvRpIuxs8QHu6ohtxjk3wEaPYX56dyc9DAYs2zzHGonVqcFZ58AzWW192eVDWF4HqpGCmMy129Cxg0DSuF3/6NQriZk/RqPVKS5RsMZVurzQsv2LOUjYUGqRknW9GzzEmIIK1pJKxjofIQHllVyhXnQNjGUhcC0uRbyFnu8LblLkK4q18GKlOUzWwZYc6021rzeO6ktdxnvdYp4wdx5Rlp3s0LkNwCF6sO7WT1sPoRiff1ksk8XEgLj3JQ6dRxEOn6KGJVeDDFNcooE+4u8HxiVdnXLxtI9Jt+lDxnvfeKDh8QrHsnZmKb59hyp5Ypj7n4eL0hy6kRZ+aj52O7Q9cBDdV2BRh11mOPg5jgKUUIwNxen409NF15LGeseyuf8CcMO5JT/Pkwhfh+N9PfT94Hcz6H8vVeVclf+E6Jue8pRho+osIbdcfHmM+96ZPXmWbRWocx1Ry6tVU83oNJjVLjKxMi4qDsn4FzhplfdOyGufRw77VIb44Rrz0Q79FoyC1xt93mIFUmoq+TF35sG9PUfx6TPE20NIag36HLwOnD0OwpVyVg/wuKo/iAbRWzTiRp3heHfOk/KbhXoTWm3G02RV6lWayAt9vAtZMoL787Rj1PGnuB1UFUeF9I1V8eHyb6Rq5CkZGMfLQc+f6NFB5ukn029NuCznd9Bq2aVoWIVVOXyZvHMSIMUntl59Mr5Bip+fF7Gx2djRW37Y+l0dwltcp8ho8lJLdvMPLFHoKztXoOWYJndABo1HyjaVrjcp6Beo9AqVh+EEwUE6oxToy1urZ+w+L5zN1wSq2TROIo8oJIV2jQB6zVuCNk39it1ElN+6WqoeSSvRJRw+VSrB7TWAqD0YAIcaQ285QAyNZcDEbmUsCg8sQ7hJKgySjXAzL1t3txypZwqKwuRVZMa9CcL84XKFTFKIA+3KWWluIXEMaJ/3G88TlM1N4L2tmimFvC50d3t9mLKX/yWLb9zHGez5tHNg0hFtyorUr7CtZc3Wm58O2Ww7FOh9W0ZtMVyGy+G42S4h4SW67lb+/tSjrw9VNpldAFpZS+lcbbWyUZ6PnBbiIP0jTs0/9OHmuHlmmJ0MZhrWXUb0C18qbzvQdrncLvKy4PyXo8TX7JzQNSd3eyLLUbdeSss4qbarhvXNHi6qsx7sO9e7Pz3q7/Re2b7bV
+sidebar_class_name: "get api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieves metadata for a specific group, excluding child groups."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/org/{orgid}/groups/{groupid}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves metadata for a specific group.  Child groups are not included.
+
+**Permissions:**
+`Student, Teacher, Admin, SuperAdmin`
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID of the group","required":true,"schema":{"type":"string"}},{"name":"groupid","in":"path","description":"Unique identifier for the group","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token required for authorization","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful response containing group information.","content":{"application/json":{"schema":{"required":["entities"],"type":"object","properties":{"entities":{"type":"array","items":{"required":["archived","category","first_active_on","has_data","path","title","uuid"],"type":"object","properties":{"uuid":{"type":"string"},"category":{"type":"string"},"title":{"type":"string"},"archived":{"type":"boolean"},"has_data":{"type":"boolean"},"first_active_on":{"type":"number"},"last_archived_on":{"type":"string"},"last_archived_snapshot":{"required":["members"],"type":"object","properties":{"members":{"type":"array","items":{"required":["dls_user_id","ext_user_id","role"],"type":"object","properties":{"ext_user_id":{"type":"string"},"dls_user_id":{"type":"string"},"role":{"type":"string"}},"title":"MembersSnapshotObject"}}},"title":"MembersSnapshot"},"path":{"type":"string"},"group":{"required":["enddate","startdate"],"type":"object","properties":{"startdate":{"type":"integer"},"enddate":{"type":"integer"}},"title":"GroupInfo"}},"title":"GroupResponseBodyWithArchiveKeys"}},"cursor":{"type":"string"},"count":{"type":"integer"}},"title":"GroupAndMembershipSchemaWithArchiveKeys"}}}},"400":{"description":"Bad request due to invalid input parameters.","content":{}},"401":{"description":"Unauthorized access; invalid or missing authentication token.","content":{}},"403":{"description":"Forbidden access; the requesting user lacks necessary permissions.","content":{}},"404":{"description":"Group not found for the given orgid and groupid.","content":{}},"425":{"description":"Access token has expired.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,33 @@
+---
+id: tagcreateinputbody
+title: "tagCreateInputBody"
+description: ""
+sidebar_label: "tagCreateInputBody"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"tags":[{"tagid":"string","tagname":"string","tag_data":{}}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"tagCreateInputBody"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["tags"],"type":"object","properties":{"tags":{"type":"array","items":{"required":["tagid","tagname"],"type":"object","properties":{"tagid":{"type":"string"},"tagname":{"type":"string"},"tag_data":{"type":"object","properties":{}}},"title":"tagCreateBody"}}},"title":"tagCreateInputBody"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

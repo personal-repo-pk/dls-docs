@@ -1,0 +1,33 @@
+---
+id: memberssnapshot
+title: "MembersSnapshot"
+description: ""
+sidebar_label: "MembersSnapshot"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"members":[{"ext_user_id":"string","dls_user_id":"string","role":"string"}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"MembersSnapshot"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["members"],"type":"object","properties":{"members":{"type":"array","items":{"required":["dls_user_id","ext_user_id","role"],"type":"object","properties":{"ext_user_id":{"type":"string"},"dls_user_id":{"type":"string"},"role":{"type":"string"}},"title":"MembersSnapshotObject"}}},"title":"MembersSnapshot"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

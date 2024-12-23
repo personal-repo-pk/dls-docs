@@ -1,0 +1,71 @@
+---
+id: retrieves-the-total-number-of-students-or-teachers-enrolled-in-a-specific-class
+title: "Retrieves the total number of students or teachers enrolled in a specific class."
+description: "This API endpoint retrieves the enrollment count for a given class, allowing you to filter by student or teacher roles.  It returns a count of users enrolled in the specified class based on the provided organization ID and role."
+sidebar_label: "Retrieves the total number of students or teachers enrolled in a specific class."
+hide_title: true
+hide_table_of_contents: true
+api: eJzlVU1v20YQ/SuDvcQGWNlpc9LN+XBgIAmCxDkZPoyWQ3Gj5S49s1SrCPzvxSwpibJcIy3aU08Sd2fnvfl6szUJl2Lmd+Zd4Oh9QyGJuS9MSWLZtcnFYObmtnYCV59vgELZRhcSMCV2tCaBVBPQ/jHY2IUEVWRAWLo1BbAeRQpA7+PvLixhEztIESrnEzEsNiCpK/VpZEiEtiYGjp5kBnCTkToOAji6jhV0QiwjKJXgQiYhLVlXOSoHRFigUAlxuGw5rl2p37zE4H6gRgY3bwFDmdFmpjAtMjaUiDUjWxOwITM3kZeuNIVxmokWU20ep+dbcA8dgdMolAHn+BV2iqYITA+dYyrNPHFHhRFbU4NmvjVp0yqYJHZhafq+2OPnaA4MHjrizd+gkJ//U2zNzPPA10MZmaTzSbScWp2cUjjblTPyrsjnM3hLFWbbFOHFePxCCf4VocJQ6Bpt0tGf2g7vzH3f32to0sYgJPr418tL/TmmeQXSWUsiVedhZw42hoQuaFdqqkLXLJRtNWnonDq1U7T51mDbemdzQS++i/reTogfcnxnUkzodZbGaOLiO9mkbcaxJU5uoDuYHYJ2IdGSWMtgkktez/JwDrPZ93rx6qkYX2MJSoAkzQDe1GRXOazxDA7tnZuDmCM/Cm/w/fLU97eAXaojux9UzgA+D+MECGv0rgS91M4bEgMprig85fm3U8/XkReuLCnMAG4PbLUmuZM82pVAS9w4kcE5YC4lJJUlJokdW3oK7tUp3KeY4Dp2QaP4FKfKVWJCqPRqPzsTActC8Xicp3h9YRpKdSzN3Cwp11m1Ym4utllB+ovs54L2tbyQhClPVxVzA4zVfqN2NCC+59i1YgqzJpYhgpezy9nl6Rx2wepf9C5tcgANBlxqGu3gr5h2dTEIH3lMKootcQ5KVEwRPhBynoqP6oNyer5uJFEDZx8+fj2fqTBL17aRk4BlwlwvdXmKWmMovZ7sdF7NdspwRGlJIfMYXeXWGj6HEthYqkMUidYNFw0mYodeigPykrGkRYyr7KUlriI3erHo/Goaa56CqnLWKS2xdYz+F09r8sBR1HFYzkxfmDZKajDP+iiMX472X57hiXyMkcpkpR3vK9xtK3vQ56N6bg+99X/ZvqP+JfojXbQeXdDMd5y1cRilOzPfLeMMkjfDXhl1KWBSwa2jJLXebpXFN/Z9r8fDAtPNXjrBhVeZrtALPZP7sy+jop/DT6zYJ0NY0eZoi6/Rd2pldM/+PJN/cdE+Q3Nc+AeO9/rBTkn+F6l7rKhPUhsPMWym1HaUh5bo7/vC1IQlceY53F1ZS22avDpZ3xrgXrffv7s1ff8nG1jnqA==
+sidebar_class_name: "get api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieves the total number of students or teachers enrolled in a specific class."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/{orgid}/class/enrolments/stat"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API endpoint retrieves the enrollment count for a given class, allowing you to filter by student or teacher roles.  It returns a count of users enrolled in the specified class based on the provided organization ID and role.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Unique identifier for the organization.","required":true,"schema":{"type":"string"}},{"name":"classid","in":"query","description":"Unique identifier for the class.","required":true,"schema":{"type":"string"}},{"name":"role","in":"query","description":"Filter results by user role (teacher or student). Defaults to 'student'.","schema":{"type":"string","enum":["teacher","student"]}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"A successful response containing the number of enrollments.","content":{"application/json":{"schema":{"required":["total"],"type":"object","properties":{"total":{"type":"integer"}},"title":"Enrolments"}}}},"400":{"description":"Bad request.  Check the request parameters for errors.","content":{}},"401":{"description":"Unauthorized.  Provide a valid authentication token.","content":{}},"403":{"description":"Forbidden.  The requesting user lacks permission to access this resource.","content":{}},"404":{"description":"Not Found.  No enrollment data found for the given class and organization.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

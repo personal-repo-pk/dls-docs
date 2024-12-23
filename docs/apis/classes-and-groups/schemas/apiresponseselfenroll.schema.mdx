@@ -1,0 +1,33 @@
+---
+id: apiresponseselfenroll
+title: "APIResponseSelfEnroll"
+description: ""
+sidebar_label: "APIResponseSelfEnroll"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"status":"in-process","message":"string","userid":"string","class":{"classid":"string","title":"string"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"APIResponseSelfEnroll"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["class","userid"],"type":"object","properties":{"status":{"type":"string","enum":["in-process","rejected"]},"message":{"type":"string"},"userid":{"type":"string"},"class":{"required":["classid","title"],"type":"object","properties":{"classid":{"type":"string"},"title":{"type":"string"}},"title":"ClassInfo"}},"title":"APIResponseSelfEnroll"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

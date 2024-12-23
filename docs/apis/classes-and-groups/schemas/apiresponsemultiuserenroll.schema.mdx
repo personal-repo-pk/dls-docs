@@ -1,0 +1,33 @@
+---
+id: apiresponsemultiuserenroll
+title: "APIResponseMultiUserEnroll"
+description: ""
+sidebar_label: "APIResponseMultiUserEnroll"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"status":"in-process","message":"string","classid":"string","users":["string"],"jobid":"string"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"APIResponseMultiUserEnroll"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"status":{"type":"string","enum":["in-process","rejected"]},"message":{"type":"string"},"classid":{"type":"string"},"users":{"type":"array","items":{"type":"string"}},"jobid":{"type":"string"}},"title":"APIResponseMultiUserEnroll"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

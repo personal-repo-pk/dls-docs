@@ -1,0 +1,80 @@
+---
+id: retrieves-detailed-information-for-a-specific-user
+title: "Retrieves detailed information for a specific user."
+description: "This API endpoint retrieves comprehensive information for a specified user within the system.  The 'me' parameter can be used to retrieve the details of the currently authenticated user."
+sidebar_label: "Retrieves detailed information for a specific user."
+hide_title: true
+hide_table_of_contents: true
+api: eJztV0tvGzcQ/isEL0mEleRHUrTbk5E0hYEWNRLn5BjGaDnSMuaSGw4pWxH034PhPizbK9t120uRk62d93Ae36xlgAXJ/Ex+IvSiAgsLrNAGeZ5JhVR4XQftrMzlaalJHJ0cC7SqdtoG4TF4jUskUbiq9liiJb1Eoe3c+QpYTsydFyCoxkLPNSoR2cyVDqW2IpQoaEUBq4kQpyWKFxW+EDV4qDCgFwVYMUMWUSK43lySUxhAGxJunn4W0Xu0wawExFCiDbqA0JqbfLaf7Wh0gr7SRNpZykej9E2MRh9DVGgDiZdvnaVYoadX+WgkjooCicTCg2U9zppVcltAXXtXew0BhXcGadIoOkUoSvQ0IPyg3JGqtNUUPATXSL+PxghIKlqej7FG/xTGt84YmLmGRbw8iTOjqXx2TEcxlP9Qkcxk/6BcZ2tpoUKZS+cXWslMaq6tGkIp7xccCucXYPW3ppaO3wkgcoWGPqv89umNZSY9fo3ao5J58BEzSWFl2BLpqjYoM4nXtXEKZT4HQ8xQlFiBzNcyrOrEGby2i+TIHKIJMpcKK/eT3Gyy3nE29wTPo9VfIwrN1cWl71Mr/Cf+bnvXPFmbsc7JEkGhv+fmkViC0Wq7ZTjNwV2iFZ13TQc3RfbvOn3O2qh2lpCYfrC3x3/u+kgxGZ9HIzp2UTgbQFttF31GX9D23GFXmYknWb6WUNemDW/6hVjxesuxm5jOuCxlJmPUiidg67KbfcEicCl7V6MPunE4cd0PLEtK7uhNFZMYH1W7Q2nzYYiggxmi3JDkX1ttxCKFAaK7LlKAEEl2Uk/NQis20EVoY8WKa++WmgcvqlQgmgKbsS6M5y5aJc832e5kPiG8txzOOwjA/B7JRV/g/ye8D21EXYRNqw/ommtP4WIn2cBDVKxAm0EKt9dusetwwQwXO+Jjeg28nB/ieNBE2iRbFPAeVjzbAlYDL8OpA6U80jZxx/MWLtrgVw8/AGOjo1bjJpMVBnhcMyilud/AnHhX7w9Gdpvn4HEvLpLtu1/lZsOfXg8N0GOrEhYiAWIGKs11pJAJoy/RrISKyOAqQSO7EM4LbZu1cLO3b0/TxtT+wKy+vUfmoE30+Guv0PneDGyvqWbjDBk5vG+Ed2sbAytKeNJAcUlpE1jkXQF+JeobuMfxNRtMBAax3YQYsvj6QYsdgO00iCsgYV0QqdEH9B28GdaXZoZC1fuVdm4JJPC65ol1V1dTdqVTMpcLTNXGyCOXU+cX03VCU5spO0fTdQNRNjKThH7ZAa/oDWOBEOp8OlWGxkAL8GrMLzHef/3m8PDnw739XyaRxldIYXwwQTObQAXfnIUrmhSumprZmJ9ueg9LKFwKNsBbnfdwKuWtEqV7Eu+jLZra12GVUEZK7R0wAlZtXSXd5QBW/PHnx4k4DoJiXTsf2hSOZ8DXwh0lrByvA48Yk6xQJmKt4KaCunOCzaVxkzVWOwYGF2IWzWXWsDSnSC++jTzEUd/UZpUJHQQY466o1cO9luLhetVe1B7n6NEWDVjm12rysz/Zm+zxkKgdhQoSZmlB3of+8Gr8RrX75ip6vHkr/eub6vpx2f247J532bW7KuB1mNYGdMKWacys2/HUAeq8O/diOwvy9ow6z2TpKDDnes3N+8mbzYY/f43Ie/nsPJNL8BpmPEvO1lJp4v9Vf2HsrOuXH1r490r83VtyMLIOflgGH0swkX/JTF7iqj9o+RR7toeP34zP8KtN9IZRaHsIchobIr93HbbE7l1KPND7zfP7b6dys/kOzu1fWQ==
+sidebar_class_name: "get api-method"
+info_path: ./docs/apis/users/users
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieves detailed information for a specific user."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/org/{orgid}/users/{userid}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API endpoint retrieves comprehensive information for a specified user within the system.  The 'me' parameter can be used to retrieve the details of the currently authenticated user.
+
+**Permissions:**
+
+* **Students (Consumers):** Access granted only with appropriate roles.
+* **Teachers:** Access granted with appropriate roles.
+* **Administrators:** Full access.
+* **SuperAdministrators:** Full access.
+* **Collaborators (Publishers):** Access granted only with appropriate roles.
+* **Authors (Publishers):** Access granted only with appropriate roles.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"The organization ID associated with the user.","required":true,"style":"simple","explode":false,"schema":{"type":"string","default":"demo6"}},{"name":"userid","in":"path","description":"The unique identifier for the user.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"A valid authentication token required for access.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"A successful response containing the user's information.","content":{"application/json":{"schema":{"required":["org","uuid"],"type":"object","properties":{"uuid":{"type":"string"},"org":{"required":["id","type"],"type":"object","properties":{"id":{"type":"string"},"type":{"type":"string"},"title":{"type":"string"}},"title":"Organization"},"class":{"required":["status","title","uuid"],"type":"object","properties":{"status":{"type":"string","enum":["provisioned","exists","not-found"]},"uuid":{"type":"string"},"title":{"type":"string"}},"title":"ClassData"},"resource":{"required":["status","title","uuid"],"type":"object","properties":{"status":{"type":"string","enum":["provisioned","exists","not-found"]},"uuid":{"type":"string"},"title":{"type":"string"}},"title":"ResourceData"},"name":{"type":"string"},"first_name":{"type":"string"},"last_name":{"type":"string"},"email":{"type":"string"},"username":{"type":"string"},"ext_user_id":{"type":"string"},"ext_parent_id":{"type":"string"},"ext_username":{"type":"string"},"roles":{"type":"array","items":{"type":"string"}},"address":{"type":"object","properties":{"country":{"type":"string"}},"title":"UserAddress"},"meta":{"type":"object","properties":{"additionalProp1":{"type":"string"},"additionalProp2":{"type":"string"}},"title":"User_meta"}},"title":"User"}}}},"400":{"description":"Indicates a bad request, likely due to missing or invalid parameters.","content":{}},"401":{"description":"Authentication failure; invalid or missing authorization token.","content":{}},"403":{"description":"The requesting user lacks the necessary permissions to access this resource.","content":{}},"404":{"description":"The requested user resource was not found.","content":{}},"425":{"description":"The provided access token has expired.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

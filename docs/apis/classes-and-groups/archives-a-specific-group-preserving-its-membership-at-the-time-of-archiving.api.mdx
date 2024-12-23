@@ -1,0 +1,77 @@
+---
+id: archives-a-specific-group-preserving-its-membership-at-the-time-of-archiving
+title: "Archives a specific group, preserving its membership at the time of archiving."
+description: "Archives a specific group, preserving its members at the time of archiving."
+sidebar_label: "Archives a specific group, preserving its membership at the time of archiving."
+hide_title: true
+hide_table_of_contents: true
+api: eJzVV99v2zgM/ld4emoLLem27sVvbdrtCuxHkbb30gWYYjG2VlvyKDm3XOD//UBZbtqla7vhUOD8ZEsi+fEzSZFrEVThRXYl3pFrGy9mUmj0OZkmGGdFJg4pL80SPSjwDeZmYXIo+KyEhtAjLY0twAQPNdZzJA8qQCgRgqkR3AJUVGBsMfpsP9u9vTOk2nhvnPXZ3t5n++UCVV4iSTjUtbESztsGKb7DzsRZ39ZIfvdLL32yRBuS4Lvpp8uz0eF08ufpXydw5ds8R+8lIJGj2RchRaNI1RiQ2MW1sKpGkQlHhdFCCsP+NSqU4kenP1GhrPlH8SecHrMb7FL0W0hB+K01hFpkgVqUwucl1kpkaxFWDVvwgYwtRNfJG6NR9hGzl9Z8axGMRhvMwiD9F4YP21A6Ss4M5ktUGmkLAJ9l23nveXDXaH/J7Kw/jD4cOb3iE3cNTPtNmDu9goWjTXSA6r2EnbwlQhuqFVgXoPWod4UUubMBbWCVqmmqBHH81bPe9TYkN/+KeRBd193Gv1CVx7jiG2c9epZ4tb+/jTTmQ4KHGlJwLdqqWv0+Gikacg1SML1lH1Ro/cRp3CZTCrRtzanJ+GadFDV6r4oHjz6AeiRmzEUwoYphcXY6TSSc96dSpjNlnRQH95FypDSk/5vBpMT8eviEW6n2zPQcPEZPJ1Mu/FwHO5Zi8y5NR0oP6wMvL7d5ubQqZRnqDE7tUlVGgyOIlY6D+/7EemaeXj41jAYPLhjnKEo9gcEJYaxcqvJ3SUzq7lSiqPqG09fbnL51NDdao2VCfbtYmNygDdBs7g8Iboj1mxL5zJS+fiqllx4JyFW443dBEcbiFmkZwWHMPzhGa1D/8UOexr1+64aug226ProAb11rdQZ9EXAE7vY1xvYWfOD5STp4KkknNpiw2kAFY+F4ZVXtjo/u0jJF71rK8aML0euBmldvtqlJ9MakA/zexKvguUl49eapJCSEQ1T0iXJPTMSNk+RO1/tfYyid5v6ijUi5y8jE2FExXse2pxvHRPHjdWpIunHKICEFuz7dXN8n31XdsMF1x23DwkXUCcOkUt5zW2g1pN5RiiWS7zl/Odof7W/1F29bm/Orqvg38/1fK6sKrpB5r08CWnJVVXObJ6N2wkoF1MCkx1/kOSwUvEdFlkU/sA5kCThf+YA17Lz/cL47gtMAvm0aR8FDTqhCLMVW32O1VFZXvOJDy0UsHgt9Z3oXUoE24kiqYgr3n1EZ5E6zQuW9y02/UauAxGVRbiwXpDTOnbuOWhqkhaOaN+ZtdX3bV2YJb6qfz0vnqhcVLrECcp4V22LEd1zjfKhVjN2h9fvV3r00zc/b9x//5nqTQf/vKSElYsDvYdxUylhms6WKXewz6IpnBiFFNowOxRDx2aavH/JoJkXpfGCp9XquPF5S1XW8/K1FWonsaibFUpFRc86kq7XQxvP70J8+wPPONLWyu/DIjHKvU2lRWe5hl6pq+UtIcY2rm7mIR4ffAvTo9PIbkAZ2O66daWhhxvrdSQ/jxQXr2EhvVXN2qZfgytmEB8/OblXRs8sLIcU8jTJ1rPGC1N88E6m/e6AushKvgri2FpWyRRuLvOhV8vMvEJ9gtw==
+sidebar_class_name: "put api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Archives a specific group, preserving its membership at the time of archiving."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/org/{orgid}/groups/{groupid}/archive"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Archives a specific group, preserving its members at the time of archiving.
+
+**Permissions:**
+`Teacher, Admin, SuperAdmin (Consumers)`
+
+**Events:**
+`GROUP.ARCHIVE [success, error]`
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID of the group","required":true,"schema":{"type":"string"}},{"name":"groupid","in":"path","description":"Unique identifier of the group","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"Request body for archiving a group (currently not used)","content":{"application/json":{"schema":{"type":"object"}}},"required":false}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Group archived successfully","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["200"]},"message":{"type":"string","enum":["Group archived successfully."]}},"title":"APIResponseSuccessArchive"}}}},"400":{"description":"Bad request: Check request parameters","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["400"]},"message":{"type":"string"},"name":{"type":"string","enum":["Bad Request"]}},"title":"BadRequest"}}}},"401":{"description":"Unauthorized: Invalid or missing authentication token","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["401"]},"message":{"type":"string","enum":["Invalid Token."]},"name":{"type":"string","enum":["BadCredentials"]}},"title":"InvalidAuthorizationToken"}}}},"403":{"description":"Forbidden: Insufficient permissions to archive group","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["403"]},"message":{"type":"string","enum":["User role(s) are not valid. Access Denied!"]}},"title":"AccessDenied"}}}},"404":{"description":"Not Found: Group or organization not found","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["404"]},"message":{"type":"string","enum":["Entity not found in DynamoDB"]}},"title":"ResourceNotFound"}}}},"425":{"description":"Access token expired","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["425"]},"message":{"type":"string","enum":["expired Access Token"]}},"title":"AccessTokenExpired"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

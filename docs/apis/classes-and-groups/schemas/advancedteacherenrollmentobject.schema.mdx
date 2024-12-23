@@ -1,0 +1,33 @@
+---
+id: advancedteacherenrollmentobject
+title: "AdvancedTeacherEnrollmentObject"
+description: ""
+sidebar_label: "AdvancedTeacherEnrollmentObject"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"ext_user_id":"string","invite-teachers":true,"first_name":"string","last_name":"string","email":"string","dls_org_status":"existing","ext_account_status":"existing"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"AdvancedTeacherEnrollmentObject"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"ext_user_id":{"type":"string"},"invite-teachers":{"type":"boolean"},"first_name":{"type":"string"},"last_name":{"type":"string"},"email":{"type":"string"},"dls_org_status":{"type":"string","default":"existing","enum":["new","existing"]},"ext_account_status":{"type":"string","default":"existing","enum":["new","existing"]}},"title":"AdvancedTeacherEnrollmentObject"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

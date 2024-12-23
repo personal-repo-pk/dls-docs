@@ -1,0 +1,33 @@
+---
+id: gettagapiresponse
+title: "GetTagAPIResponse"
+description: ""
+sidebar_label: "GetTagAPIResponse"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"data":{"pk":"pk","sk":"sk","tagid":"tag_id","tagname":"tag_name","context":"tag_context","taxonomyid":"tag_taxonomy_id","tag_data":{}},"hierarchy":[{"pk":"pk","sk":"sk","tagid":"tag_id","tagname":"tag_name","context":"tag_context","taxonomyid":"tag_taxonomy_id","tag_data":{},"tags":[{"pk":"pk","sk":"sk","tagid":"tag_id","tagname":"tag_name","context":"tag_context","taxonomyid":"tag_taxonomy_id","tag_data":{},"tags":[{"pk":"pk","sk":"sk","tagid":"tag_id","tagname":"tag_name","context":"tag_context","taxonomyid":"tag_taxonomy_id","tag_data":{}}]}]}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"GetTagAPIResponse"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"data":{"type":"object","properties":{},"example":{"pk":"pk","sk":"sk","tagid":"tag_id","tagname":"tag_name","context":"tag_context","taxonomyid":"tag_taxonomy_id","tag_data":{}}},"hierarchy":{"minItems":1,"type":"array","example":[{"pk":"pk","sk":"sk","tagid":"tag_id","tagname":"tag_name","context":"tag_context","taxonomyid":"tag_taxonomy_id","tag_data":{},"tags":[{"pk":"pk","sk":"sk","tagid":"tag_id","tagname":"tag_name","context":"tag_context","taxonomyid":"tag_taxonomy_id","tag_data":{},"tags":[{"pk":"pk","sk":"sk","tagid":"tag_id","tagname":"tag_name","context":"tag_context","taxonomyid":"tag_taxonomy_id","tag_data":{}}]}]}],"items":{"type":"object","properties":{}}}},"title":"GetTagAPIResponse"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

@@ -1,0 +1,33 @@
+---
+id: associatetagsbody
+title: "associateTagsBody"
+description: ""
+sidebar_label: "associateTagsBody"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"entity_type":"class","entity_id":"string","tags":[{"tagid_1":"tag_id","tagname_1":"tag_name","taxonomyid_1":"tag_taxonomy_id","context_1":"tag_context","action":"add/remove"}]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"associateTagsBody"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["entity_id","entity_type","tags"],"type":"object","properties":{"entity_type":{"type":"string","enum":["class"]},"entity_id":{"type":"string"},"tags":{"minItems":1,"type":"array","example":[{"tagid_1":"tag_id","tagname_1":"tag_name","taxonomyid_1":"tag_taxonomy_id","context_1":"tag_context","action":"add/remove"}],"items":{"type":"object","properties":{}}}},"title":"associateTagsBody"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

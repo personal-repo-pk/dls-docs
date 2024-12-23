@@ -1,0 +1,71 @@
+---
+id: enroll-multiple-users-in-a-course
+title: "Enroll multiple users in a course"
+description: "Enroll multiple users into a course within a specific organization.  Only administrators and teachers with access to the target course can perform this action."
+sidebar_label: "Enroll multiple users in a course"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVk1z2zgM/SscnNIZJU663Yt9apJ2JzPptpO0J08OsARLbChSJaCkXo//ewek/JHYTXd725xikXwAHh4+liBYM4yncN67e4Ol2OAZ7gqoiMtoO/0NY3jnY3DOtL0T2zkyPVNkY70Eg6YMfWQyj1Ya6w0a7qi0c1uaEGv09h9UkBNjPnq3MFi11luWiBIiG/SVEcKyUTxFMFiWxGwkGGnICMaaZG2iRG86ivMQWyON5cHhEyigw4gtCUWNZgkeW4IxhFjbCgqwGkSH0sDzyD7u+GiuLk2YJ7saIBQQ6VtvI1UwlthTAVw21CKMlyCLTg2wROtrWK2Kjc3SIfMvrF7keK4uNU7K5G45/U3Db3tpQhxiWZtvCKsUylMH9C55sWUOXMI9+f9k9i5fJpbzUC30xlMD15ZFydSozNUl7wRqfaI451RzVwYv5EVBsOvc4NToKyvScseJrXtTSHSpUgfPwuwrlaJKiKGjKJZYn+Rr4yW01l8JtQzjs80bjBEXylQ+SJeuydfS7N7axLwqQKw42hTElwSeDp4ylz5wFzxnL16fnu5TdNsnqc97NzDTkpeJiSR99JyZs17FjmuV/2umXiaFBaXn/bQWQL5vlV3rj7sY1L2kCkWhCu5WBbTEjDUd0ESxkf6hs00ifsb9nrDha5gdBNvJw9tPVzcD0R+0OWlGcm40LasC3hxi/hwrM6h3Ypy9J7cwVU+qUesf0NnKWN/18pTyDHe2D/fF41B6VE02CHigxA4B/rEP+D7Ema0q8pOsAoflPWvnay1zBnveNXI/PFRT2cqbfSt/BzHz0PtqYshKQzGV5W7TLgbAwoSYLB3xK/NIkYxfvz1g6/Wf+7Y+a/SGvndaI5Nk6BA/pkFe33qOnLQnTai0qQZOqtbeOoZRiPVomXr9apQ0SDxaDmJcjTJTx+r/KE0wKEAr5mbbv959x7ZztNMwpmu1qea1CpMOB9VdZBtpev0VQ99plTxQ5Bzs2cnpyeley33f+zSt0FlZmHmIpkWPtfW1GXwudvoAFwk9kkOhymj1Jp5SrtFcE0avTz8oBukLc7tgodYcXX+4fXVirsRw33UhCpsyEoreVsh9qw36yukXlr5SpJ2p/NSlmnzyY4BKQs8/E5gpQ6WAyBxKmw9aFIoWHRdby3XEimYh3CeUYaLrwUy3kJ1YlSWaz21p1S0umxDcsaMHciYGVmBfn2h3UUG0mJrgMA1/trJsFpbnCVpu1fY/2HeGlij0XUadQ+tTj41O48hlMdXtBwoYr5egId/6abuj7BQHFJDL466ARgtsPIXlcoZMX6JbrfTzt57iAsbTuwIeMFqcaTlMl1BZ1v8rGM/RMb3A7NHNMChfmZdXr4MBrmeH18nxgK7XX1DAPS02255uRL/lzy+Xst9waU30StvIsIspYfn0Irtx/Fkxtq/3RruGlF+8LUvq5MW7dzt98tPH289QwGxY0dpQ6ZuIjzrV8TF7Grq89euCpd+W4NDXfRrykDH17wcD20bj
+sidebar_class_name: "post api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Enroll multiple users in a course"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/org/{orgid}/classes/{classid}/enroll-user/multi"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Enroll multiple users into a course within a specific organization.  Only administrators and teachers with access to the target course can perform this action.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID of the user","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"Course ID to enroll users into","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"List of user IDs to enroll in the course.","content":{"application/json":{"schema":{"required":["users"],"type":"object","properties":{"users":{"minItems":1,"type":"array","items":{"minLength":1,"type":"string"}}},"title":"EnrollUsers"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful enrollment; returns user information.","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["in-process","rejected"]},"message":{"type":"string"},"classid":{"type":"string"},"users":{"type":"array","items":{"type":"string"}},"jobid":{"type":"string"}},"title":"APIResponseMultiUserEnroll"}}}},"400":{"description":"Bad request; likely due to invalid input.","content":{}},"401":{"description":"Unauthorized; invalid authentication token.","content":{}},"403":{"description":"Forbidden; user lacks permission to enroll users in this course.","content":{}},"404":{"description":"Not found; either the organization, course, or user(s) were not found.","content":{}},"425":{"description":"Token expired; the authentication token has expired.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

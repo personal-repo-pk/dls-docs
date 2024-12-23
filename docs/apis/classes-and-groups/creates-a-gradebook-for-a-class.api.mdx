@@ -1,0 +1,77 @@
+---
+id: creates-a-gradebook-for-a-class
+title: "Creates a gradebook for a class."
+description: "This API endpoint creates the metadata for a gradebook within an existing class."
+sidebar_label: "Creates a gradebook for a class."
+hide_title: true
+hide_table_of_contents: true
+api: eJzdVt9v4jgQ/lcsP7VVFujpnnijLFdV16oVsE8UtUM8JF4cO2s7bbmI/301TiAgUnTtru7heAoee358nm/8ldxD4nh/xq8tCFwYs+LziAt0sZW5l0bzPp+m0rHBww1DLXIjtWexRfDomE+RZehBgAe2NJYBS7Z+2Kv0qdQMNMM36bzUCYsVONd51I/64uIBbSadk0a7/sXFo36eIsQp2ueIPQ9EJjV9TIocLYR/1anRC2pfHxjeDiaTzvV48HV0dX//99PdaDp4Go5Hg+nomZ25Io7RuYihtcae84jnYCFDj5YKLrmGDHmfG5tIwSMuqdQcfMqP60d285WZZajX2AS0/AfI2OERt/ijkBYF73tbYMRdnGIGvF9yv84pgPNW6oRvNtEuZsDhQ1Er5D4ZblD41Ng6523QFEGgbQ0LhU9RexmHA8ybFX6w1Hm1GZ2/MmJNOw6j7LqtaZ8c1sqAoDix0R61p2OQ56rOo/vd0dlyL2yT0IzvGu8pAOulV0i9XKdmFt8x9tQF1uRovURHHg5OHRey9dNmoaz3DO0BNpvGR1P1HXoIwATzIaxhweVGuyrDP3qX/wq/ipOC1X2/LJRafwjM00Dlq1YQXPsyxLEpqqBHtopwbZYtLdpsv3BRMXhMjF23GyvYnhYnzXs2XWQLtGTLjJBL+Y7xBa2TFcRHtl/snDE6apxNxP/s9Y574woEq8nXYcMU41WYIPXSp3h2ujWcB1+4oREt8EccdZERPynXOaGGzkHSflPVvHrfB5U2rurg8318rkBs17fItLDmm4Z6EqLosBv9AkoKZiwLD5FO3h18/zFQl78DqKFFQbWAcodY1XVPqbiAVojlUyPoKTIu5E0vUp93jU26ZSDsphvYia5b1jTddHecdDziBMa4mfmjN8jyipCH1G2S3Sa0W6h5QQlJvTShwHrPsArOQAt2bU2RU8gdx/hlp9fpHb1lfxU6pk9Q0q+DPslAQ7JTIkjqQFujVEaqIgreLaowR+niwjU7RiqG3SJYTUfvyAfSCTZZO48ZO7u9m5x32I1nrshzY72rpnFoKS1aoqaghaIV5wu6pbDNVwLoMKUEdcijdhWuDhoxxWIjyCE4Z2JZGTLwaOneoyZyI8vIS452aWxGhkWhVvu1Ekq4XMpYUlouTo1RXxS+oGLWOHKskw61IHVKBqH/a5kxrFXhvgisROFOvRzcT9nw6n+jMWtCenzz3VyB1ARVYVV4QgOpZvQA8oj3t8KzbgpaanThHrXmEU+Jlf0ZL8sFOPxm1WZDyz8KpFdtNo/4C1gJC6LKrORCOvoWvL8E5fAE7GfjWnucs9Mqt7WuehH0msgIqqB/POIrXO+ENcnQ35DProM+kcgW1Q1N1Vr2EkyVdVgF/zIlH83pozlPhVQnBnGMuT+5d743Uh/uJ1Me8UUthLMw/rmFV1LU8FplagIY4ZUIayVXoJMizH9e+aTfT3axvtg=
+sidebar_class_name: "post api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Creates a gradebook for a class."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/org/{orgid}/classes/{classid}/gradebooks"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API endpoint creates the metadata for a gradebook within an existing class.
+
+**Permissions:**
+`Teacher`, `Admin`, `Superadmin`
+
+**Events:**
+`CLASS.GRADEBOOK_META_CREATE` (success, error)
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"The ID of the organization.","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"The ID of the class.","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"The authentication token.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"Gradebook metadata payload.","content":{"application/json":{"schema":{"required":["gradebook_id","title"],"type":"object","properties":{"gradebook_id":{"type":"string"},"title":{"type":"string"},"data":{"type":"object","properties":{}}},"title":"GradebookMetaBody"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"201":{"description":"Gradebook metadata created successfully.","content":{"application/json":{"schema":{"type":"object","properties":{"pk":{"type":"string"},"sk":{"type":"string"},"account":{"type":"string"},"orgid":{"type":"string"},"classid":{"type":"string"},"gradebook_id":{"type":"string"},"title":{"type":"string"},"category":{"type":"string"},"created_by":{"type":"string"},"created":{"type":"number"},"modified":{"type":"number"},"version":{"type":"number"},"data":{"type":"object","properties":{}}},"title":"GradebookMetaRes"}}}},"400":{"description":"Bad request. Check the request payload.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["400"]},"message":{"type":"string"},"name":{"type":"string","enum":["Bad Request"]}},"title":"BadRequest"}}}},"401":{"description":"Unauthorized. Invalid or missing authentication token.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["401"]},"message":{"type":"string"},"name":{"type":"string","enum":["BadCredentials"]}},"title":"InvalidToken"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

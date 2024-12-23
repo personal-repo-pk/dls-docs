@@ -1,0 +1,78 @@
+---
+id: deletes-a-teacher-or-admin-user-from-the-system
+title: "Deletes a teacher or admin user from the system."
+description: "Deletes an admin or teacher user from the LMS system.  This operation removes the user's account and associated data."
+sidebar_label: "Deletes a teacher or admin user from the system."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVk1v40YM/SuDubQNZDlfC7S6pY0DpEiyC9vpJTHWtIa2JpFmtEPKidfQfy8oyc46doG2WPTUk2WJw483j49ca4YF6eRB3xMGVYCDBRboWE8ibZDSYEu23ulEX2KOjKTAKTCFdcoHxQhphkFVcngefKE4Q3VzO1K0IsYiVmqcWVK+xADiRwUs/BKpsZNTP5CCNPWVYwXOKCDyqQVGowwwxI/u0R0dfcJQWCLrHSVHR49ueiEJTCM1HVUlhvZfazpYouPO6n40GMaXg5vBeDBV6oGqNEWiSGEIPkwe3fS3m4vRKBazz4O74ceb28Hd+PNwcPvxj8F0z15HuoQABTIGQWytHRSoE+3DwhodaSsolcCZfg/dOEPlwwKc/dqicH2p/HyLgWKvTINurCMd8EtlAxqdcKgw0sSrXMKQLcocdaTxtcy9QZ3MIScxSDMsQCdrzauyseRg3ULXdbTNUcL8jST/87wuKs586GDZpJchGAwHE4SKM3Rs0xZH9s/o1FyYmKGSDJH4Oyc7EW9UekdI8v30+Fh+dnMbtVyZV3mLXAOb9S5WQ+QquKZtLj5d/+5nw86Z8rMnTJtsU+9Yei5ZayjLvKuu/0Tie72fW3tSCBmks9i2mREDV7RfQ6TRVYU0uXW9MnjJtMFIvKDRkzrSBRLBAg8AEOknP7s2B+9Rs+UG193SdF3Lx/NDSP0KZntRavx2a8qSsm4JuTWiLAIJWEdt89EuSq3zk33n9w46QqFpvZfBL61Bc5g5uzEbjXGLQ7HO9mNd+TCzxqBrA33jH01HAo+knGeVwRJVuRWxt75qaEslpnZuu1OHop/vR7/zrK585boyd31IMTt6s80EXy3xgRCnH/ZDjBuIBq+lNNJ7NBu6dyhmQAo7s3euG2Zx5o1OdFtyI6Oc6UT3fVj014161n1Jm/rrVqdqHWnCsNwIbRVykQXmMun3TU49oAUE05Or7p2cfzg7+/ns+OSXuKLeCxL3TmPMZzEU8NU7eKE49UU/n/Xkivp7smJwqSSANLp1c98QvaO1DEXaO3FVuVQeIbe8atSnAf0dw2Scvc1T9WI5s/JWxmOsrllRVZY+cIdibwa0T1Nxjq+MwUGrLBSpqjTA1i02SsNgc2rCBZ8jRW3UjYEwXM2q/DlqTZCDxeX2uFQcCmi16sIY2xaWryJlWUGe+xfq/LDv6hHW2qDKgHMM6FJs2lNuq8XnJD6Oj0U4Sk9cQKNhnd5vl4jt6uBDt07s7hDd/vAe+/Ubu/5fSKKNIDO+cr/MwTpBvemWdddlD7Ke6Egnmy2l6iiddCvBJNKZJxbL9Vo4eB/yupbXXyoMK508TCK9hGBhJi3xsNbGkjyb7ez8yxv6cdiN4Z/UP1qBDpbVvQS3ErJBXsk/HelnXG2XMNks/nV63zmjDt9apmu30Qh67ceLNMWSvzm2N/dFjrbS2XJG1/WfAn8O0w==
+sidebar_class_name: "delete api-method"
+info_path: ./docs/apis/users/users
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Deletes a teacher or admin user from the system."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/org/{orgid}/users/{userid}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Deletes an admin or teacher user from the LMS system.  This operation removes the user's account and associated data.
+
+**Permissions:**
+`Admin`, `SuperAdmin`
+
+**Events:**
+`USER.DELETE`  [success, error]
+`CLASS.USER_ENROLMENT_REMOVE` [success, error]
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"The organization ID of the user to delete.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"userid","in":"path","description":"The ID of the user to delete.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"The authentication token for the request.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful user deletion. Returns an APIJobResponse object.","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["in-process","rejected"]},"message":{"type":"string"},"jobId":{"type":"string"}},"title":"APIJobResponse"}}}},"400":{"description":"Bad request. The request is invalid or contains errors.","content":{}},"401":{"description":"Unauthorized. The provided authentication token is invalid or missing.","content":{}},"403":{"description":"Forbidden. The authenticated user does not have permission to delete the specified user.","content":{}},"404":{"description":"Not Found. The specified user or organization does not exist.","content":{}},"425":{"description":"Token Expired. The provided access token has expired.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

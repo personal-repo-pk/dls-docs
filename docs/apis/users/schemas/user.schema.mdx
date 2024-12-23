@@ -1,0 +1,33 @@
+---
+id: user
+title: "User"
+description: ""
+sidebar_label: "User"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"uuid":"string","org":{"id":"string","type":"string","title":"string"},"class":{"status":"provisioned","uuid":"string","title":"string"},"resource":{"status":"provisioned","uuid":"string","title":"string"},"name":"string","first_name":"string","last_name":"string","email":"string","username":"string","ext_user_id":"string","ext_parent_id":"string","ext_username":"string","roles":["string"],"address":{"country":"string"},"meta":{"additionalProp1":"string","additionalProp2":"string"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"User"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["org","uuid"],"type":"object","properties":{"uuid":{"type":"string"},"org":{"required":["id","type"],"type":"object","properties":{"id":{"type":"string"},"type":{"type":"string"},"title":{"type":"string"}},"title":"Organization"},"class":{"required":["status","title","uuid"],"type":"object","properties":{"status":{"type":"string","enum":["provisioned","exists","not-found"]},"uuid":{"type":"string"},"title":{"type":"string"}},"title":"ClassData"},"resource":{"required":["status","title","uuid"],"type":"object","properties":{"status":{"type":"string","enum":["provisioned","exists","not-found"]},"uuid":{"type":"string"},"title":{"type":"string"}},"title":"ResourceData"},"name":{"type":"string"},"first_name":{"type":"string"},"last_name":{"type":"string"},"email":{"type":"string"},"username":{"type":"string"},"ext_user_id":{"type":"string"},"ext_parent_id":{"type":"string"},"ext_username":{"type":"string"},"roles":{"type":"array","items":{"type":"string"}},"address":{"type":"object","properties":{"country":{"type":"string"}},"title":"UserAddress"},"meta":{"type":"object","properties":{"additionalProp1":{"type":"string"},"additionalProp2":{"type":"string"}},"title":"User_meta"}},"title":"User"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

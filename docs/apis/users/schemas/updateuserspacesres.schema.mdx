@@ -1,0 +1,33 @@
+---
+id: updateuserspacesres
+title: "UpdateUserSpacesRes"
+description: ""
+sidebar_label: "UpdateUserSpacesRes"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"entities":[{"ext_user_id":"string","space_title":"string","space_key":"string","dls_account_id":"string","dls_org_id":"string","space_org_context":"string","space_role":"string","space_type":"string","visibility":true,"dls_teacher_id":"string"}],"count":0}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"UpdateUserSpacesRes"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["count","entities"],"type":"object","properties":{"entities":{"type":"array","items":{"required":["dls_account_id","dls_org_id","ext_user_id","space_key","space_org_context","space_role","space_title","space_type"],"type":"object","properties":{"ext_user_id":{"type":"string"},"space_title":{"type":"string"},"space_key":{"type":"string"},"dls_account_id":{"type":"string"},"dls_org_id":{"type":"string"},"space_org_context":{"type":"string"},"space_role":{"type":"string"},"space_type":{"type":"string"},"visibility":{"type":"boolean"},"dls_teacher_id":{"type":"string"}},"title":"UserSpaceEntity"}},"count":{"type":"integer"}},"title":"UpdateUserSpacesRes"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

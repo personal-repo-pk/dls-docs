@@ -1,0 +1,71 @@
+---
+id: deletes-an-empty-class-from-a-specific-organization
+title: "Deletes an empty class from a specific organization."
+description: "Deletes an empty class identified by classid within the organization specified by orgid.  Requires a valid Authorization token."
+sidebar_label: "Deletes an empty class from a specific organization."
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk2P2zYQ/SsETwmg2pu2J93ysSkCbIBiNzktjGBMjiVmKVI7HG3rCvrvxZDSrl07bZO2QE+2+PHmzeObIUfN0CRd3+rXHlLCpDeVtpgMuZ5dDLrWb9AjY1IQFHY975WRlcpZDOx2Dq3azmPOql8cty4oblFFaiC430BgVOrRPC6O1Di7Uuoa7wdHAq0ewDurXg7cRlr2cLzDsNKV7oGgQ0YSoqMO0KGudUbRlXZCsgdu9R+Zf2hRDcHdD/jEltQu0gk/iUKFjdU104CVTqbFDnQ9at73EjAxudDoaaoeOcxp/wMWGeFbwx/ptZBoESzSCY2Xs8YwcCsszIHIagmeacEh6tdR28ji1McgTqpH/f3FhfwcM7kZjMGUdoOfrWTFYRJLXSMPFMQQC4xywWauoVGpbBRKJgbGwAIOfe/nbNafk0QYTxnG7Wc0LF6i2COxK/wSAw/pNJNKYxg6KYs5ZlZBINDqzVTpDlOCBs9oUGkL/DdCL9Y5h5DnPplozwcozj8j/zRVmh377I2f313PGpYKzgU+L/rx3Lm8ApuNgIlXSlw7fyiXVAd+F6lDqyIpER9cSMqF4qmnAv3Xz+b1WRGezkcy+asDKdXyZQxJ/LrkqjeHGr4Cu4wvur041e1jWCoGbRGup/jgLJ5taKLmolsk1bmUXGiOdSuhfjgN9TbS1lmLocQZEpLyYO5S7iUBxapAe9UjZeAYkuJYCgyP+81htKwft9HqWpe1uetyq2u9jtSsx2y5aW3KJbEeZ/dOuensYlZ3Fm2+SBQEq36iOPRSPA9IqaTwYnWxujjpTm+HYOQveMf73IU6CNBI1c8xK4WBovcdBk5VRif0wGLJHikrLMoqUFcIFGTre8FA2aFu9omxU8+u3t88X6l3rNLQ95E4KUNY2otAnkZtIVifuw8P0r7zMkYwLdIxpQZD5jFD5SMun6XNST0L85SicWWiA0Zy4FP1FLkhsLiN8S6j9EhSeDKxHfzdYa6iEu52zjihlUwbo//O4wN6RTEJsPhqqnQfE3eQi2++OL5wp+8odgqWy9qcXJFHZzY+Weh/8EaYa5vxV173HlyQxAfywrM4+Vb6pq50vTwc5iOWoaUZbyrdxsSyeBy3kPAj+WmS4fsBaa/r202lH4AcbMXrt6O2Lsl/q+sd+IR/otGzORX7XH3dw+RsavMghL1UF/hBvnSl73D/+DaSl8J/wO+xhXwDsUXoSXr2/FIRGcvsS2Ow54N9J/eHvDAeW9Wby6vLD5d6mn4HL73KWg==
+sidebar_class_name: "delete api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Deletes an empty class from a specific organization."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/org/{orgid}/classes/{classid}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Deletes an empty class identified by classid within the organization specified by orgid.  Requires a valid Authorization token.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"The unique identifier for the organization.","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"The unique identifier for the class.","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"A valid authentication token required for authorization.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful class deletion. Returns a response indicating success.","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["success","rejected"]},"message":{"type":"string"},"data":{"type":"object","properties":{"classid":{"type":"string"},"class_code":{"type":"string"},"orgid":{"type":"string"}}}},"title":"APIResponseDeleteClass"}}}},"400":{"description":"Bad request. The request is malformed or contains invalid parameters.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["400"]},"message":{"type":"string"},"name":{"type":"string","enum":["Bad Request"]}},"title":"BadRequest"}}}},"401":{"description":"Unauthorized. The provided Authorization token is invalid or missing.","content":{}},"403":{"description":"Forbidden. The user lacks the necessary permissions to delete the class.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,78 @@
+---
+id: remove-all-gradebook-columns-associated-with-a-specific-component
+title: "Remove all gradebook columns associated with a specific component."
+description: "This API endpoint removes all columns from gradebooks associated with a given component."
+sidebar_label: "Remove all gradebook columns associated with a specific component."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVk1T4zgQ/StdOg2USZipPeUWMixLTVgoAidIgWK1bQ2yZNRSZjMp//etlk34CLA11Bz3FMdWt57e69ettQiyJDG6EkdeKlw4dyfmmVBIuddN0M6KkbioNMH47BjQqsZpG8Bj7ZZIII2B3JlYW4LCuxrKhywEksjlWgZU8EOHCiSUeokWclc3zqINg2t7bXd3z9DXmkg7S6Pd3Wt7O1a1trcZ3M5ig16mf/Bp4izFGj3tdGGHS7Shj5hMx7PZ4Oh8/PXw4PT0283kdHp58vfNwfhi8tfN18Pp4cXhLVxRzHMkygC9d37+Ztzs5uBy+u3NOJGJRnpZY0DPzK2FlTWKkXC+1EpkQjNnjQyV2CYSIVp9HxG0Qht0odFD4TyECsH5Ulr9U/LigciEx/uoPSoxCj5iJiivsJZitBZh1fCGFLy2pWjbbINhQ+5N7hT+JxheBK5I229C4UflCB+l3ChsERUEBwsEhQYDqo/CHMdQOd+f9QFlhVKhfxWnjKFivvIUAMHdoYWHjROBMmmkbQmhr9ZfwzbnxdQ4S0j8/cv+F/55DmXWVUIRTUcAY3HFNlMDgHMM0VsCaZNzHnKDW3zHPDC23NmANvAusmlMf7bhd+Kt1ttQu0iuPu8a9EF3QCnIEGn7SJlAG2t2trZ7jXcMPDHCWVCJeZuJGolkia9qJYIOJml1dnzeoxdty1/+2P+8zc2llb2oqHo1BgAsXuPdUit++1T1XkRNoO1SGq1+OycTdsA7vPAx3mch6+v17RwHUk08Ji9LQ2L+lLjj7lwXfM7EXNorVE6JkegMlHpJqMRIDJ0vh+vUQtrhpqCGfUEN80jB1Xsbj9Jw/dzqbXJR4RLYHsDESCLu0lbBkXex4QJYoqdOsc+D/cH+lt3+jDbnR2l0WCVr1dLKkp2Vd/kyQOudMTXjyFJ2jyY1ehYhScaqgoQpSm859IRzIEfAbEUBa/g0PZntDOA4AMWmcT4Q5B5l4NWccnvXSlpl+A2FyIynZQFlXqF/DqlEm3D0qZIM3d+ULLU9Rt5PKP5Qy4CeNcwed370NWdp0BfO1/xhEc3d07MyS1gUOtcMi/LKObNncIkGvCNObMsBl1PjKNQy1XLfCc/TJE2DdLvhbo9QajDXhc6fTNGXCq4fXfT/5H45uXsfB/wnDBsjtWVVojdMW+fEK57jIhOjh3G+ISb1p8QYP700JIe8mL7zTFSOAudcrxeS8NKbtuXX9xH9Soyu5plYSq/lgv16tRZKEz8rMSqkIXxH2U/n/WjbgV+7VbzKQP9S2hV3CGki/xOZuMPV5mLD4/vD+H7HReMDyF8I0nK7768ZTHe3aJzn2IQn4Vujh28Hm87dVZdo238BIJ7v0w==
+sidebar_class_name: "delete api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Remove all gradebook columns associated with a specific component."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/org/{orgid}/gradebook/columns/custom-components/{component_code}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API endpoint removes all columns from gradebooks associated with a given component.
+
+**Permissions:**
+`Admin`, `Superadmin` (Consumers)
+
+**Events:**
+`CLASS.GRADEBOOK_COLUMN_BATCH_DELETE` [success, error]
+`CLASS.GRADEBOOK_COLUMNS_BULK_DELETE` [success, error]
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"The unique identifier for the organization.","required":true,"schema":{"type":"string"}},{"name":"component_code","in":"path","description":"The code of the component whose gradebook columns need to be deleted.","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"The authentication token required for accessing this API.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"202":{"description":"Successful deletion of gradebook columns.  Returns an API response object.","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["in-process","rejected"]},"message":{"type":"string"}},"title":"APIResponse"}}}},"401":{"description":"Unauthorized access.  The provided authorization token is invalid.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["401"]},"message":{"type":"string"},"name":{"type":"string","enum":["BadCredentials"]}},"title":"InvalidToken"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

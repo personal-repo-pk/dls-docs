@@ -1,0 +1,33 @@
+---
+id: classdata
+title: "ClassData"
+description: ""
+sidebar_label: "ClassData"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"status":"provisioned","uuid":"string","title":"string"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ClassData"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["status","title","uuid"],"type":"object","properties":{"status":{"type":"string","enum":["provisioned","exists","not-found"]},"uuid":{"type":"string"},"title":{"type":"string"}},"title":"ClassData"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

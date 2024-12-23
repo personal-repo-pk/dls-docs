@@ -1,0 +1,71 @@
+---
+id: unenroll-multiple-users-from-a-course
+title: "Unenroll multiple users from a course"
+description: "Unenroll multiple users from a specific course within a particular organization.  Only administrators (ADMINs) and teachers (TEACHERs) with access to the specified course can perform this action."
+sidebar_label: "Unenroll multiple users from a course"
+hide_title: true
+hide_table_of_contents: true
+api: eJzdVk1vGzcQ/SsDnmxgLTlpelFPjq22AuymsOOT4cOIO9LS4pIbzqwTVdj/Hgx3ZcuWkAQ+9iSRXL558/WGGyO4ZDO5Mx9bvwK04mJgc1+Yktgm1+jaTMxtoJCi91C3XlzjCVqmxLBIsQYEbsi6hbNgY5uY4KuTygVAaDCJs63HBDEtMbj/UBFHAJ+CXwOWtQuOJaHExHB0dnE1+4ePAUMJQmgrtXH0eXp2/vf0mo8zLqC1xAwSQSramqZya9tigIbSIqYapHI8ODUyhWkwYU1CST3emIA1mYmJaelKUxinjjYolXnt/acd6jC7gLjIpjUEpjCJvrQuUWkmkloqDNuKajSTjZF1owZYkgtL03XFk03rkfknVs97f2YXfZS/Vs5W6nW7zUVOwRsJnLVSxTT4tKVREZbZpZdE9FsK4mwfAIkrCrCICfAVyK8TudePuYmBifX8/emp/ry0e9PmTC9a/+RzTUH+gETSpsA5AOCCpnpLwcYgFETBsGn8wHn8wIq42WcU5w9kRWsjxYaSuJ4PC0rL+8wLQ6GttV9cOGlSVH7ZcUWh0tx3hamJGZd0wO3iKe+Hzvp0Pp9gSrjW1AjVB6h0XWEe4vwgWFcYceJzov+dXQ+RvtLevWVK0xxL03X64YdDof+IJWg2iWUE5xXZ1XYJz000ehHvHuvdPtYsPKJ3JcQEtWN2YfmycPqCOgT22z6Y0gePdsV7IK8ao++arAC9Mhyy8GHfwjVxbJMlONpVrGIAKdQNxT+GEAUWsQ3lAeD3v+8Dn211S9unQgb61mi3vL6eS0iqWJqJKcmTUJYuqczEjGNajjdZsbpxLibi8Waoqm7c+3+i/MZZqXNnL2IukaEgzvtbWWP/SrFttIAfKXHP8t3odHS6JwF/tiGrKHon69z7NQZcai4HFgU8dygXGT2RR6EStLFyEBnyULgkTEGvXikG6Q24WbNQDUeXVzfHI5gJcNs0MQmDTYSSiyaUB6xWGEqvOyxtqUg7s+MlpSWFzGOAykXZLzMY2FgqIDJH6/qDGoWSQ8/Fs+VlwpLmMa4yyjBp9GCuE3THV40SLRbOOqXFtorRn3h6JA8psgKH5Ugbv4ksNWZ9GtT5J+O2L8XXSdo8V9H/ZF4Pqib0TcaNRxeyTCavvvYNcafT2xRmsh3iQ13o1vOM3WkLU5i+Me4LU0UWhdhs5sh0m3zX6faXltLaTO7uC/OIyeFc2+ZuY0rH+r80kwV6ph9E/+h6GITH8OOnw0EHt/IfVPwf0be6MoVZ0frptaKT/E18fvlR8QZq24B3OgWHt4QGrj9V+Wtk597efNZXwZPyXUwvp5+npuu+A5mzvYA=
+sidebar_class_name: "delete api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Unenroll multiple users from a course"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/org/{orgid}/classes/{classid}/enroll-user/multi"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Unenroll multiple users from a specific course within a particular organization.  Only administrators (ADMINs) and teachers (TEACHERs) with access to the specified course can perform this action.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID of the user","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"Course ID from which to unenroll users","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token for authorization","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful unenrollment; returns user information","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["in-process","rejected"]},"message":{"type":"string"},"classid":{"type":"string"},"users":{"type":"array","items":{"type":"string"}},"jobid":{"type":"string"}},"title":"APIResponseMultiUserEnroll"}}}},"400":{"description":"Bad request. Check request parameters.","content":{}},"401":{"description":"Invalid or missing authorization token.","content":{}},"403":{"description":"User lacks authorization to unenroll users from this course.","content":{}},"404":{"description":"Resource (organization, course, or user) not found.","content":{}},"425":{"description":"Access token has expired.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

@@ -1,0 +1,33 @@
+---
+id: updaterolerequest
+title: "UpdateRoleRequest"
+description: ""
+sidebar_label: "UpdateRoleRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"ext_data":{"email_template_id":"string"},"target_role":"admin"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"UpdateRoleRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["target_role"],"type":"object","properties":{"ext_data":{"type":"object","properties":{"email_template_id":{"type":"string"}},"title":"UpdateRoleExtData"},"target_role":{"type":"string","enum":["admin","teacher"]}},"additionalProperties":false,"title":"UpdateRoleRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

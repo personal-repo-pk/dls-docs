@@ -1,0 +1,77 @@
+---
+id: update-a-users-role-within-an-organization
+title: "Update a user's role within an organization."
+description: "Modify a user's role within a specific organization.  This operation allows for promoting or demoting users."
+sidebar_label: "Update a user's role within an organization."
+hide_title: true
+hide_table_of_contents: true
+api: eJzlVt9v2zgM/ld0ermtcJx23YA7v2VdDijQ7oo0feqCjLGYRKsteRLdJjPyvw+UnF9NVuyGu6fLk2OL1Efy40c2kmDmZXYv7zw6UYKBGZZoSI4SqdDnTlekrZGZvLZKT5cCRO3R/e6FswWKJ01zbQQIX2GupzoX1s3A6G/AVqkQw7n2wlbowgsBRWGfvJhaJypnS0vazIR1QmH7zM59+sl8MicnN+hK7b22xmcnJ5/M554qtUnEbV2hC8/i1YU1vi7R+defo1H/EQ215y+uere3af/j4O+rq+v+x+H47rY/GF/3h73x3c2H3rAv7n2d5+h9ItA560afZSIrcFAioeO8NNJAiTKT1s20konUnIsKaC6fJ2g4x73oxeUHYaeC5hiiSmUiHX6ttUMlM3I1JtLTsmDnXpdVgTKRuKgKq1BmUyg8H8jnWILMGknLKpwkp81MrlbJBhk7/wlo+2gEWVFXCgj/M1y9mubWtclYw5sjKHQHAPksGtJ5zBzZBzSBJbDr5F+GOore0NN7q5Z8Yh/UByAQ6/u2CdvksG0CRpVbQ9w1WSOhqoo2ju4Xz46aHQxb+PeSwM2QxuyD262FZydfMCfmoeO+IY2eDXFBYwW0G8iPTpagizFhWRVAONbqaJkkaQqJuwtBDWyB/QVxyJI/7kA7sE4kmrrkCICbUCaSEPI5Ojlix6CU5uihuNnB1Vbj8NZBLIFcse1+dcMLX1njY2RvTk8Pq3QbO3haF5HYQZfaSq2t/1GJXs6uJ6Dav5QUbTqVs4wp0JW9oJKjVSJL9B5mRzK6W4/ezeWghc05WSXy7bGw34MSLXtTIS7mmD+s/4utggkwSkysWoZmChrn95MRLzg7vODSPEKhFatzUGEz22/G2KTHnJ0fc+br6VTnGg2Jaqvr7F23F22ql4peKKlQaDSq345c8fbwijDAjCUxtbVRR3C9eXdo1F4U9WYOXuCiYv49Nw/Fo7lVrLB1YAXrbCa71s26TRgOq24YXt0mCvKqG0nYCU2USI/ucT1TalewFhJVWberCt8BPwOnOpzeztnbd+fnf5yfnv2Z1r7zhJ46b1IsJimU8M0aePJpbstuMelwPboHWqrwUfAFrG/M7sFW4/oLCCr5TE+OKMaGmc+0oG35Fcv51AYmrzuagz8A81dt8igGmiIJQ5lhX++ZpdvdY7NVGHF1fZuKSxK+rirrqK1UZwIe1XMngeELQmcgSoFPog6s9wqhkEAXsSk4HJ/EWzeLh9BGTOriIYlHkJzGx405R+zKdrPpbVSuWCZC03q1iX7ItvHwsNC87OAUHZocQ/sxEWJ+ztLT9JTTWVlPJQQpaudnlMgfLFxmf9F6nvdmy97/z+LWairhgrpVAZGmodWatl3veY2TiczW21zdkjbbLFG7TTtK5Nx6YrumYc7duWK14tdfa3RLmd2PEvkITsOEW+C+kUp7flabeffDqrwatKPutfiJxfFoaO1LMEumFBQ1/5OJfMDlZmHlfeyXQb20Mv4CojbHKx6F7R7IOYsfLyKIzpBdbI0PRjUHFC1Yuyt68exoR7Zv7oYykZN20yvDiigdPPGQhqeI04achOke3jWyADOrw8yW0SX/vgNXxZsM
+sidebar_class_name: "put api-method"
+info_path: ./docs/apis/users/users
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update a user's role within an organization."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/org/{orgid}/users/{userid}/update-role"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Modify a user's role within a specific organization.  This operation allows for promoting or demoting users.
+
+**Permissions:**
+`Admin, SuperAdmin (Consumers)`
+
+**Events:**
+`CLASS.ENROLLMENT_USER_META_UPDATE [success, error]`
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"The organization ID of the user.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"userid","in":"path","description":"The ID of the user to update.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token for authorization.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"Data required to update the user's role.","content":{"application/json":{"schema":{"required":["target_role"],"type":"object","properties":{"ext_data":{"type":"object","properties":{"email_template_id":{"type":"string"}},"title":"UpdateRoleExtData"},"target_role":{"type":"string","enum":["admin","teacher"]}},"additionalProperties":false,"title":"UpdateRoleRequest"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful user role update response.","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["in-process","rejected"]},"message":{"type":"string"}},"title":"APIResponse"}}}},"400":{"description":"Bad request.  Check request parameters and body for errors.","content":{}},"401":{"description":"Invalid or missing authorization token.","content":{}},"403":{"description":"Insufficient permissions or invalid user role. Access denied!","content":{}},"404":{"description":"User not found.","content":{}},"425":{"description":"Access token has expired.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

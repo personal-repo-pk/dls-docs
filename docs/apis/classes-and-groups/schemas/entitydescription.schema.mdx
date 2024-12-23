@@ -1,0 +1,33 @@
+---
+id: entitydescription
+title: "EntityDescription"
+description: ""
+sidebar_label: "EntityDescription"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"dls_org_id":"string","space_key":"string","space_title":"string","dls_account_id":"string","space_code":"string","space_type":"string","address":{"country":"string","street3":"string","street4":"string","city":"string","post_code":"string","house_no":"string","street1":"string","street2":"string","region":"string"},"space_description":{"address":"string"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"EntityDescription"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["address","dls_account_id","dls_org_id","space_code","space_description","space_key","space_title","space_type"],"type":"object","properties":{"dls_org_id":{"type":"string"},"space_key":{"type":"string"},"space_title":{"type":"string"},"dls_account_id":{"type":"string"},"space_code":{"type":"string"},"space_type":{"type":"string"},"address":{"required":["city","country","house_no","post_code","region","street1","street2","street3","street4"],"type":"object","properties":{"country":{"type":"string"},"street3":{"type":"string"},"street4":{"type":"string"},"city":{"type":"string"},"post_code":{"type":"string"},"house_no":{"type":"string"},"street1":{"type":"string"},"street2":{"type":"string"},"region":{"type":"string"}},"title":"AddressDescription"},"space_description":{"required":["address"],"type":"object","properties":{"address":{"type":"string"}},"title":"SpaceDescription"}},"title":"EntityDescription"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

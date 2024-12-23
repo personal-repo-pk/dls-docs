@@ -1,0 +1,71 @@
+---
+id: enroll-a-user-in-a-class-using-a-class-code
+title: "Enroll a user in a class using a class code."
+description: "This endpoint enables users to enroll in a class using a valid class code.  The class code is a unique identifier for each class."
+sidebar_label: "Enroll a user in a class using a class code."
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVk1v4zgM/SuCLjsDuGlnj77NFp1FFx3sou2ciiBgLMbWVJZcUU4bBP7vC0pOo3y1nT2tTzZJk08U+ci1DFCTLB/kpVNIclpIhVR53QXtrCzlfaNJoFWd0zYItDA3SKIn9CSCE2i9M0ZoK0BUBohV2tYCxBKMVqOscgonQtw3mAmEJgGit/qpR6EV2qAXGr1YOC8QqiaZTmQhO/DQYkDPQNfSQouylFBVrrdBK1lIzVA7CI08xI8nYgTWEPrfSIyuOJbHp157VLIMvsdCUtVgC7Jcy7DqOCwFr20th2GajJHCH06t2GI38m1SirlTK1E5G0BbTg3H3UQRCgJENCkvKZ0tJiz8E9rArqHrjK6AXZ//JPa/zqBtQT/I6GjGCZaFxJcw885sXvm4M634lsfTuPlPrALn2LsOfdBI7DA3Ltey1fYGbR0aWX4p9hORXC+0pzBLV/OhHwz8mn0HHm0YAR21YMAbh0cNsAVtPhDO4+KtODGhB8pCou1bvgEKPVeaLGTgOkYvp0OR38v7CEApj0RZlBMXFevWr47VZyGDDoxU/iD0X0ePufwqVtu1vWRosYiHYdhvgSigzllKEX+/uDis9bu+qpBo0Zu8hMUtht7bvKyFwgDa0H8ub27hePj3a3hjuc0NeA8rpouALe17VoZmIxHMIqmwwPk6feQdUUjqoMLZI65e39kwHuglvMrGzksfKemvXwyokBQg9B85y24/HtRLHuK0nvEe0+6d/JTJmIvT/vMcnLY63j7DTmaOqZea9FwbHfJDzJ0zCHYDcWy4kzBTut9tljtGcsX1s7q2nXdV6pzM6i+nbbSiW6SOdaxtMTRO8ShyFC+RJ1Ipz8fk0vn6dWgN56kpzp51aM4iOYyczfV/ux0sVy/QdiljO1WQ8c4e/e5qMp7dVWSEuqvY8uiufKTPrXDDk7tm6X4zFsyZb2uaUdwrieX3oe3CxZsaMx5JCkmAVeJP7/qOZCGX6Ckx0JfJxeTiYPp/623Fr8BlE+dsCxZqHsNV8ldk5ERF9O7RQEAluAEjJVHab24QfJzg39kHRjq7W1HAVny6+X73eSKug6C+65wPJCqPEOIqZNWRqA1YZVgy5imajeW7C6lGG3GMruJelT63uxQjJ3KVTooWAnoNhopt5NqDwrlzj9FLh37hfMuKeW8e87PG/Wux0JVmWFQ1zpkzg0s0wjtix7aecDdxkbcQuXoslzRQeKsj9MeWwmwd3L+r9XYe/C+WzpEhmMzOOwM6ckzv4/6Q+vphs4JyJZb5Onq8taeFbJgXyge5Xs+B8Ic3w8Dipx65/B+mhVyC13zcuOkqTfyuZLkAQ/hGxj7djpPss/jVjffoQTcD0/KEW4Lp+UsWMo6QbPUeeLVpEBT6iDjpLxOus/s05Tb/H0z5odj88bWqsAtv2k4zfv3n77t7Wcj5uHi3iVs8PDMrwXPC6mKe0pxn2VoasHUPNdsmn/z8C8kLlnc=
+sidebar_class_name: "post api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Enroll a user in a class using a class code."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/accounts/{accountid}/enroll-with-classcode"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This endpoint enables users to enroll in a class using a valid class code.  The class code is a unique identifier for each class.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountid","in":"path","description":"The unique identifier for the user's account.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"description":"Request body containing the required data for class enrollment.","content":{"application/json":{"schema":{"required":["class_code","ext_role","ext_user_id"],"type":"object","properties":{"ext_user_id":{"minLength":1,"type":"string"},"ext_first_name":{"minLength":1,"type":"string"},"ext_last_name":{"minLength":1,"type":"string"},"ext_parent_id":{"type":"string"},"ext_username":{"type":"string"},"ext_email":{"minLength":1,"type":"string"},"ref_id":{"type":"string"},"ext_role":{"type":"string","enum":["student","teacher"]},"class_code":{"minLength":1,"type":"string"},"address":{"type":"object","properties":{"country":{"type":"string"}},"title":"UserAddress"}},"title":"EnrollInClassBody"}}},"required":true}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful enrollment. Returns enrollment details.","content":{"application/json":{"schema":{"required":["entities"],"type":"object","properties":{"entities":{"type":"array","items":{"required":["dls_account_id","dls_org_id","ext_user_id","space_key","space_org_context","space_role","space_title","space_type","status"],"type":"object","properties":{"ext_user_id":{"type":"string"},"space_title":{"type":"string"},"space_key":{"type":"string"},"dls_account_id":{"type":"string"},"dls_org_id":{"type":"string"},"space_org_context":{"type":"string"},"space_role":{"type":"string"},"space_type":{"type":"string"},"visibility":{"type":"boolean"},"dls_teacher_id":{"type":"string"},"status":{"type":"string"}},"title":"UserSpaceEntityInprocess"}}},"title":"JoinSpacesResp"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

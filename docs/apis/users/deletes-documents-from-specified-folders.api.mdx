@@ -1,0 +1,79 @@
+---
+id: deletes-documents-from-specified-folders
+title: "Deletes documents from specified folders."
+description: "This API endpoint deletes documents from the specified folders.  It supports partial deletion."
+sidebar_label: "Deletes documents from specified folders."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVttu20gM/RWCT20gy85li129pU0WCNBig6R9SozNWENb04xm1BnKiWvo3xeU5EviBMEWARYL5MmyxCEPOYfkWSKrWcTsCs8DTSmQyyniOEFNMQ+mYuMdZvi1MBGOz8+AnK68cQyaLDFF0D6vS3IcYRp8CVwQxIpyMzWkYeqtphBTgDOGWFeVDxyhUoGNsp0L41167a7d3t45hdLEaLyL2d7etbv5qyIHx3lOMd50JhcUK+8idQZ7cHMwGt1kcFm3RtN64xP8FJS1W1jWQNP+5IebDM4fQYG4dpUCXPqSthIs1QKcZyjUnGBC5PoiaHhH6SxNQNcE7KHaJPK+C3bUwvyoNAT6UVPkFOBTQfltW6/+ndRFlcQUIkx9AArBh5higpsPmF0t0amSMEOV5752bDQmaOSSKsUF7t4cwdmJlENC9WfEqUQ1gTRmHGpKMPLCittoysoSJkj3lfWaMJsqG8UgL6hUmC2RF1VrycG4GTZNssZE91xHCv8Kkxx4ZUBj8dZTRb4fjEby8xDFM6zZ8AQTzL1jciyHVVVZkysxG36P4mG5i8BPvlPOcmXBVxTYdPF7Vr1sSI7N6rm3VCGohZSTqXzZQ9M0grruMPemxjHNKMhNIRtuq/qltmxO+lxXffX3CmiTYEu//xXiX3aCTQviYPRhlyWrCRHf2PLGlm22HD01U54a8S+O99eiDSuu46d2Qj4eiQmSq0tZ8wJ73CRYUoxq9oRpk/TD/HkfkuVFlxWOt+v1UenV+6arUklceI0ZdquyXWZcYIbDfhXF4XK9yJqh7II4XK7XSDNcN9iwlMvABCOF+WoV1sFihgVzlQ2H2saBijMV9IALHwb7R78dHv5+ONr/I63j4I4iDw5SspNUleqnd+ouprkvh3Yy0MHMabizpzTNQSLIPjFu6tua9Kl+E6Q7J/6sXS6PyhpetNcseYCquRDqdzcLymkolVMzkszgznBh5C18/nKZPpBK7G/JDSYqkn7spOXQPVNwyrZRYgJ1pRUbN+uiamJlbGzDBW8pJl3UlUEE42BS29ukMyEOhubr45JxKNtgKRxrbbrE7CIBwyKu/F3s/bDv85GFbgJUGy0pBJfr6uqzn47SkVCs8pFL1fK7lw4nTwvKXTH5uOjLTQO96dT/VKf284LpnoeVVcbJTbctuuzb/mqlWqV1sm0FW/f9lG1LyHVOmGDX/uMECx9ZPC2X0hffgm0aef2jprDA7Gqc4FwFoybSpldL1CbKs17LxmfJ8+6iV6Dv4VnV/GSKq03mZI/Nla3lHyZ4S4sHOl2E8ivAWQnmX8CyKW4jS6AgpSm0Zeq+C4sr3jq5s5BkFq6H+snp59Ovp9g0/wDraAAW
+sidebar_class_name: "delete api-method"
+info_path: ./docs/apis/users/users
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Deletes documents from specified folders."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/accounts/{accountid}/users/{extuserid}/documents/multi"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API endpoint deletes documents from the specified folders.  It supports partial deletion.
+
+**Permissions:**
+`Open Access`
+
+**Responses:**
+* `200`: Successful deletion of all specified documents.
+* `206`: Partial deletion successful.  Some documents may not have been deleted (e.g., due to permissions).
+* `400`: Bad request.  Check the request parameters for errors.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountid","in":"path","description":"The ID of the account.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"extuserid","in":"path","description":"The ID of the user.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful deletion of documents.","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"object","properties":{"entities":{"type":"array","items":{"type":"object","properties":{}}},"count":{"type":"integer"}},"title":"MultiDocumentResponse_success"},"error":{"type":"object","properties":{"entities":{"type":"array","items":{"type":"object","properties":{}}},"count":{"type":"integer"}},"title":"MultiDocumentResponse_success"},"count":{"type":"integer"}},"title":"MultiDocumentResponse"}}}},"206":{"description":"Partial successful deletion of documents.","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"object","properties":{"entities":{"type":"array","items":{"type":"object","properties":{}}},"count":{"type":"integer"}},"title":"MultiDocumentResponse_success"},"error":{"type":"object","properties":{"entities":{"type":"array","items":{"type":"object","properties":{}}},"count":{"type":"integer"}},"title":"MultiDocumentResponse_success"},"count":{"type":"integer"}},"title":"MultiDocumentResponse"}}}},"400":{"description":"Bad request.  Check request parameters for errors.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["400"]},"message":{"type":"string"},"name":{"type":"string","enum":["Bad Request"]}},"title":"BadRequest"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

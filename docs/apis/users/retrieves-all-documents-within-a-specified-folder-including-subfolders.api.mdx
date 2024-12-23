@@ -1,0 +1,71 @@
+---
+id: retrieves-all-documents-within-a-specified-folder-including-subfolders
+title: "Retrieves all documents within a specified folder, including subfolders."
+description: "This API endpoint retrieves all documents residing in a given folder, encompassing all subfolders within that folder's hierarchy.  It provides a comprehensive list of documents associated with the specified account and user."
+sidebar_label: "Retrieves all documents within a specified folder, including subfolders."
+hide_title: true
+hide_table_of_contents: true
+api: eJzlV99v2zYQ/lcOfOkGyHbSdMDmt3TdhgAbVmTtU2EUtHi22FCkwjs68Qz978NRku38nNO03cOeLIvHu+8+3vE+bRTrJanpB/U24gIj+hJJzQplkMpoG7bBq6l6V1mC07dngN40wXqGiBwtrpBAOwcmlKlGzwQRyRrrl2A9aFjaFXpYBGcwFoC+DHWjiWRdtlGad2sEV5Yr64Erzb39C4LKYtSxrNZjgDOGJoaVNRISxFHECj3ZFYKzxBAWezA0USitZjTZM3CFQA2WdmHRgC7LkDyD9gYSYRyrQjU66hoZo7CxUV7XqKaqt7RGFcoKE43mSt2lByF5e5kQrEHPEiXCIsQcVyK8oCGoxIp4mWxEo6YcExaKeO0kGtm6cagKhdeNCwbVdKEdiUFZYa3VdKN43WRLjtYvVdsWW6h4zRLpAKh4zRi9dnD2RoiyS48GOGzBfjWI3cHuEF4mjOsnstn5ELiEUht95TyGeRFivY+4Xz0AcOmEn3/B+2d+0A6ytZAqWBfWMYrDXVXexDjw9myQTQwmlVzKtsOA9jtAtnxjsEO9fZTq/HgwtdsylW3fnmLLWI+eQLDY/xfslilSiIeWazbOCBu9tF7L+y8KbCa+qAmekGT95dGR/NzEcwqUyhKJFsnBYA5l8Kytz5PCg45Rr+WGf9MTCGH+CcuORzFFz+JZN42zZU5k8onE/eYuvG6rXPkxNBjZduDkphmeb1q2EiN1EfoV6xmXGPNSx/l956LYciZugH3ep6faVpZf3cfHmTeSQh5zc21ATgOJC3D2At0aTEK5/WrbzdEQwfqVdlZ6YxhhX5AWYs2Jfs7nfTvFQqFPtagHyWTWFqpGIr28x7Qt+hp92MdrbeC8S1bN9tl7rc3wvu2Iq5GrYNRULTEjlkk3VZN+xNJks53b7UQmGk022/HYTrZdqApFGFfDzE/RqamqmJvpZGIcjTQtdTQjrkIcHb/64eTkx5Oj45/GiUZXSDx6OUY3H+ta/x28vqJxGeqJm49MtCuc3Ok7gyuQCNIV1i9CpqLP8L1gvLPj1+TLrlctr3OfSgagE1dSrN2BZhFTa6+XmBujF1Law+9//DUW2USpaUJkAg4X6EdzTSKBbjoR51tZkBkrIDVGs5RYjmqQtXWUw8XgkIou6mBAovjmyV0UnUmnD7fbJeNYd1cMnBpju8TcugDLIgbDFfV+pLhzPjLvbYRmp0ylruW4On6Ox0fjI6msJhDXOpd1fxGePyBPB3b2xOCgTq0vXcrSdSdLx7fPZLNrq/+DKO5blfGaJ43T1gvbuU02fdN9GCSylO90Xy6nvqan+8J013qzQlWBWDxsNlKT76NrW3ndjS1pSGNJz93eIHrwLL4772fW9/DZ8vHeZC9wfVO4rrRLYqZk7B4O8Eki8REkO0X6XCCHisBHwNxUns8F9BSN9wioexTmc5EdJOcegbQvH59dPw+ptseKZpCFu+Az+ROtRP9arXb3u/deiP1L7df7ALenub1RnsbXLZSHfPJ+Brrd1daK+qlQG4yZz279tCyx4b2dd5SYHMRWzfz2yzvVtv8AXG8qBw==
+sidebar_class_name: "get api-method"
+info_path: ./docs/apis/users/users
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Retrieves all documents within a specified folder, including subfolders."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/accounts/{accountid}/users/{extuserid}/documents"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+This API endpoint retrieves all documents residing in a given folder, encompassing all subfolders within that folder's hierarchy.  It provides a comprehensive list of documents associated with the specified account and user.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"accountid","in":"path","description":"The unique identifier for the user's account.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"extuserid","in":"path","description":"The external ID assigned to the user.","required":true,"style":"simple","explode":false,"schema":{"type":"string"}},{"name":"folderid","in":"query","description":"The unique identifier for the folder to search within.","required":true,"style":"form","explode":true,"schema":{"type":"string"}},{"name":"classid","in":"query","description":"Optional class ID for filtering documents.","required":false,"style":"form","explode":true,"schema":{"type":"string"}},{"name":"productcode","in":"query","description":"Optional product code for filtering documents.","required":false,"style":"form","explode":true,"schema":{"type":"string"}},{"name":"assigned_path_id","in":"query","description":"Optional assigned path ID for filtering documents.","required":false,"style":"form","explode":true,"schema":{"type":"string"}},{"name":"item-code","in":"query","description":"Optional item code for filtering documents.","required":false,"style":"form","explode":true,"schema":{"type":"string"}},{"name":"cursor","in":"query","description":"Optional cursor for pagination.","required":false,"style":"form","explode":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"A successful response containing an array of Document objects.","content":{"application/json":{"schema":{"type":"object","properties":{"entities":{"type":"object"},"count":{"type":"integer"},"cursor":{"type":"string"}},"title":"DocumentResponse"}}}},"400":{"description":"Indicates a bad request, likely due to missing or invalid parameters.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["400"]},"message":{"type":"string"},"name":{"type":"string","enum":["Bad Request"]}},"title":"BadRequest"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

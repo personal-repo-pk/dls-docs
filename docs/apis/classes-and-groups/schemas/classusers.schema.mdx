@@ -1,0 +1,33 @@
+---
+id: classusers
+title: "ClassUsers"
+description: ""
+sidebar_label: "ClassUsers"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"first_name":"string","last_name":"string","ext_username":"string","name":"string","email":"string","roles":["string"],"address":{"country":"string"},"enrollment":{"role":"string","classrole":"string"},"org":{"id":"string","type":"string","title":"string"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ClassUsers"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["enrollment","org"],"type":"object","properties":{"first_name":{"type":"string"},"last_name":{"type":"string"},"ext_username":{"type":"string"},"name":{"type":"string"},"email":{"type":"string"},"roles":{"type":"array","items":{"type":"string"}},"address":{"type":"object","properties":{"country":{"type":"string"}},"title":"UserAddress"},"enrollment":{"type":"object","properties":{"role":{"type":"string"},"classrole":{"type":"string"}},"title":"EnrollmentMeta"},"org":{"required":["id","type"],"type":"object","properties":{"id":{"type":"string"},"type":{"type":"string"},"title":{"type":"string"}},"title":"Organization"}},"title":"ClassUsers"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

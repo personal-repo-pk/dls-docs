@@ -1,0 +1,71 @@
+---
+id: generates-a-unique-code-for-a-class
+title: "Generates a unique code for a class."
+description: "Generates a unique code for a class, identified by its Org ID and Class ID.  Requires authentication."
+sidebar_label: "Generates a unique code for a class."
+hide_title: true
+hide_table_of_contents: true
+api: eJy9lU2P20YMhv8KwVMCKLZb5KTbYrcNFkiQYjc9GUYxlmhpsqMZ7ZDj1BX03wuOZHs3DtqmbXKyPB/kQ/IlZ0AxDWO5xutQE+OmwJq4irYXGzyW+IY8RSPEYCB5+5gIqlAT7EIEA5UzzAXYmrzYnaUatgewwvA+NnB7A8bXcK1n4PZmAXBHj8lGtZWk1SuVUTcLLLA30XQkFBVmQG86whJDbGyNBVpF6Y20+Dnfh5aOXCeKmOmkJQixMd7+cfISJ4AaS4mJCuSqpc5gOaAcenXIEq1vcByLE0OO8T9RZAvwyUpr/f+GdZWkDXE2coRrydQUL/CunqUbJDyQP9Gpc2L5Oo6NHuY+eCbW/R9XK/157vY+VRUx75KbNNNMWtKg4Y4kRc+ZYF6nes6UHlacKnghL2rY9L2b8ZcfWa0PT+jO3OupXL+pCRXzzB22H6kSlVkMPUWxE/WTs1/KNYoVR1MTZBVrj9wR4zjq7uvV68uYf7LS0qX44EIKU+R2Tx5ubxg+GQYfBHYh+fp58NlZR9KGWvUXOAeiMixxGWKzHHKbjMtsnHg5zJKdV15pgMtjkrNUdiEHPId3Pd3L3fomhtQzFrinyFNIPyxWi9WFpn5OvtJP46wcspg6401jfQMzRwHkY3CuIy9cZOuRXK6zFiHnhcF6MPCWTPR69Z3aIL0B9wcW6uDF23f3LxdwK8Cp70MUhiqSET2tJi+9tsbXTldYkjZjPiZkKi3MM6SjIGdTe+NsPf09C1HJmUNlp43OCEVrHBdnz000NW1DeMhWeoq7EDvd2Cb38DRWzRLtdrayisVVG4J75WhPDmJgNeybBY5FLnJnssrndv8Hc3jxeY2Gs4i+2xyfm0jod1n2zliv4aTolGbS7FqnOhZYHof7XDhdOs/as3KxwJN2NwW2qv9yjcOwNUy/RjeOuvyYKB6wXG8K3JtozVaVvR6wtqzfNZY745j+IkMv5qjql/B1j8oXQ54XjT9oLxmX9B8W+ECH07um0/wb8P3tc/MvgI+FGTdjcXxlNL3T7lVVUS9P7l2Ma30wTiPsl/f3H3Ac/wSXtPkq
+sidebar_class_name: "post api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Generates a unique code for a class."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/org/{orgid}/classes/{classid}/class-code/generate"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Generates a unique code for a class, identified by its Org ID and Class ID.  Requires authentication.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"The unique identifier for the organization.","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"The unique identifier for the class within the organization.","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token for the request.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful code generation. Returns the generated class code.","content":{"application/json":{"schema":{"required":["class_code"],"type":"object","properties":{"class_code":{"type":"string"}},"title":"GenClassCodeRes"}}}},"404":{"description":"Either the organization or the class with the given IDs was not found.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

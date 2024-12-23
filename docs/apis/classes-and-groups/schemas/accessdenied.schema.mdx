@@ -1,0 +1,33 @@
+---
+id: accessdenied
+title: "AccessDenied"
+description: ""
+sidebar_label: "AccessDenied"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"statusCode":"403","message":"User role(s) are not valid. Access Denied!"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"AccessDenied"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"statusCode":{"type":"string","enum":["403"]},"message":{"type":"string","enum":["User role(s) are not valid. Access Denied!"]}},"title":"AccessDenied"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

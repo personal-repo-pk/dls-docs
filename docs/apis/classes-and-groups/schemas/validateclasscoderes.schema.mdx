@@ -1,0 +1,33 @@
+---
+id: validateclasscoderes
+title: "ValidateClassCodeRes"
+description: ""
+sidebar_label: "ValidateClassCodeRes"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"class_code":"string","dls_class_id":"string","teacher_id":"string","org_id":"string","space_title":"string","space_key":"string","space_org_context":"string","meta":{"title":"string","startdate":0,"enddate":0},"space":{"dls_org_id":"string","space_key":"string","space_title":"string","dls_account_id":"string","space_code":"string","space_type":"string","address":{"country":"string","street3":"string","street4":"string","city":"string","post_code":"string","house_no":"string","street1":"string","street2":"string","region":"string"},"space_description":{"address":"string"}}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ValidateClassCodeRes"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["class_code","dls_class_id","meta","org_id","teacher_id"],"type":"object","properties":{"class_code":{"type":"string","description":"class code/course key/class key of the class"},"dls_class_id":{"type":"string","description":"dls-class-id in that org"},"teacher_id":{"type":"string","description":"dls-teacher-id, uuid of the creator of the class in that org"},"org_id":{"type":"string","description":"org-id of the class"},"space_title":{"type":"string","description":"space title"},"space_key":{"type":"string","description":"unique identifier of the space of a user"},"space_org_context":{"type":"string","description":"institutional or shared"},"meta":{"type":"object","properties":{"title":{"type":"string","description":"title of the class."},"startdate":{"type":"integer","description":"start date of the class in milliseconds."},"enddate":{"type":"integer","description":"end date of the class in milliseconds."}},"title":"ValidateClassCodeMeta"},"space":{"required":["address","dls_account_id","dls_org_id","space_code","space_description","space_key","space_title","space_type"],"type":"object","properties":{"dls_org_id":{"type":"string"},"space_key":{"type":"string"},"space_title":{"type":"string"},"dls_account_id":{"type":"string"},"space_code":{"type":"string"},"space_type":{"type":"string"},"address":{"required":["city","country","house_no","post_code","region","street1","street2","street3","street4"],"type":"object","properties":{"country":{"type":"string"},"street3":{"type":"string"},"street4":{"type":"string"},"city":{"type":"string"},"post_code":{"type":"string"},"house_no":{"type":"string"},"street1":{"type":"string"},"street2":{"type":"string"},"region":{"type":"string"}},"title":"AddressDescription"},"space_description":{"required":["address"],"type":"object","properties":{"address":{"type":"string"}},"title":"SpaceDescription"}},"title":"EntityDescription"}},"title":"ValidateClassCodeRes"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

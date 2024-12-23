@@ -1,0 +1,33 @@
+---
+id: groupinfo
+title: "GroupInfo"
+description: ""
+sidebar_label: "GroupInfo"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"startdate":0,"enddate":0}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"GroupInfo"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["enddate","startdate"],"type":"object","properties":{"startdate":{"type":"integer"},"enddate":{"type":"integer"}},"title":"GroupInfo"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

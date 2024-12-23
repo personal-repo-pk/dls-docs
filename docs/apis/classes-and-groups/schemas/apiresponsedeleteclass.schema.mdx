@@ -1,0 +1,33 @@
+---
+id: apiresponsedeleteclass
+title: "APIResponseDeleteClass"
+description: ""
+sidebar_label: "APIResponseDeleteClass"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"status":"success","message":"string","data":{"classid":"string","class_code":"string","orgid":"string"}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"APIResponseDeleteClass"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"status":{"type":"string","enum":["success","rejected"]},"message":{"type":"string"},"data":{"type":"object","properties":{"classid":{"type":"string"},"class_code":{"type":"string"},"orgid":{"type":"string"}}}},"title":"APIResponseDeleteClass"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

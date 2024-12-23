@@ -1,0 +1,75 @@
+---
+id: associate-a-product-with-a-class
+title: "Associate a product with a class."
+description: "Associates a product with an instructor-led class."
+sidebar_label: "Associate a product with a class."
+hide_title: true
+hide_table_of_contents: true
+api: eJztVk1z2zYQ/Ss7OMUemnLS9KIbKzsetXbsseRpO4rHAxErEREIMFjQiaPhf+8sSMpypDite+mhF4kk9uPt7tvFrkWQSxLDmbiQAb2WhsRtIhRS7nUVtLNiKDIil2sZkEBC5Z2q8wCfdShAWtCWgq/z4PyRQQW5kUQpwAf7wR4eXqEvNZF2loaHhzBFmRfoE8hUqW0Ck7pCH5/h1chZqkv0dNCqnt6jDVFrdJ5NJunV9eXJzWh6l00ml6NxNh1fvr/LTk5gJvMcq4AqAarzHIkSQO+dv006zfh7t9Fnne9I/pFdje+m2eS3ybNircHsfXb+53Q8+luyZ2fXp2dboL8jfTM5vT7JptleIZGISnpZYkDPJVsLK0sUQ+H8UiuRCM3FqmQoxLcVvPRLafVXya8wPgG3gFAg1IReJMLjp1p7VGIYfI2JoLzAUorhWoSHih1Q8NouRdMkG5+xzj/wemP1pxpBK7RBLzR6WDgfHUftF3ruCJg7hc96v+qIyoJ9wD15g4M5gtF2hYpf/i2mrA6F812Ce1QFShXz+0031aHghORtNYJboU0BLmoKDErCvTRawa+/T9N/hOaWhalylpD4/M3xMf89dT5pKbWoTZ+Loxg3yK7HtbMpXGOovaWYlq0DUBikNsS4cmcD2sAeZFWZLprBR2I36y2YjwHMtkhTIpFccgGflpOCDDVXgampFc+iLk43/4h5aBUq9EG3UfaGdhOyMbbvqDO/76gHue9sG+w+Qoigg8GtkclZbxo+ebuvHL9IBZwgpJACjArMV/07PPb603y3xl7vGruxsqMhqhTGtuWR8xBHsF3CE5Z2xNtj+qdd0++cn2ulmKg3hB6MzFcE1Wa6cw/1RNl0GbV3RCg0ddfCHmdvd529dwEWrrYqBTjVocCtmcHhbG4gSWA3sru23/y8azuL9G9jB/xSMTNTgCuDkhDcPEhtQYLFz/vz0zB1Q+EUTx1HkY88fIZi4PxysI6juBlErEiDdUemZrDJzlEHf7DeIlMTZ8bCRVJ1FBq1NkBaBWfe1RW3xT16aiN5nR6nxzvD5V1tc36URoeHOG5LaeWSq99hSgCtd8aUfL0m0bpHIwMq4L6K3CCIWThH6S2rXrANZA2YPFDAEl6dX0wOUhgHoLqqnA8EuUcZWJpN7notpFWGv1Co+UKIYqFdCJ5CWqKNODpTkcbta0sBThgj71vMLqHsl5fk0fPSS4Vz51bRSoV+4XzJB/ParLZj5SzhYqFzzbAoL5wzRwbv0YB3xIbtMo3d7yiUMs63fu5vOP/tYvTI+CcFWj+y6f+16j+zVnVzPOCXMKiM1DZeEd5wvdr2nvGSJRIx7Hetjtf86fFW22lyPt6+M24TUfDUGM7Eej2XhDfeNA1//lSjfxDD2W0i7qXXcs4zYLYWShM/KzFcSEP4DJ1eXXc37QE8v+7tjbb7KO0DTxlpan4TiVjhw2bD5IXnRXh+vAi+AFOf9hejeumC+AKs2xxobpuk3w25wq1EFtttS3dnq+IFb3P3XF1OpqJp/gKYu7wp
+sidebar_class_name: "post api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Associate a product with a class."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/org/{orgid}/classes/{classid}/associate-product/{productcode}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Associates a product with an instructor-led class.  
+
+**Permissions:** Teacher, Admin, SuperAdmin (Consumers)
+
+**Events:** CLASS.PRODUCT_ASSOCIATION_ADD [accepted, success, error], CLASS.CLASS_PRODUCT_ADD [success, error], CLASS.XAPI_TASKS_ADD [success, error], CLASS.CLASS_ANALYTICS_ADD [success, error], CLASS.CLASS_AGGREGATION_ADD [success, error], CLASS.USERDATA_ADD [success, error]
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"Organization ID of the user","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"Unique identifier for the class","required":true,"schema":{"type":"string"}},{"name":"productcode","in":"path","description":"Product code of the product to be linked to the class","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token.  Must be a valid JWT.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful product-class association. Returns the association details.","content":{"application/json":{"schema":{"required":["classid","message","productcode","status","userid"],"type":"object","properties":{"message":{"type":"string"},"status":{"type":"string"},"userid":{"type":"string"},"classid":{"type":"string"},"productcode":{"type":"string"}},"title":"Association"}}}},"400":{"description":"Bad request.  Check request parameters.","content":{}},"401":{"description":"Unauthorized. Invalid or missing Authorization token.","content":{}},"403":{"description":"Forbidden. User lacks permission to associate products with this class.","content":{}},"404":{"description":"Not found.  Either the class or product was not found.","content":{}},"425":{"description":"Access token expired.  Please obtain a new token.","content":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

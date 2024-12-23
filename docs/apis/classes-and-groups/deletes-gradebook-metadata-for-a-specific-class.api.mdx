@@ -1,0 +1,78 @@
+---
+id: deletes-gradebook-metadata-for-a-specific-class
+title: "Deletes gradebook metadata for a specific class."
+description: "Deletes the metadata associated with a class's gradebook.  This operation requires appropriate authorization."
+sidebar_label: "Deletes gradebook metadata for a specific class."
+hide_title: true
+hide_table_of_contents: true
+api: eJzlVktP40gQ/iutviwgT8KsOOUWSAahhZ0RyZ4ggsJdjnuwuz1dZWYzkf/7qtrOa8OiASHNYU9x+lH11ddfPZaaYU56cKPPAxh88P5RzxJtkNJgK7be6YEeYYGMpDhHVSKDAQYFRD61wGjUd8u5ApUWQPQbqfnKUk+paW5J+QoDiC0V8FttA5KCqgq+CnJfQc25D/ZHPNK7dbfu6OgLhtISWe9ocHR06+6nCGmOIVFDU1qXqEktRuX7vr0xfkLH3eGzy+Fk0ju/Ho7Gp58//3F3NZ4O70bjy/F0fK8OqE5TJEoUhuDD4a3Tia4gQImMQbhYagcl6oH2YW6NTrQVFirgXP+bmmmO6mKkfBbJ8WEObhWITnQXrtEDDjUmmtIcS9CDpeZFJQ6Ig3Vz3TTJ2mdk8VVe4423uls/1t2rfK6vKfbKRH1spJEFX74Vz3BbDCtAOYLBsAdJzqJjm7biYv+Ir6R9Joep8o6QZP/342P52XUzafWS1UUbqfjy2RYFq8DFd+odo2OxAlVVdNj6X0lMLfeh+IevmLIoMEiasG2BEAPXtA850ejqUvLVug9V8AIsRixW0OhZk+gSiWCOz/Ks2XIRef5ycd1FrptGdk6OP+7HfuGeoLBG+aBiPrp5TNfnWH/XyM+8eSaATfQC9uVYk05R/23jFMxZQCOxQEF6tk1PF/dUglvzc7LPj2QFVZjazKLZkoQPbVqq70DKeVaZr535BTSdvEzT5ujYseXFBquyTo0WDko/Ot3l5hrJ1yHFPz1/kpORn+iEc2/0QLf1IFZVzvVA932Y95exmDb9SAtSf9kVuqa/Zo36y+1y1MT0z3xE3fk+a28rcEadB19Xov4nDNQ+x8fece94r058ql0qn1BIhJloGRzMRcwdmkShC74oSukhSbQesIjNbd28SBgBdYkQnFy9EhsoN9RkQYylOri8mhz21AUrqqvKByaVBgSOWePMM15zcKaQFeJahBiPcdvqdiHN0UUcnamozvZvq7PUGzG46sqyUQJjEGknG88bhYqVCkPmQykbD3XxuB2rsIRZZlMrsCjNvS8+FPiEhQqexLCb9yTLKk9cQtRuV8JX48J+gYxWYZUw6aZz7bzXcpMj/4fRo0tIxr+5XxVgnbBah0KIaBPoRgYRnejBah7p9CNLm3Fhk0ayvtPXZ4nOPbFYWi4fgPCvUDSNLH+rMSz04GaW6CcIFh4ky26W2liSb6MHGRSEL7zQwXXXbQ/Vy8PQs3F2i+AWksdQ1PJPJ/oRF+v5S6aDd8CzFtsbgKxYficoPzU9vQHmzqM3Uvi7yUmetD0yTFOseOvyXhOSoWhdylvl6qb5ByasOb8=
+sidebar_class_name: "delete api-method"
+info_path: ./docs/apis/classes-and-groups/classes-and-groups
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Deletes gradebook metadata for a specific class."}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/org/{orgid}/classes/{classid}/gradebooks/{gradebook_id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Deletes the metadata associated with a class's gradebook.  This operation requires appropriate authorization.
+
+**Permissions:**
+`Teacher, Admin, Superadmin`
+
+**Events:**
+`CLASS.GRADEBOOK_META_DELETE` (success, error)
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"orgid","in":"path","description":"The ID of the organization.","required":true,"schema":{"type":"string"}},{"name":"classid","in":"path","description":"The ID of the class.","required":true,"schema":{"type":"string"}},{"name":"gradebook_id","in":"path","description":"The ID of the gradebook to delete metadata from.","required":true,"schema":{"type":"string"}},{"name":"Authorization","in":"header","description":"Authentication token.","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful deletion of gradebook metadata.","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["in-process","rejected"]},"message":{"type":"string"}},"title":"APIResponse"}}}},"401":{"description":"Invalid or missing authentication token.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["401"]},"message":{"type":"string"},"name":{"type":"string","enum":["BadCredentials"]}},"title":"InvalidToken"}}}},"404":{"description":"The specified gradebook or class was not found.","content":{"application/json":{"schema":{"type":"object","properties":{"statusCode":{"type":"string","enum":["404"]},"message":{"type":"string","enum":["Entity not found in DynamoDB"]}},"title":"ResourceNotFound"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

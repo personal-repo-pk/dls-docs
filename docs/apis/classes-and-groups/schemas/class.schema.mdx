@@ -1,0 +1,33 @@
+---
+id: class
+title: "Class"
+description: ""
+sidebar_label: "Class"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"category":"class","class":{"startdate":0,"enddate":0,"instructorname":"string","instructorid":"string"},"uuid":"string","class_code":"string","title":"string","path":"string","class_ownership":{"model":"string","owner_status":"string"},"analyticsharingmodel":"NOINHERIT_SYNCBACK"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Class"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["category","class","class_ownership","path","title","uuid"],"type":"object","properties":{"category":{"type":"string","enum":["class"]},"class":{"required":["enddate","instructorid","instructorname","startdate"],"type":"object","properties":{"startdate":{"type":"integer"},"enddate":{"type":"integer"},"instructorname":{"type":"string"},"instructorid":{"type":"string"}},"title":"ClassMetadata"},"uuid":{"type":"string"},"class_code":{"type":"string"},"title":{"type":"string"},"path":{"type":"string"},"class_ownership":{"required":["model","owner_status"],"type":"object","properties":{"model":{"type":"string"},"owner_status":{"type":"string"}},"title":"ClassOwnershipEntity"},"analyticsharingmodel":{"type":"string","enum":["NOINHERIT_SYNCBACK"]}},"title":"Class"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

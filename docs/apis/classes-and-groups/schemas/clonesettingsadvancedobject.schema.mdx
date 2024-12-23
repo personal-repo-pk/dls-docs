@@ -1,0 +1,33 @@
+---
+id: clonesettingsadvancedobject
+title: "CloneSettingsAdvancedObject"
+description: ""
+sidebar_label: "CloneSettingsAdvancedObject"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"students":[{"ext_user_id":"string","invite-students":true,"first_name":"string","last_name":"string","email":"string","dls_org_status":"existing","ext_account_status":"existing"}],"teachers":[{"ext_user_id":"string","invite-teachers":true,"first_name":"string","last_name":"string","email":"string","dls_org_status":"existing","ext_account_status":"existing"}],"groups":[{"groupid":"string"}],"assigned_paths":[{"assigned_path_id":"string","startdate":0,"duedate":0}],"products":[{"productcode":"string"}],"limits":{"los":0,"students":0},"analyticsharingmodel":"NOINHERIT_SYNCBACK","analytics_score_aggregation_type":"best"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"CloneSettingsAdvancedObject"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"students":{"type":"array","items":{"type":"object","properties":{"ext_user_id":{"type":"string"},"invite-students":{"type":"boolean"},"first_name":{"type":"string"},"last_name":{"type":"string"},"email":{"type":"string"},"dls_org_status":{"type":"string","default":"existing","enum":["new","existing"]},"ext_account_status":{"type":"string","default":"existing","enum":["new","existing"]}},"title":"AdvancedStudentEnrollmentObject"}},"teachers":{"type":"array","items":{"type":"object","properties":{"ext_user_id":{"type":"string"},"invite-teachers":{"type":"boolean"},"first_name":{"type":"string"},"last_name":{"type":"string"},"email":{"type":"string"},"dls_org_status":{"type":"string","default":"existing","enum":["new","existing"]},"ext_account_status":{"type":"string","default":"existing","enum":["new","existing"]}},"title":"AdvancedTeacherEnrollmentObject"}},"groups":{"type":"array","items":{"required":["groupid"],"type":"object","properties":{"groupid":{"type":"string"}}}},"assigned_paths":{"type":"array","items":{"required":["assigned_path_id"],"type":"object","properties":{"assigned_path_id":{"type":"string"},"startdate":{"type":"integer"},"duedate":{"type":"integer"}}}},"products":{"type":"array","items":{"required":["productcode"],"type":"object","properties":{"productcode":{"type":"string"}}}},"limits":{"type":"object","properties":{"los":{"maximum":10000,"type":"integer"},"students":{"maximum":500,"type":"integer"}},"title":"ClassLimits"},"analyticsharingmodel":{"type":"string","enum":["NOINHERIT_SYNCBACK"]},"analytics_score_aggregation_type":{"type":"string","enum":["best","first","last"]}},"title":"CloneSettingsAdvancedObject"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

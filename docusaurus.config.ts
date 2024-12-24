@@ -8,7 +8,7 @@ import { generateDocusaurusOpenAPIConfig } from "./scripts/generate-docusaurus-o
 const config: Config = {
   title: "ComproDLS | Documentation",
   url: "https://personal-repo-pk.github.io",
-  baseUrl: "/dls-docs/",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon-dls.ico",

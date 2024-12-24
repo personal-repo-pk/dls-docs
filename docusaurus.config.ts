@@ -57,7 +57,7 @@ const config: Config = {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "Documents",
+            label: "Docs",
           },
           {
             label: "APIs",

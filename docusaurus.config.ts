@@ -7,7 +7,7 @@ import { generateDocusaurusOpenAPIConfig } from "./scripts/generate-docusaurus-o
 
 const config: Config = {
   title: "ComproDLS | Documentation",
-  url: "https://praveencompro.github.io",
+  url: "https://personal-repo-pk.github.io",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -15,7 +15,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "praveencompro", // Usually your GitHub org/user name.
+  organizationName: "personal-repo-pk", // Usually your GitHub org/user name.
   projectName: "dls-docs", // Usually your repo name.
 
   presets: [

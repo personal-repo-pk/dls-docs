@@ -71,7 +71,7 @@ const config: Config = {
         links: [
           
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Compro Technologies. Built with Docusaurus.`,
       },
       prism: {
         prism: {
